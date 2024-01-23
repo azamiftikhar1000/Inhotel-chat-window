@@ -15,7 +15,7 @@ const PapercupsBranding = () => {
           '&:hover': {opacity: 1},
         }}
       >
-        Powered by Inhotels
+        Powered by Inhotel.io
       </Link>
     </Flex>
   );

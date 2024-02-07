@@ -8,7 +8,6 @@
     "deploy": "npm run build && npm run export",
     "prettier": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "start": "next start -p ${PORT:-3000}"
-
   },
   "husky": {
     "hooks": {
@@ -26,11 +25,11 @@
     "antd": "^4.4.2",
     "dayjs": "^1.10.6",
     "framer-motion": "^2.3.0",
-    "next": "9.4.4",
+    "next": "^9.4.4",
     "phoenix": "^1.5.4",
     "rc-upload": "^3.3.4",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-emoji-render": "^1.2.4",
     "react-markdown": "^4.3.1",
     "remark-breaks": "^2.0.0",

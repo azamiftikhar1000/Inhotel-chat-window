@@ -110,8 +110,8 @@ const ChatMessage = ({
   const timestamp = created ? formatRelativeTime(created) : null;
   const isBot = type === 'bot';
   const defaultBotName = companyName || 'Bot';
-  // const identifer = isBot ? defaultBotName : getAgentIdentifier(user);
-  const identifer = isBot ? defaultBotName : null;
+  const identifer = isBot ? defaultBotName : getAgentIdentifier(user);
+  // const identifer = isBot ? defaultBotName : null;
 
   if (isMe) {
     return (
@@ -156,9 +156,7 @@ const ChatMessage = ({
       </Flex>
       {shouldDisplayTimestamp && (
         <Flex m={1} sx={{justifyContent: 'flex-start'}}>
-          <Text sx={{color: 'gray'}}>
-            {identifer} · Sent {timestamp}
-          </Text>
+          <Text sx={{color: 'gray'}}>Sent {timestamp}</Text>
         </Flex>
       )}
     </Box>
@@ -168,8 +166,8 @@ const ChatMessage = ({
 export const PopupChatMessage = ({message}: Props) => {
   const {body, user, type} = message;
   const isBot = type === 'bot';
-  // const identifer = isBot ? 'Bot' : getAgentIdentifier(user);
-  const identifer = isBot ? 'Bot' : null;
+  const identifer = isBot ? 'Bot' : getAgentIdentifier(user);
+  // const identifer = isBot ? 'Bot' : null;
 
   return (
     <Box pr={0} pl={0} pb={2}>

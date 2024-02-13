@@ -47,6 +47,8 @@ const SenderAvatar = ({
   user?: User;
   isBot?: boolean;
 }) => {
+  user.profile_photo_url =
+    'https://uploads-ssl.webflow.com/657ae60d92ed823479730a3f/65c81fa5c254bb0f9763ce5f_guest-relations-assistant-avatar-64x64-transparent.png';
   const profilePhotoUrl = user && user.profile_photo_url;
 
   if (profilePhotoUrl) {

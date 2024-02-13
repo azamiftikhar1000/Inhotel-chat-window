@@ -48,8 +48,15 @@ const SenderAvatar = ({
   isBot?: boolean;
 }) => {
   if (!isBot) {
+    // Transparent
+    // user.profile_photo_url =
+    //   'https://uploads-ssl.webflow.com/657ae60d92ed823479730a3f/65c81fa5c254bb0f9763ce5f_guest-relations-assistant-avatar-64x64-transparent.png';
+    // Black
     user.profile_photo_url =
-      'https://uploads-ssl.webflow.com/657ae60d92ed823479730a3f/65c81fa5c254bb0f9763ce5f_guest-relations-assistant-avatar-64x64-transparent.png';
+      'https://uploads-ssl.webflow.com/657ae60d92ed823479730a3f/65c81fd78f53ab369e2e65d1_guest-relations-assistant-avatar-64x64-black.png';
+    // White
+    // user.profile_photo_url =
+    //   'https://uploads-ssl.webflow.com/657ae60d92ed823479730a3f/65c81fcb8e01ed41a967bd37_guest-relations-assistant-avatar-64x64-white.png'
   }
 
   const profilePhotoUrl = user && user.profile_photo_url;

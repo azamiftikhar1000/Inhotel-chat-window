@@ -73,6 +73,8 @@ type ChatMessageBodyProps = {
   content: string;
   sx?: object;
   attachments?: Array<Attachment>;
+  thumbsup?: object;
+  thumbsdown?: object;
 };
 
 const ChatMessageBody = ({
@@ -80,6 +82,8 @@ const ChatMessageBody = ({
   content,
   sx,
   attachments = [],
+  thumbsup,
+  thumbsdown,
 }: ChatMessageBodyProps) => {
   const parsedSx = Object.assign(
     {
@@ -120,6 +124,9 @@ const ChatMessageBody = ({
           })}
         </Box>
       )}
+      {/* <br></br> */}
+      {thumbsup}
+      {thumbsdown}
     </Box>
   );
 };

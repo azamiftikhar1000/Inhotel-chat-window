@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Box, Flex, Text} from 'theme-ui';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import BotIcon from './BotIcon';
 import ChatMessageBody from './ChatMessageBody';
 import {Message, User} from '../helpers/types';
+import styles from './ChatMessage.module.css';
 
 dayjs.extend(utc);
 
@@ -123,18 +124,33 @@ const ChatMessage = ({
   const isBot = type === 'bot';
   const defaultBotName = companyName || 'Bot';
   const identifer = isBot ? defaultBotName : getAgentIdentifier(user);
+  const [clicked, setIsClicked] = useState(null);
+
   const handleThumbsUpClick = () => {
     console.log('Thumbs up clicked!');
-    // send a feedback signal to your backend
+    // send a feedback signal to your backend-
+    // Toggle isClicked state
+    if (clicked === 'up') {
+      setIsClicked(null);
+    } else {
+      setIsClicked('up');
+    }
   };
   const handleThumbsDownClick = () => {
     console.log('Thumbs down clicked!');
     // send a feedback signal to your backend
+    // Toggle isClicked state
+    if (clicked === 'down') {
+      setIsClicked(null);
+    } else {
+      setIsClicked('down');
+    }
   };
   const thumbsup = (
     <button
       style={{cursor: 'pointer', margin: '4px'}}
       onClick={handleThumbsUpClick}
+      className={clicked === 'up' ? styles.clicked : ''}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -153,6 +169,7 @@ const ChatMessage = ({
     <button
       style={{cursor: 'pointer', margin: '4px'}}
       onClick={handleThumbsDownClick}
+      className={clicked === 'down' ? styles.clicked : ''}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

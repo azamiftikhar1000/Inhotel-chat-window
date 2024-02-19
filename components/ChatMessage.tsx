@@ -200,7 +200,7 @@ const ChatMessage = ({
   };
   const thumbsup = (
     <button
-      style={{cursor: 'pointer', margin: '1px', border: 'None'}}
+      style={{cursor: 'pointer', margin: '1px', border: 'None', padding: '0'}}
       onClick={handleThumbsUpClick}
     >
       {clicked === 'up' ? thumbsUpIconBlack : thumbsUpIcon}
@@ -208,7 +208,7 @@ const ChatMessage = ({
   );
   const thumbsdown = (
     <button
-      style={{cursor: 'pointer', margin: '1px', border: 'None'}}
+      style={{cursor: 'pointer', margin: '1px', border: 'None', padding: '0'}}
       onClick={handleThumbsDownClick}
     >
       {clicked === 'down' ? thumbsDownIconBlack : thumbsDownIcon}

@@ -204,20 +204,22 @@ const ChatMessage = ({
     }
   };
   const thumbsup = (
-    <button
-      style={{cursor: 'pointer', margin: '1px', border: 'None', padding: '0'}}
+    <span
+      className={styles.btn_up_down}
+      style={{cursor: 'pointer', margin: '1px', border: 'None', padding: '5px'}}
       onClick={handleThumbsUpClick}
     >
       {clicked === 'up' ? thumbsUpIconBlack : thumbsUpIcon}
-    </button>
+    </span>
   );
   const thumbsdown = (
-    <button
-      style={{cursor: 'pointer', margin: '1px', border: 'None', padding: '0'}}
+    <span
+      className={styles.btn_up_down}
+      style={{cursor: 'pointer', margin: '1px', border: 'None', padding: '5px'}}
       onClick={handleThumbsDownClick}
     >
       {clicked === 'down' ? thumbsDownIconBlack : thumbsDownIcon}
-    </button>
+    </span>
   );
 
   if (isMe) {

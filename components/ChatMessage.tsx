@@ -10,21 +10,15 @@ import styles from './ChatMessage.module.css';
 dayjs.extend(utc);
 
 const formatRelativeTime = (date: dayjs.Dayjs) => {
-  const ms = dayjs().diff(date, 'second');
-  const mins = Math.floor(ms / 60);
-  const hrs = Math.floor(mins / 60);
-  const days = Math.floor(hrs / 24);
+  const localDate = date.local();
+  const now = dayjs();
+  const diff = now.diff(localDate, 'hour');
+  const isSameDay = now.isSame(localDate, 'day');
 
-  if (ms < 10) {
-    return 'just now';
-  } else if (ms < 60) {
-    return `${ms} seconds ago`;
-  } else if (mins <= 60) {
-    return `${mins} minute${mins === 1 ? '' : 's'} ago`;
-  } else if (hrs <= 24) {
-    return `${hrs} hour${hrs === 1 ? '' : 's'} ago`;
+  if (diff < 24 && isSameDay) {
+    return localDate.format('hh:mm A');
   } else {
-    return `${days} day${days === 1 ? '' : 's'} ago`;
+    return localDate.format('ddd MM/DD/YY');
   }
 };
 
@@ -206,7 +200,7 @@ const ChatMessage = ({
   const thumbsup = (
     <span
       className={styles.btn_up_down}
-      style={{cursor: 'pointer', margin: '1px', border: 'None', padding: '5px'}}
+      style={{cursor: 'pointer', border: 'None', padding: '5px'}}
       onClick={handleThumbsUpClick}
     >
       {clicked === 'up' ? thumbsUpIconBlack : thumbsUpIcon}
@@ -215,7 +209,7 @@ const ChatMessage = ({
   const thumbsdown = (
     <span
       className={styles.btn_up_down}
-      style={{cursor: 'pointer', margin: '1px', border: 'None', padding: '5px'}}
+      style={{cursor: 'pointer', border: 'None', padding: '5px'}}
       onClick={handleThumbsDownClick}
     >
       {clicked === 'down' ? thumbsDownIconBlack : thumbsDownIcon}

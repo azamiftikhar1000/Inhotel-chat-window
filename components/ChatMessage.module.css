@@ -10,6 +10,6 @@
   transition: border-radius 0.3s;
 }
 .btn_up_down:hover {
-  background-color: rgba(200, 200, 200, 0.1);
+  background-color: rgba(200, 200, 200, 0.2);
   border-radius: 50%;
 }

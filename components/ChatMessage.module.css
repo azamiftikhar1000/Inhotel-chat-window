@@ -1,5 +1,6 @@
 .btn_up_down {
-  margin-top: 1rem;
+  margin-top: 0.7rem;
+  margin-bottom: 0.5rem;
   width: 32px;
   height: 32px;
   display: inline-flex;

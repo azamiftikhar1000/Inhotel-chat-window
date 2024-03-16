@@ -19636,7 +19636,7 @@
         n
       );
     });
-  var Mq = 'https://app.papercups.io';
+  var Mq = 'https://inhotel-chat.eastus.cloudapp.azure.com';
   var Nq =
       (cd && cd.__awaiter) ||
       function (t, e, n, r) {
@@ -21978,7 +21978,8 @@
         }
         return n;
       },
-    xD = 'https://chat-widget.papercups.io',
+    xD =
+      'https://inhotel-chat-window-639f6321c606.herokuapp.com1c606.herokuapp.com',
     yD = function (e, t) {
       var n = function (e) {
         t(e);
@@ -22403,7 +22404,7 @@
                 ')'
             ),
             console.error(
-              "If you're missing a InhotelChatWindow `token`, you can get one by signing up for a free account at https://app.papercups.io/register"
+              "If you're missing a InhotelChatWindow `token`, you can get one by signing up for a free account at https://inhotel-chat.eastus.cloudapp.azure.com/register"
             ),
             new Error('Invalid `token`: ' + r))
           );
@@ -42598,7 +42599,7 @@
         n
       );
     });
-  var Mq = 'https://app.papercups.io';
+  var Mq = 'https://inhotel-chat.eastus.cloudapp.azure.com';
   var Nq =
       (cd && cd.__awaiter) ||
       function (t, e, n, r) {
@@ -44940,7 +44941,8 @@
         }
         return n;
       },
-    xD = 'https://chat-widget.papercups.io',
+    xD =
+      'https://inhotel-chat-window-639f6321c606.herokuapp.com1c606.herokuapp.com',
     yD = function (e, t) {
       var n = function (e) {
         t(e);
@@ -45365,7 +45367,7 @@
                 ')'
             ),
             console.error(
-              "If you're missing a InhotelChatWindow `token`, you can get one by signing up for a free account at https://app.papercups.io/register"
+              "If you're missing a InhotelChatWindow `token`, you can get one by signing up for a free account at https://inhotel-chat.eastus.cloudapp.azure.com/register"
             ),
             new Error('Invalid `token`: ' + r))
           );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Box, Flex, Heading, Text} from 'theme-ui';
 import {Presence} from 'phoenix';
 import {motion} from 'framer-motion';
@@ -7,7 +7,7 @@ import {
   isCustomerMessage,
   isAgentMessage,
 } from '@papercups-io/browser';
-import ChatMessage from './ChatMessage';
+import {ChatMessage, SenderAvatar} from './ChatMessage';
 import ChatFooter from './ChatFooter';
 import AgentAvailability from './AgentAvailability';
 import PapercupsBranding from './PapercupsBranding';
@@ -32,6 +32,7 @@ import analytics from '../helpers/analytics';
 import EmbeddedGame from './EmbeddedGame';
 import UnreadMessages from './UnreadMessages';
 import QuickReplies from './QuickReplies';
+import ContactForm from './ContactForm';
 
 type Props = {
   inboxId?: string;
@@ -72,6 +73,7 @@ type State = {
   shouldDisplayNotifications: boolean;
   popUpInitialMessage?: boolean;
   shouldDisplayBranding: boolean;
+  showContactForm: boolean;
 };
 
 class ChatWindow extends React.Component<Props, State> {
@@ -136,8 +138,21 @@ class ChatWindow extends React.Component<Props, State> {
       shouldDisplayNotifications: false,
       popUpInitialMessage: false,
       shouldDisplayBranding: false,
+      showContactForm: false,
     };
   }
+
+  handleMailIconClick = () => {
+    this.setState((prevState) => ({
+      showContactForm: !prevState.showContactForm,
+      messages: prevState.showContactForm
+        ? prevState.messages.filter((msg) => msg.type !== 'contactform')
+        : [
+            ...prevState.messages,
+            {id: `contact_form`, type: 'contactform', body: ''},
+          ],
+    }));
+  };
 
   async componentDidMount() {
     await this.papercups.start();
@@ -625,6 +640,29 @@ class ChatWindow extends React.Component<Props, State> {
                 onClick={this.emitCloseWindow}
               />
             )}
+
+            {/* Mail Icon */}
+            <Box
+              // pt={3} pb={showAgentAvailability ? 12 : 16} px={2}
+              sx={{color: 'background'}}
+            >
+              <div
+                onClick={this.handleMailIconClick}
+                style={{cursor: 'pointer'}}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                >
+                  <path d="M5.96802 4H18.032C18.4706 3.99999 18.8491 3.99998 19.1624 4.02135C19.4922 4.04386 19.8221 4.09336 20.1481 4.22836C20.8831 4.53284 21.4672 5.11687 21.7716 5.85195C21.9066 6.17788 21.9561 6.50779 21.9787 6.83762C22 7.15088 22 7.52936 22 7.96801V16.032C22 16.4706 22 16.8491 21.9787 17.1624C21.9561 17.4922 21.9066 17.8221 21.7716 18.1481C21.4672 18.8831 20.8831 19.4672 20.1481 19.7716C19.8221 19.9066 19.4922 19.9561 19.1624 19.9787C18.8491 20 18.4706 20 18.032 20H5.96801C5.52936 20 5.15088 20 4.83762 19.9787C4.50779 19.9561 4.17788 19.9066 3.85195 19.7716C3.11687 19.4672 2.53284 18.8831 2.22836 18.1481C2.09336 17.8221 2.04386 17.4922 2.02135 17.1624C1.99998 16.8491 1.99999 16.4706 2 16.032V7.96802C1.99999 7.52937 1.99998 7.15088 2.02135 6.83762C2.04386 6.50779 2.09336 6.17788 2.22836 5.85195C2.53284 5.11687 3.11687 4.53284 3.85195 4.22836C4.17788 4.09336 4.50779 4.04386 4.83762 4.02135C5.15088 3.99998 5.52937 3.99999 5.96802 4ZM4.31745 6.27777C4.68114 5.86214 5.3129 5.82002 5.72854 6.1837L11.3415 11.095C11.7185 11.4249 12.2815 11.4249 12.6585 11.095L18.2715 6.1837C18.6871 5.82002 19.3189 5.86214 19.6825 6.27777C20.0462 6.69341 20.0041 7.32517 19.5885 7.68885L13.9755 12.6002C12.8444 13.5899 11.1556 13.5899 10.0245 12.6002L4.41153 7.68885C3.99589 7.32517 3.95377 6.69341 4.31745 6.27777Z"></path>
+                </svg>
+              </div>
+            </Box>
             <Heading
               as="h2"
               className="Papercups-heading"
@@ -659,27 +697,56 @@ class ChatWindow extends React.Component<Props, State> {
               ? msg.customer_id !== next.customer_id
               : true;
             const shouldDisplayTimestamp = key === messages.length - 1;
-            // NB: `msg.type` doesn't come from the server, it's just a way to
-            // help identify unsent messages in the frontend for now
             const isMe = isCustomerMessage(msg, customerId);
+            const uniqueKey = Date.now();
 
-            return (
-              <motion.div
-                key={key}
-                initial={{opacity: 0, x: isMe ? 2 : -2}}
-                animate={{opacity: 1, x: 0}}
-                transition={{duration: 0.2, ease: 'easeIn'}}
-              >
-                <ChatMessage
-                  key={key}
-                  message={msg}
-                  isMe={isMe}
-                  companyName={companyName}
-                  isLastInGroup={isLastInGroup}
-                  shouldDisplayTimestamp={shouldDisplayTimestamp}
-                />
-              </motion.div>
-            );
+            if (msg.type === 'contactform' && this.state.showContactForm) {
+              // Render the ContactForm as part of the chat
+              return (
+                <motion.div
+                  key={msg.id}
+                  initial={{opacity: 0, x: isMe ? 2 : -2}}
+                  animate={{opacity: 1, x: 0}}
+                  transition={{duration: 0.2, ease: 'easeIn'}}
+                >
+                  <Flex
+                    sx={{
+                      flex: 0,
+                      alignItems: 'center',
+                      justifyContent: 'start',
+                    }}
+                  >
+                    <SenderAvatar
+                      name="Contact Form"
+                      isBot={false}
+                      user={null}
+                    />
+                    <ContactForm
+                      isVisible={true}
+                      onClose={this.handleMailIconClick}
+                    />
+                  </Flex>
+                </motion.div>
+              );
+            } else {
+              // Render regular chat messages
+              return (
+                <motion.div
+                  key={msg.id}
+                  initial={{opacity: 0, x: isMe ? 2 : -2}}
+                  animate={{opacity: 1, x: 0}}
+                  transition={{duration: 0.2, ease: 'easeIn'}}
+                >
+                  <ChatMessage
+                    message={msg}
+                    isMe={isMe}
+                    companyName={this.props.companyName}
+                    isLastInGroup={isLastInGroup}
+                    shouldDisplayTimestamp={shouldDisplayTimestamp}
+                  />
+                </motion.div>
+              );
+            }
           })}
 
           {replies && replies.length > 0 ? (

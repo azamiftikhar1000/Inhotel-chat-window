@@ -40,7 +40,7 @@ export type Message = {
   conversation_id?: string;
   user_id?: number;
   user?: User;
-  type?: 'bot' | 'agent' | 'customer';
+  type?: 'bot' | 'agent' | 'customer' | 'contactform';
   file_ids?: Array<string>;
   attachments?: Array<Attachment>;
   quick_replies?: Array<any>;

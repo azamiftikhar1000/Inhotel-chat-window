@@ -33,7 +33,7 @@ const getAgentIdentifier = (user?: User) => {
   return display_name || full_name || username || 'Agent';
 };
 
-const SenderAvatar = ({
+export const SenderAvatar = ({
   name,
   user,
   isBot,
@@ -42,19 +42,25 @@ const SenderAvatar = ({
   user?: User;
   isBot?: boolean;
 }) => {
+  const default_user = {
+    id: -1,
+    email: 'default_user@defaultuser.com',
+    profile_photo_url: '',
+  };
   if (!isBot) {
-    // Transparent
-    // user.profile_photo_url =
-    //   'https://uploads-ssl.webflow.com/657ae60d92ed823479730a3f/65c81fa5c254bb0f9763ce5f_guest-relations-assistant-avatar-64x64-transparent.png';
     // Black
-    user.profile_photo_url =
-      'https://uploads-ssl.webflow.com/657ae60d92ed823479730a3f/65c81fd78f53ab369e2e65d1_guest-relations-assistant-avatar-64x64-black.png';
-    // White
-    // user.profile_photo_url =
-    //   'https://uploads-ssl.webflow.com/657ae60d92ed823479730a3f/65c81fcb8e01ed41a967bd37_guest-relations-assistant-avatar-64x64-white.png'
+    // console.log("Type: ",type)
+    if (user) {
+      user.profile_photo_url =
+        'https://uploads-ssl.webflow.com/657ae60d92ed823479730a3f/65c81fd78f53ab369e2e65d1_guest-relations-assistant-avatar-64x64-black.png';
+    } else {
+      default_user.profile_photo_url =
+        'https://uploads-ssl.webflow.com/657ae60d92ed823479730a3f/65c81fd78f53ab369e2e65d1_guest-relations-assistant-avatar-64x64-black.png';
+    }
   }
 
-  const profilePhotoUrl = user && user.profile_photo_url;
+  const profilePhotoUrl =
+    (user && user.profile_photo_url) || default_user.profile_photo_url;
 
   if (profilePhotoUrl) {
     return (
@@ -98,14 +104,14 @@ const SenderAvatar = ({
 };
 
 type Props = {
-  message: Message;
+  message?: Message;
   isMe?: boolean;
   isLastInGroup?: boolean;
   companyName?: string;
   shouldDisplayTimestamp?: boolean;
 };
 
-const ChatMessage = ({
+export const ChatMessage = ({
   message,
   isMe,
   companyName,
@@ -215,7 +221,6 @@ const ChatMessage = ({
       {clicked === 'down' ? thumbsDownIconBlack : thumbsDownIcon}
     </span>
   );
-
   if (isMe) {
     return (
       <Box pr={0} pl={4} pb={isLastInGroup ? 3 : 2}>
@@ -271,6 +276,7 @@ const ChatMessage = ({
 
 export const PopupChatMessage = ({message}: Props) => {
   const {body, user, type} = message;
+  // console.log("Message: ",message)
   const isBot = type === 'bot';
   const identifer = isBot ? 'Bot' : getAgentIdentifier(user);
   // const identifer = isBot ? 'Bot' : null;
@@ -281,7 +287,6 @@ export const PopupChatMessage = ({message}: Props) => {
         sx={{justifyContent: 'flex-start', alignItems: 'center', width: '100%'}}
       >
         <SenderAvatar name={identifer} user={user} isBot={isBot} />
-
         <ChatMessageBody
           sx={{
             px: 3,
@@ -301,4 +306,4 @@ export const PopupChatMessage = ({message}: Props) => {
   );
 };
 
-export default ChatMessage;
+// export default ChatMessage;

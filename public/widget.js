@@ -22963,9 +22963,6 @@ fetch(url, {
         var iE = data.account_id;
         console.log(iE)
         console.log(data.account_id)
-        if (!iE)
-            throw new Error('An account token is required to render the InhotelChatWindow chat widget!');
-        
         var sr = document.createElement('div');
         // Assuming za and qs are defined elsewhere in your code
         var jE = za(qs); 
@@ -22979,10 +22976,6 @@ fetch(url, {
 .catch(error => {
     console.error('Error fetching account ID:', error);
 });
-  if (!iE)
-    throw new Error(
-      'An account token is required to render the InhotelChatWindow chat widget!'
-    );
   var sr = document.createElement('div');
   var jE = za(qs);
   (sr.id = 'InhotelChatWidget'),

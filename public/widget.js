@@ -22945,8 +22945,7 @@
     rr = ga.onMessageReceived,
     hE = void 0 === rr ? ye : rr,
     iE = _q || ar;
-    var inbox_id = ga.inbox; // Assuming the inbox ID is stored in ga.inbox
-
+    var inbox_id = DD; 
 var url = "https://inhotel-bda7de42c465.herokuapp.com/api/v1/core/get_account_id_by_inbox_id?inbox_id=" + encodeURIComponent(inbox_id);
 
 

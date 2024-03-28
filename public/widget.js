@@ -22959,8 +22959,10 @@ fetch(url, {
 .then(data => {
     if(data.status === 0) {
         // Successfully retrieved the account ID
+        console.log(data)
         var iE = data.account_id;
-        
+        console.log(iE)
+        console.log(data.account_id)
         if (!iE)
             throw new Error('An account token is required to render the InhotelChatWindow chat widget!');
         

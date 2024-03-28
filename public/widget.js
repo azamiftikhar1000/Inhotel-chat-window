@@ -22893,7 +22893,7 @@
     $q = window,
     ga = ($q.InhotelChatWindow && $q.InhotelChatWindow.config) || {},
     _q = INHOTEL_ACCOUNT_ID || ga.token,
-    DD = INHOTEL_ASSISTANT_ID || ga.inbox,
+    DD = ASSISTANT_INTERACTION_PROFILE_ID || ga.inbox,
     ar = ga.accountId,
     ED = ga.title,
     FD = ga.subtitle,
@@ -22945,6 +22945,39 @@
     rr = ga.onMessageReceived,
     hE = void 0 === rr ? ye : rr,
     iE = _q || ar;
+    var inbox_id = ga.inbox; // Assuming the inbox ID is stored in ga.inbox
+
+var url = "https://inhotel-bda7de42c465.herokuapp.com/api/v1/core/get_account_id_by_inbox_id?inbox_id=" + encodeURIComponent(inbox_id);
+
+
+fetch(url, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    }
+})
+.then(response => response.json())
+.then(data => {
+    if(data.status === 0) {
+        // Successfully retrieved the account ID
+        var iE = data.account_id;
+        
+        if (!iE)
+            throw new Error('An account token is required to render the InhotelChatWindow chat widget!');
+        
+        var sr = document.createElement('div');
+        // Assuming za and qs are defined elsewhere in your code
+        var jE = za(qs); 
+        sr.id = 'InhotelChatWidget';
+        // Continue with the rest of your widget initialization...
+    } else {
+        // Handle errors or situations where the account ID could not be retrieved
+        console.error('Failed to retrieve account ID:', data.message);
+    }
+})
+.catch(error => {
+    console.error('Error fetching account ID:', error);
+});
   if (!iE)
     throw new Error(
       'An account token is required to render the InhotelChatWindow chat widget!'

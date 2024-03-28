@@ -22892,7 +22892,7 @@
   var ye = function () {},
     $q = window,
     ga = ($q.InhotelChatWindow && $q.InhotelChatWindow.config) || {},
-    _q = null
+    _q = null,
     DD = ASSISTANT_INTERACTION_PROFILE_ID || ga.inbox,
     ar = ga.accountId,
     ED = ga.title,

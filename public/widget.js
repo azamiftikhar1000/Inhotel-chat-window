@@ -22945,37 +22945,43 @@
     rr = ga.onMessageReceived,
     hE = void 0 === rr ? ye : rr,
     iE = _q || ar;
-    var inbox_id = DD; 
-var url = "https://inhotel-bda7de42c465.herokuapp.com/api/v1/core/get_account_id_by_inbox_id?inbox_id=" + encodeURIComponent(inbox_id);
 
 
-fetch(url, {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    }
-})
-.then(response => response.json())
-.then(data => {
-    if(data.status === 0) {
-        // Successfully retrieved the account ID
-        console.log(data)
-        var iE = data.account_id;
-        console.log(iE)
-        console.log(data.account_id)
-        var sr = document.createElement('div');
-        // Assuming za and qs are defined elsewhere in your code
-        var jE = za(qs); 
-        sr.id = 'InhotelChatWidget';
-        // Continue with the rest of your widget initialization...
-    } else {
-        // Handle errors or situations where the account ID could not be retrieved
-        console.error('Failed to retrieve account ID:', data.message);
-    }
-})
-.catch(error => {
-    console.error('Error fetching account ID:', error);
-});
+async function fetchAndProcess(inbox_id) {
+  try {
+      var url = "https://inhotel-bda7de42c465.herokuapp.com/api/v1/core/get_account_id_by_inbox_id?inbox_id=" + encodeURIComponent(inbox_id);
+
+      // Step 2: Use await with fetch
+      const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          }
+      });
+      const data = await response.json();
+
+      if(data.status === 0) {
+          // Step 3: Process the response
+          console.log(data); // Successfully retrieved the account ID
+          var iE = data.account_id;
+          console.log(iE);
+
+          var sr = document.createElement('div');
+          // Assuming za and qs are defined elsewhere in your code
+          var jE = za(qs); 
+          sr.id = 'InhotelChatWidget';
+      } else {
+          console.error('Failed to retrieve account ID:', data.message);
+      }
+  } catch (error) {
+      // Step 4: Error handling
+      console.error('Error fetching account ID:', error);
+  }
+}
+
+// Usage example
+fetchAndProcess(DD).then(() => {
+  console.log('Operation complete.');
   var sr = document.createElement('div');
   var jE = za(qs);
   (sr.id = 'InhotelChatWidget'),
@@ -23021,6 +23027,11 @@ fetch(url, {
       document.getElementById('InhotelChatWidget')
     );
 })();
+}).catch(error => {
+
+});
+
+
 (function () {
   function za(a) {
     return a && a.__esModule ? {d: a.default} : {d: a};
@@ -45915,8 +45926,8 @@ fetch(url, {
   var ye = function () {},
     $q = window,
     ga = ($q.InhotelChatWindow && $q.InhotelChatWindow.config) || {},
-    _q = ga.token,
-    DD = ga.inbox,
+    _q = null,
+    DD = ASSISTANT_INTERACTION_PROFILE_ID || ga.inbox,
     ar = ga.accountId,
     ED = ga.title,
     FD = ga.subtitle,

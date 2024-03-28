@@ -25,7 +25,7 @@ fetch(url, {
     console.error('Error fetching account ID:', error);
 })
 .finally(() => {
-    if (!iE) {
+    if (!ACCOUNT_ID) {
         throw new Error('An account token is required to render the InhotelChatWindow chat widget!');
     }
 

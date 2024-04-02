@@ -1,34 +1,35 @@
+var inbox_id = ASSISTANT_INTERACTION_PROFILE_ID;
 
-var inbox_id = ASSISTANT_INTERACTION_PROFILE_ID; 
+var ACCOUNT_ID;
 
-var ACCOUNT_ID; 
-
-var url = "https://inhotel-bda7de42c465.herokuapp.com/api/v1/core/get_account_id_by_inbox_id?inbox_id=" + encodeURIComponent(inbox_id);
+var url =
+  'https://inhotel-bda7de42c465.herokuapp.com/api/v1/core/get_account_id_by_inbox_id?inbox_id=' +
+  encodeURIComponent(inbox_id);
 
 fetch(url, {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    }
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
 })
-.then(response => response.json())
-.then(data => {
-    if(data.status === 0) {
-        ACCOUNT_ID = data.account_id; 
-        console.log(data);
-      
+  .then((response) => response.json())
+  .then((data) => {
+    if (data.status === 0) {
+      ACCOUNT_ID = data.account_id;
+      console.log(data);
     } else {
-        console.error('Failed to retrieve account ID:', data.message);
+      console.error('Failed to retrieve account ID:', data.message);
     }
-})
-.catch(error => {
+  })
+  .catch((error) => {
     console.error('Error fetching account ID:', error);
-})
-.finally(() => {
+  })
+  .finally(() => {
     if (!ACCOUNT_ID) {
-        throw new Error('An account token is required to render the InhotelChatWindow chat widget!');
+      throw new Error(
+        'An account token is required to render the InhotelChatWindow chat widget!'
+      );
     }
-
 
     (function () {
       function za(a) {
@@ -50,8 +51,10 @@ fetch(url, {
         try {
           if (!Object.assign) return !1;
           var r = new String('abc');
-          if (((r[5] = 'de'), '5' === Object.getOwnPropertyNames(r)[0])) return !1;
-          for (var e = {}, t = 0; t < 10; t++) e['_' + String.fromCharCode(t)] = t;
+          if (((r[5] = 'de'), '5' === Object.getOwnPropertyNames(r)[0]))
+            return !1;
+          for (var e = {}, t = 0; t < 10; t++)
+            e['_' + String.fromCharCode(t)] = t;
           if (
             '0123456789' !==
             Object.getOwnPropertyNames(e)
@@ -66,7 +69,8 @@ fetch(url, {
             'abcdefghijklmnopqrst'.split('').forEach(function (r) {
               n[r] = r;
             }),
-            'abcdefghijklmnopqrst' === Object.keys(Object.assign({}, n)).join('')
+            'abcdefghijklmnopqrst' ===
+              Object.keys(Object.assign({}, n)).join('')
           );
         } catch (o) {
           return !1;
@@ -378,7 +382,9 @@ fetch(url, {
           }),
           ($j.prototype = Ac.prototype);
         ig = kg.prototype = new $j();
-        (ig.constructor = kg), hg(ig, Ac.prototype), (ig.isPureReactComponent = !0);
+        (ig.constructor = kg),
+          hg(ig, Ac.prototype),
+          (ig.isPureReactComponent = !0);
         jg = {current: null};
         Wj = Object.prototype.hasOwnProperty;
         Xj = {key: !0, ref: !0, __self: !0, __source: !0};
@@ -465,7 +471,14 @@ fetch(url, {
             for (var w = 0; w < u; w++) n[w] = arguments[w + 2];
             a.children = n;
           }
-          return {$$typeof: hd, type: $.type, key: t, ref: i, props: a, _owner: o};
+          return {
+            $$typeof: hd,
+            type: $.type,
+            key: t,
+            ref: i,
+            props: a,
+            _owner: o,
+          };
         };
         ka.cloneElement = Rr;
         Sr = function ($, r) {
@@ -674,7 +687,7 @@ fetch(url, {
           for (
             De(v), Xa = Ya(gb);
             null !== Xa && (!(Xa.expirationTime > v) || ($ && !fk()));
-    
+
           ) {
             var a = Xa.callback;
             if (null !== a) {
@@ -716,7 +729,10 @@ fetch(url, {
         if (Ls) return;
         Ls = true;
         na = {};
-        if ('undefined' == typeof window || 'function' != typeof MessageChannel) {
+        if (
+          'undefined' == typeof window ||
+          'function' != typeof MessageChannel
+        ) {
           var $IvPb$var$p = null,
             $IvPb$var$q = null,
             $IvPb$var$t = function () {
@@ -814,7 +830,8 @@ fetch(url, {
           }),
             (Ae = function ($) {
               ($IvPb$var$D = $),
-                $IvPb$var$C || (($IvPb$var$C = !0), $IvPb$var$I.postMessage(null));
+                $IvPb$var$C ||
+                  (($IvPb$var$C = !0), $IvPb$var$I.postMessage(null));
             }),
             (qg = function ($, v) {
               $IvPb$var$E = $IvPb$var$y(function () {
@@ -1273,7 +1290,9 @@ fetch(url, {
       }
       function vl(t, $, e) {
         var r = t.type || 'unknown-event';
-        (t.currentTarget = Us(e)), yu(r, $, void 0, t), (t.currentTarget = null);
+        (t.currentTarget = Us(e)),
+          yu(r, $, void 0, t),
+          (t.currentTarget = null);
       }
       function wl() {
         if (vg)
@@ -1334,7 +1353,8 @@ fetch(url, {
         if (Ge) {
           var t = Ge,
             $ = He;
-          if (((He = Ge = null), zl(t), $)) for (t = 0; t < $.length; t++) zl($[t]);
+          if (((He = Ge = null), zl(t), $))
+            for (t = 0; t < $.length; t++) zl($[t]);
         }
       }
       function Cl(t, $) {
@@ -1373,7 +1393,8 @@ fetch(url, {
               !r &&
               (null !== e
                 ? !e.acceptsBooleans
-                : 'data-' !== (t = t.toLowerCase().slice(0, 5)) && 'aria-' !== t)
+                : 'data-' !== (t = t.toLowerCase().slice(0, 5)) &&
+                  'aria-' !== t)
             );
           default:
             return !1;
@@ -1425,7 +1446,8 @@ fetch(url, {
               (r = i.attributeNamespace),
               null === e
                 ? t.removeAttribute($)
-                : ((e = 3 === (i = i.type) || (4 === i && !0 === e) ? '' : '' + e),
+                : ((e =
+                    3 === (i = i.type) || (4 === i && !0 === e) ? '' : '' + e),
                   r ? t.setAttributeNS(r, $, e) : t.setAttribute($, e))));
       }
       function Dd(t) {
@@ -1480,7 +1502,8 @@ fetch(url, {
               var $ = t.render;
               return (
                 ($ = $.displayName || $.name || ''),
-                t.displayName || ('' !== $ ? 'ForwardRef(' + $ + ')' : 'ForwardRef')
+                t.displayName ||
+                  ('' !== $ ? 'ForwardRef(' + $ + ')' : 'ForwardRef')
               );
             case Cg:
               return Fb(t.type);
@@ -1627,13 +1650,15 @@ fetch(url, {
           r = $.type;
         if (null != e)
           'number' === r
-            ? ((0 === e && '' === t.value) || t.value != e) && (t.value = '' + e)
+            ? ((0 === e && '' === t.value) || t.value != e) &&
+              (t.value = '' + e)
             : t.value !== '' + e && (t.value = '' + e);
         else if ('submit' === r || 'reset' === r)
           return void t.removeAttribute('value');
         $.hasOwnProperty('value')
           ? dh(t, $.type, e)
-          : $.hasOwnProperty('defaultValue') && dh(t, $.type, Wb($.defaultValue)),
+          : $.hasOwnProperty('defaultValue') &&
+            dh(t, $.type, Wb($.defaultValue)),
           null == $.checked &&
             null != $.defaultChecked &&
             (t.defaultChecked = !!$.defaultChecked);
@@ -1689,7 +1714,9 @@ fetch(url, {
         } else {
           for (e = '' + Wb(e), $ = null, i = 0; i < t.length; i++) {
             if (t[i].value === e)
-              return (t[i].selected = !0), void (r && (t[i].defaultSelected = !0));
+              return (
+                (t[i].selected = !0), void (r && (t[i].defaultSelected = !0))
+              );
             null !== $ || t[i].disabled || ($ = t[i]);
           }
           null !== $ && ($.selected = !0);
@@ -1723,7 +1750,9 @@ fetch(url, {
           r = Wb($.defaultValue);
         null != e &&
           ((e = '' + e) !== t.value && (t.value = e),
-          null == $.defaultValue && t.defaultValue !== e && (t.defaultValue = e)),
+          null == $.defaultValue &&
+            t.defaultValue !== e &&
+            (t.defaultValue = e)),
           null != r && (t.defaultValue = '' + r);
       }
       function Ml(t) {
@@ -2075,7 +2104,9 @@ fetch(url, {
             return nd.set(a, Fd(nd.get(a) || null, t, $, e, r, i)), !0;
           case 'gotpointercapture':
             return (
-              (a = i.pointerId), od.set(a, Fd(od.get(a) || null, t, $, e, r, i)), !0
+              (a = i.pointerId),
+              od.set(a, Fd(od.get(a) || null, t, $, e, r, i)),
+              !0
             );
         }
         return !1;
@@ -2101,7 +2132,12 @@ fetch(url, {
       }
       function df(t) {
         if (null !== t.blockedOn) return !1;
-        var $ = nh(t.topLevelType, t.eventSystemFlags, t.container, t.nativeEvent);
+        var $ = nh(
+          t.topLevelType,
+          t.eventSystemFlags,
+          t.container,
+          t.nativeEvent
+        );
         if (null !== $) {
           var e = Jd($);
           return null !== e && Ek(e), (t.blockedOn = $), !1;
@@ -2255,7 +2291,10 @@ fetch(url, {
       function Yl(t, $, e) {
         return null == $ || 'boolean' == typeof $ || '' === $
           ? ''
-          : e || 'number' != typeof $ || 0 === $ || (qd.hasOwnProperty(t) && qd[t])
+          : e ||
+            'number' != typeof $ ||
+            0 === $ ||
+            (qd.hasOwnProperty(t) && qd[t])
           ? ('' + $).trim()
           : $ + 'px';
       }
@@ -2264,12 +2303,16 @@ fetch(url, {
           if ($.hasOwnProperty(e)) {
             var r = 0 === e.indexOf('--'),
               i = Yl(e, $[e], r);
-            'float' === e && (e = 'cssFloat'), r ? t.setProperty(e, i) : (t[e] = i);
+            'float' === e && (e = 'cssFloat'),
+              r ? t.setProperty(e, i) : (t[e] = i);
           }
       }
       function oh(t, $) {
         if ($) {
-          if (ht[t] && (null != $.children || null != $.dangerouslySetInnerHTML))
+          if (
+            ht[t] &&
+            (null != $.children || null != $.dangerouslySetInnerHTML)
+          )
             throw Error(Y(137, t, ''));
           if (null != $.dangerouslySetInnerHTML) {
             if (null != $.children) throw Error(Y(60));
@@ -2281,7 +2324,8 @@ fetch(url, {
             )
               throw Error(Y(61));
           }
-          if (null != $.style && 'object' != typeof $.style) throw Error(Y(62, ''));
+          if (null != $.style && 'object' != typeof $.style)
+            throw Error(Y(62, ''));
         }
       }
       function ph(t, $) {
@@ -2310,7 +2354,8 @@ fetch(url, {
       function ff() {}
       function qh(t) {
         if (
-          void 0 === (t = t || ('undefined' != typeof document ? document : void 0))
+          void 0 ===
+          (t = t || ('undefined' != typeof document ? document : void 0))
         )
           return null;
         try {
@@ -2557,7 +2602,9 @@ fetch(url, {
               : (this[i] = e[i]));
         return (
           (this.isDefaultPrevented = (
-            null != e.defaultPrevented ? e.defaultPrevented : !1 === e.returnValue
+            null != e.defaultPrevented
+              ? e.defaultPrevented
+              : !1 === e.returnValue
           )
             ? gf
             : hf),
@@ -2617,7 +2664,10 @@ fetch(url, {
           case 'paste':
             return null;
           case 'keypress':
-            if (!($.ctrlKey || $.altKey || $.metaKey) || ($.ctrlKey && $.altKey)) {
+            if (
+              !($.ctrlKey || $.altKey || $.metaKey) ||
+              ($.ctrlKey && $.altKey)
+            ) {
               if ($.char && 1 < $.char.length) return $.char;
               if ($.which) return String.fromCharCode($.which);
             }
@@ -2634,7 +2684,10 @@ fetch(url, {
       }
       function lm(t, $, e) {
         return (
-          ((t = Ra.getPooled(Ok.change, t, $, e)).type = 'change'), Al(e), Mc(t), t
+          ((t = Ra.getPooled(Ok.change, t, $, e)).type = 'change'),
+          Al(e),
+          Mc(t),
+          t
         );
       }
       function Uu(t) {
@@ -2678,7 +2731,9 @@ fetch(url, {
       }
       function $u(t) {
         var $ = this.nativeEvent;
-        return $.getModifierState ? $.getModifierState(t) : !!(t = ut[t]) && !!$[t];
+        return $.getModifierState
+          ? $.getModifierState(t)
+          : !!(t = ut[t]) && !!$[t];
       }
       function vh() {
         return $u;
@@ -2753,7 +2808,8 @@ fetch(url, {
         for (i in e) a[i] = $[i];
         return (
           r &&
-            (((t = t.stateNode).__reactInternalMemoizedUnmaskedChildContext = $),
+            (((t =
+              t.stateNode).__reactInternalMemoizedUnmaskedChildContext = $),
             (t.__reactInternalMemoizedMaskedChildContext = a)),
           a
         );
@@ -2779,7 +2835,8 @@ fetch(url, {
       function mf(t) {
         return (
           (t =
-            ((t = t.stateNode) && t.__reactInternalMemoizedMergedChildContext) ||
+            ((t = t.stateNode) &&
+              t.__reactInternalMemoizedMergedChildContext) ||
             Ub),
           (Fc = Da.current),
           va(Da, t),
@@ -2870,7 +2927,9 @@ fetch(url, {
         }
       }
       function of(t, $, e) {
-        return 1073741821 - (1 + (((1073741821 - t + $ / 10) / (e /= 10)) | 0)) * e;
+        return (
+          1073741821 - (1 + (((1073741821 - t + $ / 10) / (e /= 10)) | 0)) * e
+        );
       }
       function jb(t, $) {
         if (t && t.defaultProps)
@@ -3005,15 +3064,14 @@ fetch(url, {
                   n > o && (o = n);
               } else {
                 null !== f &&
-                  (f = f.next =
-                    {
-                      expirationTime: 1073741823,
-                      suspenseConfig: s.suspenseConfig,
-                      tag: s.tag,
-                      payload: s.payload,
-                      callback: s.callback,
-                      next: null,
-                    }),
+                  (f = f.next = {
+                    expirationTime: 1073741823,
+                    suspenseConfig: s.suspenseConfig,
+                    tag: s.tag,
+                    payload: s.payload,
+                    callback: s.callback,
+                    next: null,
+                  }),
                   nn(n, s.suspenseConfig);
                 t: {
                   var p = t,
@@ -3069,7 +3127,9 @@ fetch(url, {
             var r = t[$],
               i = r.callback;
             if (null !== i) {
-              if (((r.callback = null), (r = i), (i = e), 'function' != typeof r))
+              if (
+                ((r.callback = null), (r = i), (i = e), 'function' != typeof r)
+              )
                 throw Error(Y(191, r));
               r.call(i);
             }
@@ -3104,7 +3164,8 @@ fetch(url, {
           (t.stateNode = $),
           ($._reactInternalFiber = t),
           r &&
-            (((t = t.stateNode).__reactInternalMemoizedUnmaskedChildContext = i),
+            (((t =
+              t.stateNode).__reactInternalMemoizedUnmaskedChildContext = i),
             (t.__reactInternalMemoizedMaskedChildContext = a)),
           $
         );
@@ -3201,7 +3262,8 @@ fetch(url, {
         }
         function r(t, $) {
           for (t = new Map(); null !== $; )
-            null !== $.key ? t.set($.key, $) : t.set($.index, $), ($ = $.sibling);
+            null !== $.key ? t.set($.key, $) : t.set($.index, $),
+              ($ = $.sibling);
           return t;
         }
         function i(t, $) {
@@ -3269,7 +3331,8 @@ fetch(url, {
               case Dc:
                 return (($ = $h($, t.mode, e)).return = t), $;
             }
-            if (Ue($) || Dd($)) return (($ = _b($, t.mode, e, null)).return = t), $;
+            if (Ue($) || Dd($))
+              return (($ = _b($, t.mode, e, null)).return = t), $;
             qf(t, $);
           }
           return null;
@@ -3307,7 +3370,12 @@ fetch(url, {
                     : v($, t, r, i)
                 );
               case Dc:
-                return o($, (t = t.get(null === r.key ? e : r.key) || null), r, i);
+                return o(
+                  $,
+                  (t = t.get(null === r.key ? e : r.key) || null),
+                  r,
+                  i
+                );
             }
             if (Ue(r) || Dd(r)) return u($, (t = t.get(e) || null), r, i, null);
             qf($, r);
@@ -3336,12 +3404,16 @@ fetch(url, {
           if (null === d) {
             for (; p < l.length; p++)
               null !== (d = c(i, l[p], v)) &&
-                ((n = a(d, n, p)), null === u ? (o = d) : (u.sibling = d), (u = d));
+                ((n = a(d, n, p)),
+                null === u ? (o = d) : (u.sibling = d),
+                (u = d));
             return o;
           }
           for (d = r(i, d); p < l.length; p++)
             null !== (h = s(d, i, p, l[p], v)) &&
-              (t && null !== h.alternate && d.delete(null === h.key ? p : h.key),
+              (t &&
+                null !== h.alternate &&
+                d.delete(null === h.key ? p : h.key),
               (n = a(h, n, p)),
               null === u ? (o = h) : (u.sibling = h),
               (u = h));
@@ -3378,12 +3450,16 @@ fetch(url, {
           if (null === d) {
             for (; !g.done; p++, g = l.next())
               null !== (g = c(i, g.value, v)) &&
-                ((n = a(g, n, p)), null === u ? (o = g) : (u.sibling = g), (u = g));
+                ((n = a(g, n, p)),
+                null === u ? (o = g) : (u.sibling = g),
+                (u = g));
             return o;
           }
           for (d = r(i, d); !g.done; p++, g = l.next())
             null !== (g = s(d, i, p, g.value, v)) &&
-              (t && null !== g.alternate && d.delete(null === g.key ? p : g.key),
+              (t &&
+                null !== g.alternate &&
+                d.delete(null === g.key ? p : g.key),
               (n = a(g, n, p)),
               null === u ? (o = g) : (u.sibling = g),
               (u = g));
@@ -3397,7 +3473,10 @@ fetch(url, {
         }
         return function (t, r, a, l) {
           var v =
-            'object' == typeof a && null !== a && a.type === ec && null === a.key;
+            'object' == typeof a &&
+            null !== a &&
+            a.type === ec &&
+            null === a.key;
           v && (a = a.props.children);
           var o = 'object' == typeof a && null !== a;
           if (o)
@@ -3430,13 +3509,21 @@ fetch(url, {
                     $(t, v), (v = v.sibling);
                   }
                   a.type === ec
-                    ? (((r = _b(a.props.children, t.mode, l, a.key)).return = t),
+                    ? (((r = _b(
+                        a.props.children,
+                        t.mode,
+                        l,
+                        a.key
+                      )).return = t),
                       (t = r))
-                    : (((l = Bf(a.type, a.key, a.props, null, t.mode, l)).ref = Md(
-                        t,
-                        r,
-                        a
-                      )),
+                    : (((l = Bf(
+                        a.type,
+                        a.key,
+                        a.props,
+                        null,
+                        t.mode,
+                        l
+                      )).ref = Md(t, r, a)),
                       (l.return = t),
                       (t = l));
                 }
@@ -3592,7 +3679,9 @@ fetch(url, {
           queue: null,
           next: null,
         };
-        return null === Vb ? (Ea.memoizedState = Vb = t) : (Vb = Vb.next = t), Vb;
+        return (
+          null === Vb ? (Ea.memoizedState = Vb = t) : (Vb = Vb.next = t), Vb
+        );
       }
       function Rc() {
         if (null === sb) {
@@ -3651,15 +3740,14 @@ fetch(url, {
                 o > Ea.expirationTime && ((Ea.expirationTime = o), Af(o));
             } else
               null !== l &&
-                (l = l.next =
-                  {
-                    expirationTime: 1073741823,
-                    suspenseConfig: v.suspenseConfig,
-                    action: v.action,
-                    eagerReducer: v.eagerReducer,
-                    eagerState: v.eagerState,
-                    next: null,
-                  }),
+                (l = l.next = {
+                  expirationTime: 1073741823,
+                  suspenseConfig: v.suspenseConfig,
+                  action: v.action,
+                  eagerReducer: v.eagerReducer,
+                  eagerState: v.eagerState,
+                  next: null,
+                }),
                 nn(o, v.suspenseConfig),
                 (r = v.eagerReducer === t ? v.eagerState : t(r, v.action));
             v = v.next;
@@ -3699,14 +3787,12 @@ fetch(url, {
         return (
           'function' == typeof t && (t = t()),
           ($.memoizedState = $.baseState = t),
-          (t = (t = $.queue =
-            {
-              pending: null,
-              dispatch: null,
-              lastRenderedReducer: lc,
-              lastRenderedState: t,
-            }).dispatch =
-            Lm.bind(null, Ea, t)),
+          (t = (t = $.queue = {
+            pending: null,
+            dispatch: null,
+            lastRenderedReducer: lc,
+            lastRenderedState: t,
+          }).dispatch = Lm.bind(null, Ea, t)),
           [$.memoizedState, t]
         );
       }
@@ -3768,7 +3854,8 @@ fetch(url, {
       }
       function Im(t, $, e) {
         return (
-          (e = null != e ? e.concat([t]) : null), Jh(4, 2, Hm.bind(null, $, t), e)
+          (e = null != e ? e.concat([t]) : null),
+          Jh(4, 2, Hm.bind(null, $, t), e)
         );
       }
       function Kh() {}
@@ -3857,13 +3944,15 @@ fetch(url, {
             return (
               null !==
                 ($ =
-                  1 !== $.nodeType || e.toLowerCase() !== $.nodeName.toLowerCase()
+                  1 !== $.nodeType ||
+                  e.toLowerCase() !== $.nodeName.toLowerCase()
                     ? null
                     : $) && ((t.stateNode = $), !0)
             );
           case 6:
             return (
-              null !== ($ = '' === t.pendingProps || 3 !== $.nodeType ? null : $) &&
+              null !==
+                ($ = '' === t.pendingProps || 3 !== $.nodeType ? null : $) &&
               ((t.stateNode = $), !0)
             );
           case 13:
@@ -3893,7 +3982,7 @@ fetch(url, {
         for (
           t = t.return;
           null !== t && 5 !== t.tag && 3 !== t.tag && 13 !== t.tag;
-    
+
         )
           t = t.return;
         Rg = t;
@@ -4035,7 +4124,8 @@ fetch(url, {
             Ld($, r, n, i),
             (v = $.memoizedState),
             l !== r || f !== v || Ma.current || Se
-              ? ('function' == typeof u && (pf($, e, u, r), (v = $.memoizedState)),
+              ? ('function' == typeof u &&
+                  (pf($, e, u, r), (v = $.memoizedState)),
                 (l = Se || zm($, e, l, r, f, v, o))
                   ? (c ||
                       ('function' != typeof n.UNSAFE_componentWillMount &&
@@ -4044,8 +4134,10 @@ fetch(url, {
                         n.componentWillMount(),
                       'function' == typeof n.UNSAFE_componentWillMount &&
                         n.UNSAFE_componentWillMount()),
-                    'function' == typeof n.componentDidMount && ($.effectTag |= 4))
-                  : ('function' == typeof n.componentDidMount && ($.effectTag |= 4),
+                    'function' == typeof n.componentDidMount &&
+                      ($.effectTag |= 4))
+                  : ('function' == typeof n.componentDidMount &&
+                      ($.effectTag |= 4),
                     ($.memoizedProps = r),
                     ($.memoizedState = v)),
                 (n.props = r),
@@ -4075,7 +4167,8 @@ fetch(url, {
             Ld($, r, n, i),
             (f = $.memoizedState),
             l !== r || v !== f || Ma.current || Se
-              ? ('function' == typeof u && (pf($, e, u, r), (f = $.memoizedState)),
+              ? ('function' == typeof u &&
+                  (pf($, e, u, r), (f = $.memoizedState)),
                 (u = Se || zm($, e, l, r, v, f, o))
                   ? (c ||
                       ('function' != typeof n.UNSAFE_componentWillUpdate &&
@@ -4084,7 +4177,8 @@ fetch(url, {
                         n.componentWillUpdate(r, f, o),
                       'function' == typeof n.UNSAFE_componentWillUpdate &&
                         n.UNSAFE_componentWillUpdate(r, f, o)),
-                    'function' == typeof n.componentDidUpdate && ($.effectTag |= 4),
+                    'function' == typeof n.componentDidUpdate &&
+                      ($.effectTag |= 4),
                     'function' == typeof n.getSnapshotBeforeUpdate &&
                       ($.effectTag |= 256))
                   : ('function' != typeof n.componentDidUpdate ||
@@ -4114,11 +4208,14 @@ fetch(url, {
         if (!r && !n) return i && rm($, e, !1), Ib(t, $, a);
         (r = $.stateNode), (_t.current = $);
         var l =
-          n && 'function' != typeof e.getDerivedStateFromError ? null : r.render();
+          n && 'function' != typeof e.getDerivedStateFromError
+            ? null
+            : r.render();
         return (
           ($.effectTag |= 1),
           null !== t && n
-            ? (($.child = Hc($, t.child, null, a)), ($.child = Hc($, null, l, a)))
+            ? (($.child = Hc($, t.child, null, a)),
+              ($.child = Hc($, null, l, a)))
             : eb(t, $, l, a),
           ($.memoizedState = r.state),
           i && rm($, e, !0),
@@ -4157,9 +4254,10 @@ fetch(url, {
               0 == (2 & $.mode))
             )
               for (
-                t = null !== $.memoizedState ? $.child.child : $.child, a.child = t;
+                t = null !== $.memoizedState ? $.child.child : $.child,
+                  a.child = t;
                 null !== t;
-    
+
               )
                 (t.return = a), (t = t.sibling);
             return (
@@ -4210,9 +4308,10 @@ fetch(url, {
             0 == (2 & $.mode))
           )
             for (
-              t = null !== $.memoizedState ? $.child.child : $.child, a.child = t;
+              t = null !== $.memoizedState ? $.child.child : $.child,
+                a.child = t;
               null !== t;
-    
+
             )
               (t.return = a), (t = t.sibling);
           return (
@@ -4318,9 +4417,10 @@ fetch(url, {
           for (
             e = qc((t = $.child), t.pendingProps), $.child = e, e.return = $;
             null !== t.sibling;
-    
+
           )
-            (t = t.sibling), ((e = e.sibling = qc(t, t.pendingProps)).return = $);
+            (t = t.sibling),
+              ((e = e.sibling = qc(t, t.pendingProps)).return = $);
           e.sibling = null;
         }
         return $.child;
@@ -4494,7 +4594,10 @@ fetch(url, {
                     oa('toggle', t), (l = r);
                     break;
                   case 'input':
-                    Hl(t, r), (l = bh(t, r)), oa('invalid', t), Gb(e, 'onChange');
+                    Hl(t, r),
+                      (l = bh(t, r)),
+                      oa('invalid', t),
+                      Gb(e, 'onChange');
                     break;
                   case 'option':
                     l = eh(t, r);
@@ -4506,7 +4609,10 @@ fetch(url, {
                       Gb(e, 'onChange');
                     break;
                   case 'textarea':
-                    Kl(t, r), (l = fh(t, r)), oa('invalid', t), Gb(e, 'onChange');
+                    Kl(t, r),
+                      (l = fh(t, r)),
+                      oa('invalid', t),
+                      Gb(e, 'onChange');
                     break;
                   default:
                     l = r;
@@ -4539,7 +4645,8 @@ fetch(url, {
                     _e(t), Ml(t);
                     break;
                   case 'option':
-                    null != r.value && t.setAttribute('value', '' + Wb(r.value));
+                    null != r.value &&
+                      t.setAttribute('value', '' + Wb(r.value));
                     break;
                   case 'select':
                     (t.multiple = !!r.multiple),
@@ -4559,7 +4666,8 @@ fetch(url, {
           case 6:
             if (t && null != $.stateNode) cu(t, $, t.memoizedProps, r);
             else {
-              if ('string' != typeof r && null === $.stateNode) throw Error(Y(166));
+              if ('string' != typeof r && null === $.stateNode)
+                throw Error(Y(166));
               (e = kc(Ad.current)),
                 kc(rb.current),
                 wf($)
@@ -4567,9 +4675,10 @@ fetch(url, {
                     (r = $.memoizedProps),
                     (e[Tb] = $),
                     e.nodeValue !== r && ($.effectTag |= 4))
-                  : (((e = (9 === e.nodeType ? e : e.ownerDocument).createTextNode(
-                      r
-                    ))[Tb] = $),
+                  : (((e = (9 === e.nodeType
+                      ? e
+                      : e.ownerDocument
+                    ).createTextNode(r))[Tb] = $),
                     ($.stateNode = e));
             }
             return null;
@@ -4626,7 +4735,7 @@ fetch(url, {
                         $.lastEffect = r.lastEffect,
                         r = $.child;
                       null !== r;
-    
+
                     )
                       (a = e),
                         ((i = r).effectTag &= 2),
@@ -4977,7 +5086,7 @@ fetch(url, {
           for (
             e.sibling.return = e.return, e = e.sibling;
             5 !== e.tag && 6 !== e.tag && 18 !== e.tag;
-    
+
           ) {
             if (2 & e.effectTag) continue $;
             if (null === e.child || 4 === e.tag) continue $;
@@ -5053,7 +5162,9 @@ fetch(url, {
             i
               ? ((l = r),
                 (v = a.stateNode),
-                8 === l.nodeType ? l.parentNode.removeChild(v) : l.removeChild(v))
+                8 === l.nodeType
+                  ? l.parentNode.removeChild(v)
+                  : l.removeChild(v))
               : r.removeChild(a.stateNode);
           } else if (4 === a.tag) {
             if (null !== a.child) {
@@ -5140,7 +5251,8 @@ fetch(url, {
             return void ($.stateNode.nodeValue = $.memoizedProps);
           case 3:
             return void (
-              ($ = $.stateNode).hydrate && (($.hydrate = !1), Xl($.containerInfo))
+              ($ = $.stateNode).hydrate &&
+              (($.hydrate = !1), Xl($.containerInfo))
             );
           case 12:
             return;
@@ -5315,7 +5427,8 @@ fetch(url, {
             r = r.return;
           }
         return (
-          null !== i && (Eb === i && (Af($), cb === $e && rc(i, bb)), sn(i, $)), i
+          null !== i && (Eb === i && (Af($), cb === $e && rc(i, bb)), sn(i, $)),
+          i
         );
       }
       function zf(t) {
@@ -5377,7 +5490,8 @@ fetch(url, {
         if (((sl = 0), $)) return _h(t, ($ = vb())), Ta(t), null;
         var e = zf(t);
         if (0 !== e) {
-          if ((($ = t.callbackNode), (sa & (ib | tb)) !== wa)) throw Error(Y(327));
+          if ((($ = t.callbackNode), (sa & (ib | tb)) !== wa))
+            throw Error(Y(327));
           if ((Sc(), (t === Eb && e === bb) || nc(t, e), null !== ha)) {
             var r = sa;
             sa |= ib;
@@ -5483,8 +5597,8 @@ fetch(url, {
                           (r =
                             (a =
                               $a() -
-                              (10 * (1073741821 - a) - (0 | n.timeoutMs || 5e3))) <=
-                            i
+                              (10 * (1073741821 - a) -
+                                (0 | n.timeoutMs || 5e3))) <= i
                               ? 0
                               : i + r - a)),
                       10 < r)
@@ -5618,7 +5732,9 @@ fetch(url, {
                 (($ = bb),
                 (n.effectTag |= 2048),
                 (n.firstEffect = n.lastEffect = null),
-                null !== l && 'object' == typeof l && 'function' == typeof l.then)
+                null !== l &&
+                  'object' == typeof l &&
+                  'function' == typeof l.then)
               ) {
                 var v = l;
                 if (0 == (2 & n.mode)) {
@@ -5651,7 +5767,9 @@ fetch(url, {
                     } else p.add(v);
                     if (0 == (2 & c.mode)) {
                       if (
-                        ((c.effectTag |= 64), (n.effectTag &= -2981), 1 === n.tag)
+                        ((c.effectTag |= 64),
+                        (n.effectTag &= -2981),
+                        1 === n.tag)
                       )
                         if (null === n.alternate) n.tag = 17;
                         else {
@@ -5755,7 +5873,9 @@ fetch(url, {
         do {
           var $ = ha.alternate;
           if (((t = ha.return), 0 == (2048 & ha.effectTag))) {
-            if ((($ = av($, ha, bb)), 1 === bb || 1 !== ha.childExpirationTime)) {
+            if (
+              (($ = av($, ha, bb)), 1 === bb || 1 !== ha.childExpirationTime)
+            ) {
               for (var e = 0, r = ha.child; null !== r; ) {
                 var i = r.expirationTime,
                   a = r.childExpirationTime;
@@ -5803,7 +5923,9 @@ fetch(url, {
           r = t.finishedExpirationTime;
         if (null === e) return null;
         if (
-          ((t.finishedWork = null), (t.finishedExpirationTime = 0), e === t.current)
+          ((t.finishedWork = null),
+          (t.finishedExpirationTime = 0),
+          e === t.current)
         )
           throw Error(Y(177));
         (t.callbackNode = null),
@@ -5814,10 +5936,7 @@ fetch(url, {
         if (
           ((t.firstPendingTime = i),
           r <= t.lastSuspendedTime
-            ? (t.firstSuspendedTime =
-                t.lastSuspendedTime =
-                t.nextKnownPendingLevel =
-                  0)
+            ? (t.firstSuspendedTime = t.lastSuspendedTime = t.nextKnownPendingLevel = 0)
             : r <= t.firstSuspendedTime && (t.firstSuspendedTime = r - 1),
           r <= t.lastPingedTime && (t.lastPingedTime = 0),
           r <= t.lastExpiredTime && (t.lastExpiredTime = 0),
@@ -5865,7 +5984,7 @@ fetch(url, {
                         h !== u || (0 !== v && 3 !== h.nodeType) || (s = c + v),
                         3 === h.nodeType && (c += h.nodeValue.length),
                         null !== (m = h.firstChild);
-    
+
                     )
                       (g = h), (h = m);
                     for (;;) {
@@ -5885,7 +6004,11 @@ fetch(url, {
               }
             l = l || {start: 0, end: 0};
           } else l = null;
-          (jt = {activeElementDetached: null, focusedElem: n, selectionRange: l}),
+          (jt = {
+            activeElementDetached: null,
+            focusedElem: n,
+            selectionRange: l,
+          }),
             (Hk = !1),
             (ca = i);
           do {
@@ -5953,8 +6076,8 @@ fetch(url, {
                 ? ((b.selectionStart = y),
                   (b.selectionEnd = Math.min(k, b.value.length)))
                 : (k =
-                    ((y = b.ownerDocument || document) && y.defaultView) || window)
-                    .getSelection &&
+                    ((y = b.ownerDocument || document) && y.defaultView) ||
+                    window).getSelection &&
                   ((k = k.getSelection()),
                   (o = b.textContent.length),
                   (n = Math.min(l.start, o)),
@@ -6021,7 +6144,11 @@ fetch(url, {
             ($ = ca.nextEffect), (ca.nextEffect = null), (ca = $);
         if (
           (0 === ($ = t.firstPendingTime) && (Ic = null),
-          1073741823 === $ ? (t === iu ? rl++ : ((rl = 0), (iu = t))) : (rl = 0),
+          1073741823 === $
+            ? t === iu
+              ? rl++
+              : ((rl = 0), (iu = t))
+            : (rl = 0),
           'function' == typeof tl && tl(e.stateNode, r),
           Ta(t),
           pl)
@@ -6124,7 +6251,12 @@ fetch(url, {
           var e = $.inject(t);
           (tl = function (t) {
             try {
-              $.onCommitFiberRoot(e, t, void 0, 64 == (64 & t.current.effectTag));
+              $.onCommitFiberRoot(
+                e,
+                t,
+                void 0,
+                64 == (64 & t.current.effectTag)
+              );
             } catch (r) {}
           }),
             (ul = function (t) {
@@ -6138,21 +6270,11 @@ fetch(url, {
       function ov(t, $, e, r) {
         (this.tag = t),
           (this.key = e),
-          (this.sibling =
-            this.child =
-            this.return =
-            this.stateNode =
-            this.type =
-            this.elementType =
-              null),
+          (this.sibling = this.child = this.return = this.stateNode = this.type = this.elementType = null),
           (this.index = 0),
           (this.ref = null),
           (this.pendingProps = $),
-          (this.dependencies =
-            this.memoizedState =
-            this.updateQueue =
-            this.memoizedProps =
-              null),
+          (this.dependencies = this.memoizedState = this.updateQueue = this.memoizedProps = null),
           (this.mode = r),
           (this.effectTag = 0),
           (this.lastEffect = this.firstEffect = this.nextEffect = null),
@@ -6238,7 +6360,9 @@ fetch(url, {
               );
             case Bg:
               return (
-                ((t = wb(19, e, $, i)).elementType = Bg), (t.expirationTime = a), t
+                ((t = wb(19, e, $, i)).elementType = Bg),
+                (t.expirationTime = a),
+                t
               );
             default:
               if ('object' == typeof t && null !== t)
@@ -6305,13 +6429,7 @@ fetch(url, {
           (this.hydrate = e),
           (this.callbackNode = null),
           (this.callbackPriority = 90),
-          (this.lastExpiredTime =
-            this.lastPingedTime =
-            this.nextKnownPendingLevel =
-            this.lastSuspendedTime =
-            this.firstSuspendedTime =
-            this.firstPendingTime =
-              0);
+          (this.lastExpiredTime = this.lastPingedTime = this.nextKnownPendingLevel = this.lastSuspendedTime = this.firstSuspendedTime = this.firstPendingTime = 0);
       }
       function rn(t, $) {
         var e = t.firstSuspendedTime;
@@ -6330,10 +6448,7 @@ fetch(url, {
         var e = t.firstSuspendedTime;
         0 !== e &&
           ($ >= e
-            ? (t.firstSuspendedTime =
-                t.lastSuspendedTime =
-                t.nextKnownPendingLevel =
-                  0)
+            ? (t.firstSuspendedTime = t.lastSuspendedTime = t.nextKnownPendingLevel = 0)
             : $ >= t.lastSuspendedTime && (t.lastSuspendedTime = $ + 1),
           $ > t.nextKnownPendingLevel && (t.nextKnownPendingLevel = $));
       }
@@ -6417,7 +6532,8 @@ fetch(url, {
           (1 !== t.nodeType &&
             9 !== t.nodeType &&
             11 !== t.nodeType &&
-            (8 !== t.nodeType || ' react-mount-point-unstable ' !== t.nodeValue))
+            (8 !== t.nodeType ||
+              ' react-mount-point-unstable ' !== t.nodeValue))
         );
       }
       function rv(t, $) {
@@ -6521,8 +6637,7 @@ fetch(url, {
         Vs = Cl;
         yg = !1;
         Ws = !1;
-        Xs =
-          /^[:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD][:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\-.0-9\u00B7\u0300-\u036F\u203F-\u2040]*$/;
+        Xs = /^[:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD][:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\-.0-9\u00B7\u0300-\u036F\u203F-\u2040]*$/;
         nk = Object.prototype.hasOwnProperty;
         ok = {};
         pk = {};
@@ -6541,11 +6656,11 @@ fetch(url, {
             var $ = t[0];
             Ba[$] = new Ga($, 1, !1, t[1], null, !1);
           }),
-          ['contentEditable', 'draggable', 'spellCheck', 'value'].forEach(function (
-            t
-          ) {
-            Ba[t] = new Ga(t, 2, !1, t.toLowerCase(), null, !1);
-          }),
+          ['contentEditable', 'draggable', 'spellCheck', 'value'].forEach(
+            function (t) {
+              Ba[t] = new Ga(t, 2, !1, t.toLowerCase(), null, !1);
+            }
+          ),
           [
             'autoReverse',
             'externalResourcesRequired',
@@ -6586,7 +6701,14 @@ fetch(url, {
             }),
           ['xml:base', 'xml:lang', 'xml:space'].forEach(function (t) {
             var $ = t.replace(zg, $g);
-            Ba[$] = new Ga($, 1, !1, t, 'http://www.w3.org/XML/1998/namespace', !1);
+            Ba[$] = new Ga(
+              $,
+              1,
+              !1,
+              t,
+              'http://www.w3.org/XML/1998/namespace',
+              !1
+            );
           }),
           ['tabIndex', 'crossOrigin'].forEach(function (t) {
             Ba[t] = new Ga(t, 1, !1, t.toLowerCase(), null, !1);
@@ -6645,7 +6767,7 @@ fetch(url, {
                 '<svg>' + $.valueOf().toString() + '</svg>',
                 $ = xk.firstChild;
               t.firstChild;
-    
+
             )
               t.removeChild(t.firstChild);
             for (; $.firstChild; ) t.appendChild($.firstChild);
@@ -6670,10 +6792,9 @@ fetch(url, {
         Ak = bf('animationiteration');
         Bk = bf('animationstart');
         Ck = bf('transitionend');
-        jd =
-          'abort canplay canplaythrough durationchange emptied encrypted ended error loadeddata loadedmetadata loadstart pause play playing progress ratechange seeked seeking stalled suspend timeupdate volumechange waiting'.split(
-            ' '
-          );
+        jd = 'abort canplay canplaythrough durationchange emptied encrypted ended error loadeddata loadedmetadata loadstart pause play playing progress ratechange seeked seeking stalled suspend timeupdate volumechange waiting'.split(
+          ' '
+        );
         Dk = new ('function' == typeof WeakMap ? WeakMap : Map)();
         Eg = null;
         Le = [];
@@ -6685,14 +6806,12 @@ fetch(url, {
         nd = new Map();
         od = new Map();
         pd = [];
-        Fg =
-          'mousedown mouseup touchcancel touchend touchstart auxclick dblclick pointercancel pointerdown pointerup dragend dragstart drop compositionend compositionstart keydown keypress keyup input textInput close cancel copy cut paste click change contextmenu reset submit'.split(
-            ' '
-          );
-        ct =
-          'focus blur dragenter dragleave mouseover mouseout pointerover pointerout gotpointercapture lostpointercapture'.split(
-            ' '
-          );
+        Fg = 'mousedown mouseup touchcancel touchend touchstart auxclick dblclick pointercancel pointerdown pointerup dragend dragstart drop compositionend compositionstart keydown keypress keyup input textInput close cancel copy cut paste click change contextmenu reset submit'.split(
+          ' '
+        );
+        ct = 'focus blur dragenter dragleave mouseover mouseout pointerover pointerout gotpointercapture lostpointercapture'.split(
+          ' '
+        );
         Fk = {};
         Gk = new Map();
         Gg = new Map();
@@ -6762,10 +6881,9 @@ fetch(url, {
           ),
           mh(dt, 2);
         for (
-          var $i17t$var$bd =
-              'change selectionchange textInput compositionstart compositionend compositionupdate'.split(
-                ' '
-              ),
+          var $i17t$var$bd = 'change selectionchange textInput compositionstart compositionend compositionupdate'.split(
+              ' '
+            ),
             $i17t$var$cd = 0;
           $i17t$var$cd < $i17t$var$bd.length;
           $i17t$var$cd++
@@ -6821,7 +6939,8 @@ fetch(url, {
         gt = ['Webkit', 'ms', 'Moz', 'O'];
         Object.keys(qd).forEach(function (t) {
           gt.forEach(function ($) {
-            ($ = $ + t.charAt(0).toUpperCase() + t.substring(1)), (qd[$] = qd[t]);
+            ($ = $ + t.charAt(0).toUpperCase() + t.substring(1)),
+              (qd[$] = qd[t]);
           });
         });
         ht = Fa(
@@ -6947,24 +7066,27 @@ fetch(url, {
               bubbled: 'onCompositionEnd',
               captured: 'onCompositionEndCapture',
             },
-            dependencies:
-              'blur compositionend keydown keypress keyup mousedown'.split(' '),
+            dependencies: 'blur compositionend keydown keypress keyup mousedown'.split(
+              ' '
+            ),
           },
           compositionStart: {
             phasedRegistrationNames: {
               bubbled: 'onCompositionStart',
               captured: 'onCompositionStartCapture',
             },
-            dependencies:
-              'blur compositionstart keydown keypress keyup mousedown'.split(' '),
+            dependencies: 'blur compositionstart keydown keypress keyup mousedown'.split(
+              ' '
+            ),
           },
           compositionUpdate: {
             phasedRegistrationNames: {
               bubbled: 'onCompositionUpdate',
               captured: 'onCompositionUpdateCapture',
             },
-            dependencies:
-              'blur compositionupdate keydown keypress keyup mousedown'.split(' '),
+            dependencies: 'blur compositionupdate keydown keypress keyup mousedown'.split(
+              ' '
+            ),
           },
         };
         qt = !1;
@@ -6991,7 +7113,9 @@ fetch(url, {
             else
               Oe
                 ? im(t, e) && (a = Db.compositionEnd)
-                : 'keydown' === t && 229 === e.keyCode && (a = Db.compositionStart);
+                : 'keydown' === t &&
+                  229 === e.keyCode &&
+                  (a = Db.compositionStart);
             return (
               a
                 ? (Mk &&
@@ -7006,7 +7130,8 @@ fetch(url, {
                   (i = a))
                 : (i = null),
               (t = pt ? Su(t, e) : Tu(t, e))
-                ? ((($ = nt.getPooled(Db.beforeInput, $, e, r)).data = t), Mc($))
+                ? ((($ = nt.getPooled(Db.beforeInput, $, e, r)).data = t),
+                  Mc($))
                 : ($ = null),
               null === i ? $ : null === $ ? i : [i, $]
             );
@@ -7035,10 +7160,9 @@ fetch(url, {
               bubbled: 'onChange',
               captured: 'onChangeCapture',
             },
-            dependencies:
-              'blur change click focus input keydown keyup selectionchange'.split(
-                ' '
-              ),
+            dependencies: 'blur change click focus input keydown keyup selectionchange'.split(
+              ' '
+            ),
           },
         };
         Pk = null;
@@ -7046,14 +7170,16 @@ fetch(url, {
         Qk = !1;
         Sb &&
           (Qk =
-            Rl('input') && (!document.documentMode || 9 < document.documentMode));
+            Rl('input') &&
+            (!document.documentMode || 9 < document.documentMode));
         tt = {
           eventTypes: Ok,
           _isInputEventSupported: Qk,
           extractEvents: function (t, $, e, r) {
             var i = $ ? jc($) : window,
               a = i.nodeName && i.nodeName.toLowerCase();
-            if ('select' === a || ('input' === a && 'file' === i.type)) var n = Vu;
+            if ('select' === a || ('input' === a && 'file' === i.type))
+              var n = Vu;
             else if (km(i)) {
               if (Qk) n = Zu;
               else {
@@ -7214,10 +7340,14 @@ fetch(url, {
             for (
               o = l, l = [];
               r && r !== o && (null === (n = r.alternate) || n !== o);
-    
+
             )
               l.push(r), (r = Hb(r));
-            for (r = []; u && u !== o && (null === (n = u.alternate) || n !== o); )
+            for (
+              r = [];
+              u && u !== o && (null === (n = u.alternate) || n !== o);
+
+            )
               r.push(u), (u = Hb(u));
             for (u = 0; u < l.length; u++) uh(l[u], 'bubbled', v);
             for (u = r.length; 0 < u--; ) uh(r[u], 'captured', e);
@@ -7233,10 +7363,9 @@ fetch(url, {
               bubbled: 'onSelect',
               captured: 'onSelectCapture',
             },
-            dependencies:
-              'blur contextmenu dragend focus keydown keyup mousedown mouseup selectionchange'.split(
-                ' '
-              ),
+            dependencies: 'blur contextmenu dragend focus keydown keyup mousedown mouseup selectionchange'.split(
+              ' '
+            ),
           },
         };
         Pe = null;
@@ -7298,7 +7427,9 @@ fetch(url, {
         });
         Gt = Ra.extend({
           clipboardData: function (t) {
-            return 'clipboardData' in t ? t.clipboardData : window.clipboardData;
+            return 'clipboardData' in t
+              ? t.clipboardData
+              : window.clipboardData;
           },
         });
         Ht = td.extend({relatedTarget: null});
@@ -7652,14 +7783,12 @@ fetch(url, {
             return (
               ($ = void 0 !== e ? e($) : $),
               (r.memoizedState = r.baseState = $),
-              (t = (t = r.queue =
-                {
-                  pending: null,
-                  dispatch: null,
-                  lastRenderedReducer: t,
-                  lastRenderedState: $,
-                }).dispatch =
-                Lm.bind(null, Ea, t)),
+              (t = (t = r.queue = {
+                pending: null,
+                dispatch: null,
+                lastRenderedReducer: t,
+                lastRenderedState: $,
+              }).dispatch = Lm.bind(null, Ea, t)),
               [r.memoizedState, t]
             );
           },
@@ -7931,7 +8060,9 @@ fetch(url, {
                     break;
                   case 5:
                     if ((Dm($), 4 & $.mode && 1 !== e && i.hidden))
-                      return ($.expirationTime = $.childExpirationTime = 1), null;
+                      return (
+                        ($.expirationTime = $.childExpirationTime = 1), null
+                      );
                     break;
                   case 1:
                     Na($.type) && mf($);
@@ -7955,7 +8086,8 @@ fetch(url, {
                     break;
                   case 19:
                     if (
-                      ((r = $.childExpirationTime >= e), 0 != (64 & t.effectTag))
+                      ((r = $.childExpirationTime >= e),
+                      0 != (64 & t.effectTag))
                     ) {
                       if (r) return Xm(t, $, e);
                       $.effectTag |= 64;
@@ -7978,7 +8110,9 @@ fetch(url, {
               if (
                 ((r = $.type),
                 null !== t &&
-                  ((t.alternate = null), ($.alternate = null), ($.effectTag |= 2)),
+                  ((t.alternate = null),
+                  ($.alternate = null),
+                  ($.effectTag |= 2)),
                 (t = $.pendingProps),
                 (i = Nc($, Da.current)),
                 Oc($, e),
@@ -8129,7 +8263,9 @@ fetch(url, {
                   (n = $.memoizedProps),
                   (a = i.value);
                 var l = $.type._context;
-                if ((va(Re, l._currentValue), (l._currentValue = a), null !== n))
+                if (
+                  (va(Re, l._currentValue), (l._currentValue = a), null !== n)
+                )
                   if (
                     ((l = n.value),
                     0 ===
@@ -8145,13 +8281,18 @@ fetch(url, {
                       break t;
                     }
                   } else
-                    for (null !== (l = $.child) && (l.return = $); null !== l; ) {
+                    for (
+                      null !== (l = $.child) && (l.return = $);
+                      null !== l;
+
+                    ) {
                       var v = l.dependencies;
                       if (null !== v) {
                         n = l.child;
                         for (var o = v.firstContext; null !== o; ) {
                           if (o.context === r && 0 != (o.observedBits & a)) {
-                            1 === l.tag && (((o = Yb(e, null)).tag = 2), Zb(l, o)),
+                            1 === l.tag &&
+                              (((o = Yb(e, null)).tag = 2), Zb(l, o)),
                               l.expirationTime < e && (l.expirationTime = e),
                               null !== (o = l.alternate) &&
                                 o.expirationTime < e &&
@@ -8162,7 +8303,8 @@ fetch(url, {
                           }
                           o = o.next;
                         }
-                      } else n = 10 === l.tag && l.type === $.type ? null : l.child;
+                      } else
+                        n = 10 === l.tag && l.type === $.type ? null : l.child;
                       if (null !== n) n.return = l;
                       else
                         for (n = l; null !== n; ) {
@@ -8204,7 +8346,9 @@ fetch(url, {
                 (i = $.pendingProps),
                 (i = $.elementType === r ? i : jb(r, i)),
                 null !== t &&
-                  ((t.alternate = null), ($.alternate = null), ($.effectTag |= 2)),
+                  ((t.alternate = null),
+                  ($.alternate = null),
+                  ($.effectTag |= 2)),
                 ($.tag = 1),
                 Na(r) ? ((t = !0), mf($)) : (t = !1),
                 Oc($, e),
@@ -8397,7 +8541,9 @@ fetch(url, {
           return un(
             t,
             $,
-            2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : null
+            2 < arguments.length && void 0 !== arguments[2]
+              ? arguments[2]
+              : null
           );
         };
         Za.unstable_createPortal = su;
@@ -8431,7 +8577,9 @@ fetch(url, {
         }
         wv(t, e),
           (t.prototype =
-            null === e ? Object.create(e) : ((r.prototype = e.prototype), new r()));
+            null === e
+              ? Object.create(e)
+              : ((r.prototype = e.prototype), new r()));
       }
       var ba = function () {
         return (
@@ -8554,7 +8702,8 @@ fetch(url, {
       var Qd,
         yn = 0,
         zn =
-          'undefined' != typeof window && void 0 !== window.requestAnimationFrame
+          'undefined' != typeof window &&
+          void 0 !== window.requestAnimationFrame
             ? function ($) {
                 return window.requestAnimationFrame($);
               }
@@ -8685,10 +8834,8 @@ fetch(url, {
           return r % 1 ? Number(r.toFixed(5)) : r;
         },
         hi = /(-)?(\d[\d\.]*)/g,
-        Ef =
-          /(#[0-9a-f]{6}|#[0-9a-f]{3}|#(?:[0-9a-f]{2}){2,4}|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d\.]+%?\))/gi,
-        Fn =
-          /^(#[0-9a-f]{3}|#(?:[0-9a-f]{2}){2,4}|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d\.]+%?\))$/i,
+        Ef = /(#[0-9a-f]{6}|#[0-9a-f]{3}|#(?:[0-9a-f]{2}){2,4}|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d\.]+%?\))/gi,
+        Fn = /^(#[0-9a-f]{3}|#(?:[0-9a-f]{2}){2,4}|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d\.]+%?\))$/i,
         la = {
           test: function (r) {
             return 'number' == typeof r;
@@ -8704,7 +8851,9 @@ fetch(url, {
           return {
             test: function ($) {
               return (
-                'string' == typeof $ && $.endsWith(r) && 1 === $.split(' ').length
+                'string' == typeof $ &&
+                $.endsWith(r) &&
+                1 === $.split(' ').length
               );
             },
             parse: parseFloat,
@@ -8750,7 +8899,15 @@ fetch(url, {
             e = r.blue,
             t = r.alpha;
           return (
-            'rgba(' + $ + ', ' + o + ', ' + e + ', ' + (void 0 === t ? 1 : t) + ')'
+            'rgba(' +
+            $ +
+            ', ' +
+            o +
+            ', ' +
+            e +
+            ', ' +
+            (void 0 === t ? 1 : t) +
+            ')'
           );
         },
         Ov = function (r) {
@@ -8759,7 +8916,15 @@ fetch(url, {
             e = r.lightness,
             t = r.alpha;
           return (
-            'hsla(' + $ + ', ' + o + ', ' + e + ', ' + (void 0 === t ? 1 : t) + ')'
+            'hsla(' +
+            $ +
+            ', ' +
+            o +
+            ', ' +
+            e +
+            ', ' +
+            (void 0 === t ? 1 : t) +
+            ')'
           );
         },
         ki = xb(xb({}, la), {
@@ -8818,7 +8983,9 @@ fetch(url, {
               e = '';
             return (
               r.length > 4
-                ? (($ = r.substr(1, 2)), (o = r.substr(3, 2)), (e = r.substr(5, 2)))
+                ? (($ = r.substr(1, 2)),
+                  (o = r.substr(3, 2)),
+                  (e = r.substr(5, 2)))
                 : (($ = r.substr(1, 1)),
                   (o = r.substr(2, 1)),
                   (e = r.substr(3, 1)),
@@ -8962,7 +9129,9 @@ fetch(url, {
           return 1 - Gf(1 - $);
         },
         bw = function ($) {
-          return $ < 0.5 ? 0.5 * (1 - Gf(1 - 2 * $)) : 0.5 * Gf(2 * $ - 1) + 0.5;
+          return $ < 0.5
+            ? 0.5 * (1 - Gf(1 - 2 * $))
+            : 0.5 * Gf(2 * $ - 1) + 0.5;
         },
         cw = 8,
         dw = 0.001,
@@ -8989,7 +9158,11 @@ fetch(url, {
       function Un($, r, e, x) {
         var t = gw ? new Float32Array($d) : new Array($d),
           T = function (r) {
-            for (var x, T, n, o = 0, a = 1, j = $d - 1; a !== j && t[a] <= r; ++a)
+            for (
+              var x, T, n, o = 0, a = 1, j = $d - 1;
+              a !== j && t[a] <= r;
+              ++a
+            )
               o += Hf;
             return (
               (x = (r - t[--a]) / (t[a + 1] - t[a])),
@@ -9146,7 +9319,8 @@ fetch(url, {
           };
         },
         vi = function () {
-          for (var e = [], r = 0; r < arguments.length; r++) e[r] = arguments[r];
+          for (var e = [], r = 0; r < arguments.length; r++)
+            e[r] = arguments[r];
           return e.reduce(mw);
         };
       function nw(e, r) {
@@ -9447,7 +9621,9 @@ fetch(url, {
             (r.prototype.subscribe = function (r) {
               var e = t.prototype.subscribe.call(this, r);
               return (
-                this.subscribers[this.subscribers.length - 1].update(this.current),
+                this.subscribers[this.subscribers.length - 1].update(
+                  this.current
+                ),
                 e
               );
             }),
@@ -10091,7 +10267,9 @@ fetch(url, {
             lo.push(ko(n));
           }
         };
-        jo(document, 'touchstart touchmove', {passive: !0, capture: !0}).start(Ow);
+        jo(document, 'touchstart touchmove', {passive: !0, capture: !0}).start(
+          Ow
+        );
       }
       var Pw = zi();
       if ('undefined' != typeof document) {
@@ -10161,8 +10339,7 @@ fetch(url, {
         Sw = true;
         no = {};
         Ai();
-        Rw =
-          /^((children|dangerouslySetInnerHTML|key|ref|autoFocus|defaultValue|defaultChecked|innerHTML|suppressContentEditableWarning|suppressHydrationWarning|valueLink|accept|acceptCharset|accessKey|action|allow|allowUserMedia|allowPaymentRequest|allowFullScreen|allowTransparency|alt|async|autoComplete|autoPlay|capture|cellPadding|cellSpacing|challenge|charSet|checked|cite|classID|className|cols|colSpan|content|contentEditable|contextMenu|controls|controlsList|coords|crossOrigin|data|dateTime|decoding|default|defer|dir|disabled|disablePictureInPicture|download|draggable|encType|form|formAction|formEncType|formMethod|formNoValidate|formTarget|frameBorder|headers|height|hidden|high|href|hrefLang|htmlFor|httpEquiv|id|inputMode|integrity|is|keyParams|keyType|kind|label|lang|list|loading|loop|low|marginHeight|marginWidth|max|maxLength|media|mediaGroup|method|min|minLength|multiple|muted|name|nonce|noValidate|open|optimum|pattern|placeholder|playsInline|poster|preload|profile|radioGroup|readOnly|referrerPolicy|rel|required|reversed|role|rows|rowSpan|sandbox|scope|scoped|scrolling|seamless|selected|shape|size|sizes|slot|span|spellCheck|src|srcDoc|srcLang|srcSet|start|step|style|summary|tabIndex|target|title|type|useMap|value|width|wmode|wrap|about|datatype|inlist|prefix|property|resource|typeof|vocab|autoCapitalize|autoCorrect|autoSave|color|inert|itemProp|itemScope|itemType|itemID|itemRef|on|results|security|unselectable|accentHeight|accumulate|additive|alignmentBaseline|allowReorder|alphabetic|amplitude|arabicForm|ascent|attributeName|attributeType|autoReverse|azimuth|baseFrequency|baselineShift|baseProfile|bbox|begin|bias|by|calcMode|capHeight|clip|clipPathUnits|clipPath|clipRule|colorInterpolation|colorInterpolationFilters|colorProfile|colorRendering|contentScriptType|contentStyleType|cursor|cx|cy|d|decelerate|descent|diffuseConstant|direction|display|divisor|dominantBaseline|dur|dx|dy|edgeMode|elevation|enableBackground|end|exponent|externalResourcesRequired|fill|fillOpacity|fillRule|filter|filterRes|filterUnits|floodColor|floodOpacity|focusable|fontFamily|fontSize|fontSizeAdjust|fontStretch|fontStyle|fontVariant|fontWeight|format|from|fr|fx|fy|g1|g2|glyphName|glyphOrientationHorizontal|glyphOrientationVertical|glyphRef|gradientTransform|gradientUnits|hanging|horizAdvX|horizOriginX|ideographic|imageRendering|in|in2|intercept|k|k1|k2|k3|k4|kernelMatrix|kernelUnitLength|kerning|keyPoints|keySplines|keyTimes|lengthAdjust|letterSpacing|lightingColor|limitingConeAngle|local|markerEnd|markerMid|markerStart|markerHeight|markerUnits|markerWidth|mask|maskContentUnits|maskUnits|mathematical|mode|numOctaves|offset|opacity|operator|order|orient|orientation|origin|overflow|overlinePosition|overlineThickness|panose1|paintOrder|pathLength|patternContentUnits|patternTransform|patternUnits|pointerEvents|points|pointsAtX|pointsAtY|pointsAtZ|preserveAlpha|preserveAspectRatio|primitiveUnits|r|radius|refX|refY|renderingIntent|repeatCount|repeatDur|requiredExtensions|requiredFeatures|restart|result|rotate|rx|ry|scale|seed|shapeRendering|slope|spacing|specularConstant|specularExponent|speed|spreadMethod|startOffset|stdDeviation|stemh|stemv|stitchTiles|stopColor|stopOpacity|strikethroughPosition|strikethroughThickness|string|stroke|strokeDasharray|strokeDashoffset|strokeLinecap|strokeLinejoin|strokeMiterlimit|strokeOpacity|strokeWidth|surfaceScale|systemLanguage|tableValues|targetX|targetY|textAnchor|textDecoration|textRendering|textLength|to|transform|u1|u2|underlinePosition|underlineThickness|unicode|unicodeBidi|unicodeRange|unitsPerEm|vAlphabetic|vHanging|vIdeographic|vMathematical|values|vectorEffect|version|vertAdvY|vertOriginX|vertOriginY|viewBox|viewTarget|visibility|widths|wordSpacing|writingMode|x|xHeight|x1|x2|xChannelSelector|xlinkActuate|xlinkArcrole|xlinkHref|xlinkRole|xlinkShow|xlinkTitle|xlinkType|xmlBase|xmlns|xmlnsXlink|xmlLang|xmlSpace|y|y1|y2|yChannelSelector|z|zoomAndPan|for|class|autofocus)|(([Dd][Aa][Tt][Aa]|[Aa][Rr][Ii][Aa]|x)-.*))$/;
+        Rw = /^((children|dangerouslySetInnerHTML|key|ref|autoFocus|defaultValue|defaultChecked|innerHTML|suppressContentEditableWarning|suppressHydrationWarning|valueLink|accept|acceptCharset|accessKey|action|allow|allowUserMedia|allowPaymentRequest|allowFullScreen|allowTransparency|alt|async|autoComplete|autoPlay|capture|cellPadding|cellSpacing|challenge|charSet|checked|cite|classID|className|cols|colSpan|content|contentEditable|contextMenu|controls|controlsList|coords|crossOrigin|data|dateTime|decoding|default|defer|dir|disabled|disablePictureInPicture|download|draggable|encType|form|formAction|formEncType|formMethod|formNoValidate|formTarget|frameBorder|headers|height|hidden|high|href|hrefLang|htmlFor|httpEquiv|id|inputMode|integrity|is|keyParams|keyType|kind|label|lang|list|loading|loop|low|marginHeight|marginWidth|max|maxLength|media|mediaGroup|method|min|minLength|multiple|muted|name|nonce|noValidate|open|optimum|pattern|placeholder|playsInline|poster|preload|profile|radioGroup|readOnly|referrerPolicy|rel|required|reversed|role|rows|rowSpan|sandbox|scope|scoped|scrolling|seamless|selected|shape|size|sizes|slot|span|spellCheck|src|srcDoc|srcLang|srcSet|start|step|style|summary|tabIndex|target|title|type|useMap|value|width|wmode|wrap|about|datatype|inlist|prefix|property|resource|typeof|vocab|autoCapitalize|autoCorrect|autoSave|color|inert|itemProp|itemScope|itemType|itemID|itemRef|on|results|security|unselectable|accentHeight|accumulate|additive|alignmentBaseline|allowReorder|alphabetic|amplitude|arabicForm|ascent|attributeName|attributeType|autoReverse|azimuth|baseFrequency|baselineShift|baseProfile|bbox|begin|bias|by|calcMode|capHeight|clip|clipPathUnits|clipPath|clipRule|colorInterpolation|colorInterpolationFilters|colorProfile|colorRendering|contentScriptType|contentStyleType|cursor|cx|cy|d|decelerate|descent|diffuseConstant|direction|display|divisor|dominantBaseline|dur|dx|dy|edgeMode|elevation|enableBackground|end|exponent|externalResourcesRequired|fill|fillOpacity|fillRule|filter|filterRes|filterUnits|floodColor|floodOpacity|focusable|fontFamily|fontSize|fontSizeAdjust|fontStretch|fontStyle|fontVariant|fontWeight|format|from|fr|fx|fy|g1|g2|glyphName|glyphOrientationHorizontal|glyphOrientationVertical|glyphRef|gradientTransform|gradientUnits|hanging|horizAdvX|horizOriginX|ideographic|imageRendering|in|in2|intercept|k|k1|k2|k3|k4|kernelMatrix|kernelUnitLength|kerning|keyPoints|keySplines|keyTimes|lengthAdjust|letterSpacing|lightingColor|limitingConeAngle|local|markerEnd|markerMid|markerStart|markerHeight|markerUnits|markerWidth|mask|maskContentUnits|maskUnits|mathematical|mode|numOctaves|offset|opacity|operator|order|orient|orientation|origin|overflow|overlinePosition|overlineThickness|panose1|paintOrder|pathLength|patternContentUnits|patternTransform|patternUnits|pointerEvents|points|pointsAtX|pointsAtY|pointsAtZ|preserveAlpha|preserveAspectRatio|primitiveUnits|r|radius|refX|refY|renderingIntent|repeatCount|repeatDur|requiredExtensions|requiredFeatures|restart|result|rotate|rx|ry|scale|seed|shapeRendering|slope|spacing|specularConstant|specularExponent|speed|spreadMethod|startOffset|stdDeviation|stemh|stemv|stitchTiles|stopColor|stopOpacity|strikethroughPosition|strikethroughThickness|string|stroke|strokeDasharray|strokeDashoffset|strokeLinecap|strokeLinejoin|strokeMiterlimit|strokeOpacity|strokeWidth|surfaceScale|systemLanguage|tableValues|targetX|targetY|textAnchor|textDecoration|textRendering|textLength|to|transform|u1|u2|underlinePosition|underlineThickness|unicode|unicodeBidi|unicodeRange|unitsPerEm|vAlphabetic|vHanging|vIdeographic|vMathematical|values|vectorEffect|version|vertAdvY|vertOriginX|vertOriginY|viewBox|viewTarget|visibility|widths|wordSpacing|writingMode|x|xHeight|x1|x2|xChannelSelector|xlinkActuate|xlinkArcrole|xlinkHref|xlinkRole|xlinkShow|xlinkTitle|xlinkType|xmlBase|xmlns|xmlnsXlink|xmlLang|xmlSpace|y|y1|y2|yChannelSelector|z|zoomAndPan|for|class|autofocus)|(([Dd][Aa][Tt][Aa]|[Aa][Rr][Ii][Aa]|x)-.*))$/;
         Bi = Lf(function (e) {
           return (
             Rw.test(e) ||
@@ -10237,7 +10414,9 @@ fetch(url, {
             }),
             (t.prototype.clearListeners = function () {
               var t;
-              null === (t = this.updateSubscribers) || void 0 === t || t.clear();
+              null === (t = this.updateSubscribers) ||
+                void 0 === t ||
+                t.clear();
             }),
             (t.prototype.onRenderRequest = function (t) {
               return (
@@ -10398,7 +10577,8 @@ fetch(url, {
               !!t,
               'No ref found. Ensure components created with motion.custom forward refs using React.forwardRef'
             ),
-              this.parent && (this.removeFromParent = this.parent.subscribe(this)),
+              this.parent &&
+                (this.removeFromParent = this.parent.subscribe(this)),
               (this.element = this.current = t),
               this.forEachValue(function (t, e) {
                 return r.subscribeToValue(e, t);
@@ -10644,7 +10824,9 @@ fetch(url, {
             } else y[U] = g;
           }
         }
-        if (((S || c) && (r.transform = $ ? lx(f, u) : hx(n, i, c, d, p, v)), m)) {
+        if (
+          ((S || c) && (r.transform = $ ? lx(f, u) : hx(n, i, c, d, p, v)), m)
+        ) {
           var b = $ ? 100 * f.x.origin + '%' : o.originX || '50%',
             V = $ ? 100 * f.y.origin + '%' : o.originY || '50%',
             T = o.originZ || '0';
@@ -10707,7 +10889,9 @@ fetch(url, {
         );
       }
       function px(t, r, e, n, o) {
-        void 0 === r && (r = 0), void 0 === e && (e = 1), void 0 === n && (n = 0.5);
+        void 0 === r && (r = 0),
+          void 0 === e && (e = 1),
+          void 0 === n && (n = 0.5);
         var i = ya(t.min, t.max, n) - r;
         (t.min = Do(t.min, r, e, i, o)), (t.max = Do(t.max, r, e, i, o));
       }
@@ -10729,7 +10913,9 @@ fetch(url, {
       }
       var sx = _d(0, 1);
       function Fo(t, r, e) {
-        return void 0 === r && (r = 0), void 0 === e && (e = 0.01), Wn(t, r) < e;
+        return (
+          void 0 === r && (r = 0), void 0 === e && (e = 0.01), Wn(t, r) < e
+        );
       }
       function tx(t, r, e) {
         var n = ya(t.min, t.max, e);
@@ -10832,7 +11018,9 @@ fetch(url, {
           return Array.isArray(t) && 'number' != typeof t[0];
         },
         wx = function (t) {
-          return t.hasOwnProperty('duration') || t.hasOwnProperty('repeatDelay');
+          return (
+            t.hasOwnProperty('duration') || t.hasOwnProperty('repeatDelay')
+          );
         },
         Mo = function (t, r) {
           return (
@@ -10868,7 +11056,11 @@ fetch(url, {
           },
         },
         yx = function (t) {
-          t.when, t.delay, t.delayChildren, t.staggerChildren, t.staggerDirection;
+          t.when,
+            t.delay,
+            t.delayChildren,
+            t.staggerChildren,
+            t.staggerDirection;
           var r = xa(t, [
             'when',
             'delay',
@@ -10986,7 +11178,10 @@ fetch(url, {
             (r.treeScale = {x: 1, y: 1}),
             (r.delta = ro()),
             (r.deltaFinal = ro()),
-            (r.stopLayoutAxisAnimation = {x: function () {}, y: function () {}}),
+            (r.stopLayoutAxisAnimation = {
+              x: function () {},
+              y: function () {},
+            }),
             (r.isTargetBoxLocked = !1),
             (r.axisProgress = {x: mb(0), y: mb(0)}),
             r
@@ -11023,10 +11218,12 @@ fetch(url, {
               });
           }),
           (r.prototype.hide = function () {
-            !1 !== this.isVisible && ((this.isVisible = !1), this.scheduleRender());
+            !1 !== this.isVisible &&
+              ((this.isVisible = !1), this.scheduleRender());
           }),
           (r.prototype.show = function () {
-            !0 !== this.isVisible && ((this.isVisible = !0), this.scheduleRender());
+            !0 !== this.isVisible &&
+              ((this.isVisible = !0), this.scheduleRender());
           }),
           (r.prototype.onLayoutUpdate = function (t) {
             var r = this;
@@ -11083,7 +11280,10 @@ fetch(url, {
           }),
           (r.prototype.setAxisTarget = function (t, r, e) {
             var n = this.targetBox[t];
-            (n.min = r), (n.max = e), (this.hasViewportBoxUpdated = !0), Qo(this);
+            (n.min = r),
+              (n.max = e),
+              (this.hasViewportBoxUpdated = !0),
+              Qo(this);
           }),
           (r.prototype.startLayoutAxisAnimation = function (t, r) {
             var e = this,
@@ -11179,7 +11379,9 @@ fetch(url, {
         Ex = {offset: 'stroke-dashoffset', array: 'stroke-dasharray'},
         Fx = {offset: 'strokeDashoffset', array: 'strokeDasharray'};
       function Gx(t, r, e, n, o, i) {
-        void 0 === n && (n = 1), void 0 === o && (o = 0), void 0 === i && (i = !0);
+        void 0 === n && (n = 1),
+          void 0 === o && (o = 0),
+          void 0 === i && (i = !0);
         var a = i ? Ex : Fx;
         t[a.offset] = Li(-o, r);
         var $ = Li(e, r),
@@ -11665,7 +11867,10 @@ fetch(url, {
                 if (fe(l))
                   for (var c = l.length, v = null === l[0] ? 1 : 0; v < c; v++)
                     f
-                      ? Oa(Nf(l[v]) === f, 'All keyframes must be of the same type')
+                      ? Oa(
+                          Nf(l[v]) === f,
+                          'All keyframes must be of the same type'
+                        )
                       : ((f = Nf(l[v])),
                         Oa(
                           f === p || (Rf(p) && Rf(f)),
@@ -11864,7 +12069,8 @@ fetch(url, {
             a = r.style && r.style[n],
             $ = i && Pi(r[n]),
             s = a && Pi(r.style[n]);
-          ((o && !i && !a) || (!o && !$ && !s)) && (t.removeValue(n), delete e[n]);
+          ((o && !i && !a) || (!o && !$ && !s)) &&
+            (t.removeValue(n), delete e[n]);
         }
         ap(t, e, r),
           r.style && ap(t, e, r.style, !0),
@@ -12003,7 +12209,11 @@ fetch(url, {
             }),
             (t.prototype.resolveVariant = function (t) {
               if (!t)
-                return {target: void 0, transition: void 0, transitionEnd: void 0};
+                return {
+                  target: void 0,
+                  transition: void 0,
+                  transitionEnd: void 0,
+                };
               wy(t) &&
                 (t = t(
                   this.props.custom,
@@ -12231,7 +12441,8 @@ fetch(url, {
             (t.prototype.resetIsAnimating = function (t) {
               void 0 === t && (t = 0),
                 this.isAnimating.clear(),
-                t < this.getHighestPriority() && this.checkOverrideIsAnimating(t),
+                t < this.getHighestPriority() &&
+                  this.checkOverrideIsAnimating(t),
                 this.children &&
                   this.children.forEach(function (r) {
                     return r.resetIsAnimating(t);
@@ -12396,7 +12607,9 @@ fetch(url, {
         return void 0 === r && (r = 'page'), {x: t[r + 'X'], y: t[r + 'Y']};
       }
       function Si(t, r) {
-        return void 0 === r && (r = 'page'), {point: ip(t) ? Iy(t, r) : Jy(t, r)};
+        return (
+          void 0 === r && (r = 'page'), {point: ip(t) ? Iy(t, r) : Jy(t, r)}
+        );
       }
       function jp(t) {
         return Si(t, 'client');
@@ -12457,7 +12670,8 @@ fetch(url, {
                 i =
                   void 0 !== r
                     ? r
-                    : (r = 'string' == typeof t ? document.getElementById(t) : t);
+                    : (r =
+                        'string' == typeof t ? document.getElementById(t) : t);
               if (i) {
                 var a = i.getBoundingClientRect();
                 return {
@@ -12490,7 +12704,8 @@ fetch(url, {
                     $ = a.onStart,
                     s = a.onMove;
                   r ||
-                    ($ && $(n.lastMoveEvent, t), (n.startEvent = n.lastMoveEvent)),
+                    ($ && $(n.lastMoveEvent, t),
+                    (n.startEvent = n.lastMoveEvent)),
                     s && s(n.lastMoveEvent, t);
                 }
               }
@@ -12565,7 +12780,7 @@ fetch(url, {
         for (
           var e = t.length - 1, n = null, o = np(t);
           e >= 0 && ((n = t[e]), !(o.timestamp - n.timestamp > Qf(r)));
-    
+
         )
           e--;
         if (!n) return {x: 0, y: 0};
@@ -12797,7 +13012,9 @@ fetch(url, {
                     jp(r).point[t],
                     $,
                     s,
-                    null === (e = this.constraints) || void 0 === e ? void 0 : e[t],
+                    null === (e = this.constraints) || void 0 === e
+                      ? void 0
+                      : e[t],
                     i
                   );
                 this.visualElement.setAxisTarget(t, f, f + $);
@@ -12938,7 +13155,9 @@ fetch(url, {
       function Yy(t, r) {
         void 0 === r && (r = 10);
         var e = null;
-        return Math.abs(t.y) > r ? (e = 'y') : Math.abs(t.x) > r && (e = 'x'), e;
+        return (
+          Math.abs(t.y) > r ? (e = 'y') : Math.abs(t.x) > r && (e = 'x'), e
+        );
       }
       function Zy(t, r) {
         var e = t.dragControls,
@@ -13129,7 +13348,10 @@ fetch(url, {
               a = o[1],
               $ = aa.useContext(he),
               s = aa.useRef(!1),
-              f = void 0 !== (null == $ ? void 0 : $.custom) ? $.custom : t.custom;
+              f =
+                void 0 !== (null == $ ? void 0 : $.custom)
+                  ? $.custom
+                  : t.custom;
             aa.useEffect(
               function () {
                 i
@@ -13140,7 +13362,8 @@ fetch(url, {
                     e.start(r)
                   : (!s.current &&
                       n &&
-                      (e.setProps(ba(ba({}, t), {custom: f})), e.start(n).then(a)),
+                      (e.setProps(ba(ba({}, t), {custom: f})),
+                      e.start(n).then(a)),
                     (s.current = !0)),
                   i && (s.current = !1);
               },
@@ -13184,7 +13407,8 @@ fetch(url, {
                 s = _i(t, !0);
               for (var f in $) {
                 var u =
-                    o.current && (!e.hasValue(f) || e.getValue(f).get() !== s[f]),
+                    o.current &&
+                    (!e.hasValue(f) || e.getValue(f).get() !== s[f]),
                   l = null !== s[f],
                   p = iz(i.current[f], s[f]);
                 l && (p || u) && (a[f] = $[f]);
@@ -13224,7 +13448,9 @@ fetch(url, {
           $ = aa.useRef(!1);
         aa.useEffect(function () {
           var r = !1;
-          e ? ((r = !!a), (o = cj(i.animate))) : (r = $.current || mz(cj(t), o)),
+          e
+            ? ((r = !!a), (o = cj(i.animate)))
+            : (r = $.current || mz(cj(t), o)),
             r && n.start(o),
             ($.current = !0);
         }, lz(o));
@@ -13359,7 +13585,8 @@ fetch(url, {
               this.unsubLayoutReady(),
                 tc(function (r) {
                   var e, n;
-                  return null === (n = (e = t.stopAxisAnimation)[r]) || void 0 === n
+                  return null === (n = (e = t.stopAxisAnimation)[r]) ||
+                    void 0 === n
                     ? void 0
                     : n.call(e);
                 });
@@ -13505,7 +13732,8 @@ fetch(url, {
                 r = t.syncLayout,
                 e = t.visualElement;
               return (
-                Wf(r) ? r.syncUpdate() : (e.snapshotBoundingBox(), r.add(e)), null
+                Wf(r) ? r.syncUpdate() : (e.snapshotBoundingBox(), r.add(e)),
+                null
               );
             }),
             (r.prototype.componentDidUpdate = function () {}),
@@ -13615,7 +13843,10 @@ fetch(url, {
       function Kz(t, r) {
         return r && t !== r.lead
           ? {visibilityAction: ie.Hide}
-          : r && t.presence !== qa.Entering && t === r.lead && r.lead !== r.prevLead
+          : r &&
+            t.presence !== qa.Entering &&
+            t === r.lead &&
+            r.lead !== r.prevLead
           ? {visibilityAction: ie.Show}
           : (t.presence === qa.Entering
               ? (e = null == r ? void 0 : r.getFollowOrigin())
@@ -13730,7 +13961,9 @@ fetch(url, {
                 var o = this.snapshot.latestMotionValues;
                 for (var i in o)
                   t.hasValue(i)
-                    ? null === (r = t.getValue(i)) || void 0 === r || r.set(o[i])
+                    ? null === (r = t.getValue(i)) ||
+                      void 0 === r ||
+                      r.set(o[i])
                     : t.addValue(i, mb(o[i]));
               }
               this.hasChildren = !0;
@@ -13769,8 +14002,9 @@ fetch(url, {
               var t;
               return (
                 this.lead &&
-                (null === (t = this.lead) || void 0 === t ? void 0 : t.presence) !==
-                  qa.Exiting
+                (null === (t = this.lead) || void 0 === t
+                  ? void 0
+                  : t.presence) !== qa.Exiting
               );
             }),
             (t.prototype.shouldStackAnimate = function () {
@@ -13786,7 +14020,9 @@ fetch(url, {
             }),
             (t.prototype.getFollowTarget = function () {
               var t;
-              return null === (t = this.follow) || void 0 === t ? void 0 : t.box;
+              return null === (t = this.follow) || void 0 === t
+                ? void 0
+                : t.box;
             }),
             (t.prototype.getLeadOrigin = function () {
               var t;
@@ -14073,7 +14309,8 @@ fetch(url, {
             default:
               var l = (n = 0);
               for (a = []; n < s; ++n)
-                for (var o = 0; o < i; ++o) a[l++] = r(e[o] + ' ', c[n], t).trim();
+                for (var o = 0; o < i; ++o)
+                  a[l++] = r(e[o] + ' ', c[n], t).trim();
           }
           return a;
         }
@@ -14142,7 +14379,11 @@ fetch(url, {
                     );
                   case 115:
                     return (
-                      '-webkit-' + i + '-ms-' + i.replace('shrink', 'negative') + i
+                      '-webkit-' +
+                      i +
+                      '-ms-' +
+                      i.replace('shrink', 'negative') +
+                      i
                     );
                   case 98:
                     return (
@@ -14211,7 +14452,10 @@ fetch(url, {
                 case 207:
                 case 102:
                   i =
-                    i.replace(l, '-webkit-' + (102 < n ? 'inline-' : '') + 'box') +
+                    i.replace(
+                      l,
+                      '-webkit-' + (102 < n ? 'inline-' : '') + 'box'
+                    ) +
                     ';' +
                     i.replace(l, '-webkit-' + l) +
                     ';' +
@@ -14229,7 +14473,9 @@ fetch(url, {
                       '-webkit-' + i + '-webkit-box-' + l + '-ms-flex-' + l + i
                     );
                   case 115:
-                    return '-webkit-' + i + '-ms-flex-item-' + i.replace(v, '') + i;
+                    return (
+                      '-webkit-' + i + '-ms-flex-item-' + i.replace(v, '') + i
+                    );
                   default:
                     return (
                       '-webkit-' +
@@ -14246,7 +14492,8 @@ fetch(url, {
             case 931:
             case 953:
               if (!0 === $.test(e))
-                return 115 === (l = e.substring(e.indexOf(':') + 1)).charCodeAt(0)
+                return 115 ===
+                  (l = e.substring(e.indexOf(':') + 1)).charCodeAt(0)
                   ? t(e.replace('stretch', 'fill-available'), a, r, s).replace(
                       ':fill-available',
                       ':stretch'
@@ -14258,7 +14505,10 @@ fetch(url, {
             case 962:
               if (
                 ((i =
-                  '-webkit-' + i + (102 === i.charCodeAt(5) ? '-ms-' + i : '') + i),
+                  '-webkit-' +
+                  i +
+                  (102 === i.charCodeAt(5) ? '-ms-' + i : '') +
+                  i),
                 211 === r + s &&
                   105 === i.charCodeAt(13) &&
                   0 < i.indexOf('transform', 10))
@@ -14341,13 +14591,16 @@ fetch(url, {
                 N = '',
                 P = '';
               F < J;
-    
+
             ) {
               if (
                 ((k = l.charCodeAt(F)),
                 F === K &&
                   0 !== x + O + $ + v &&
-                  (0 !== x && (k = 47 === x ? 10 : 47), (O = $ = v = 0), J++, K++),
+                  (0 !== x && (k = 47 === x ? 10 : 47),
+                  (O = $ = v = 0),
+                  J++,
+                  K++),
                 0 === x + O + $ + v)
               ) {
                 if (
@@ -14371,7 +14624,7 @@ fetch(url, {
                     for (
                       u = (L = L.trim()).charCodeAt(0), d = 1, I = ++F;
                       F < J;
-    
+
                     ) {
                       switch ((k = l.charCodeAt(F))) {
                         case 123:
@@ -14420,12 +14673,14 @@ fetch(url, {
                     }
                     switch (
                       ((d = l.substring(I, F)),
-                      0 === u && (u = (L = L.replace(o, '').trim()).charCodeAt(0)),
+                      0 === u &&
+                        (u = (L = L.replace(o, '').trim()).charCodeAt(0)),
                       u)
                     ) {
                       case 64:
                         switch (
-                          (0 < G && (L = L.replace(f, '')), (k = L.charCodeAt(1)))
+                          (0 < G && (L = L.replace(f, '')),
+                          (k = L.charCodeAt(1)))
                         ) {
                           case 100:
                           case 109:
@@ -14439,7 +14694,18 @@ fetch(url, {
                         if (
                           ((I = (d = e(n, G, d, k, h + 1)).length),
                           0 < q &&
-                            ((m = i(3, d, (G = a(W, L, H)), n, y, z, I, k, h, b)),
+                            ((m = i(
+                              3,
+                              d,
+                              (G = a(W, L, H)),
+                              n,
+                              y,
+                              z,
+                              I,
+                              k,
+                              h,
+                              b
+                            )),
                             (L = G.join('')),
                             void 0 !== m &&
                               0 === (I = (d = m.trim()).length) &&
@@ -14477,7 +14743,8 @@ fetch(url, {
                   case 125:
                   case 59:
                     if (
-                      1 < (I = (L = (0 < G ? L.replace(f, '') : L).trim()).length)
+                      1 <
+                      (I = (L = (0 < G ? L.replace(f, '') : L).trim()).length)
                     )
                       switch (
                         (0 === E &&
@@ -14485,7 +14752,8 @@ fetch(url, {
                           45 === u || (96 < u && 123 > u)) &&
                           (I = (L = L.replace(' ', ':')).length),
                         0 < q &&
-                          void 0 !== (m = i(1, L, n, r, y, z, M.length, b, h, b)) &&
+                          void 0 !==
+                            (m = i(1, L, n, r, y, z, M.length, b, h, b)) &&
                           0 === (I = (L = m.trim()).length) &&
                           (L = '\0\0'),
                         (u = L.charCodeAt(0)),
@@ -14762,7 +15030,12 @@ fetch(url, {
             });
           var o = {
             key: t,
-            sheet: new Ep({key: t, container: a, nonce: e.nonce, speedy: e.speedy}),
+            sheet: new Ep({
+              key: t,
+              container: a,
+              nonce: e.nonce,
+              speedy: e.speedy,
+            }),
             nonce: e.nonce,
             inserted: n,
             registered: {},
@@ -14822,7 +15095,8 @@ fetch(url, {
         }
         return (
           ((r =
-            1540483477 * (65535 & (r ^= r >>> 13)) + ((59797 * (r >>> 16)) << 16)) ^
+            1540483477 * (65535 & (r ^= r >>> 13)) +
+            ((59797 * (r >>> 16)) << 16)) ^
             (r >>> 15)) >>>
           0
         ).toString(36);
@@ -14918,7 +15192,8 @@ fetch(url, {
               var $ = a.next;
               if (void 0 !== $)
                 for (; void 0 !== $; )
-                  (le = {name: $.name, styles: $.styles, next: le}), ($ = $.next);
+                  (le = {name: $.name, styles: $.styles, next: le}),
+                    ($ = $.next);
               var n = a.styles + ';';
               return n;
             }
@@ -14999,7 +15274,9 @@ fetch(url, {
         return $c(r);
       }
       Ka();
-      var Jp = aa.createContext('undefined' != typeof HTMLElement ? Yz() : null),
+      var Jp = aa.createContext(
+          'undefined' != typeof HTMLElement ? Yz() : null
+        ),
         _c = aa.createContext({}),
         v = Jp.Provider,
         Zf = function (e) {
@@ -15096,11 +15373,16 @@ fetch(url, {
                   Yf(this.props.cache, this.props.serialized.next, !0),
                 this.sheet.tags.length)
               ) {
-                var e =
-                  this.sheet.tags[this.sheet.tags.length - 1].nextElementSibling;
+                var e = this.sheet.tags[this.sheet.tags.length - 1]
+                  .nextElementSibling;
                 (this.sheet.before = e), this.sheet.flush();
               }
-              this.props.cache.insert('', this.props.serialized, this.sheet, !1);
+              this.props.cache.insert(
+                '',
+                this.props.serialized,
+                this.sheet,
+                !1
+              );
             }),
             (t.componentWillUnmount = function () {
               this.sheet.flush();
@@ -15153,7 +15435,11 @@ fetch(url, {
       var w = Zf(function (e, r) {
         return aa.createElement(_c.Consumer, null, function (t) {
           var a = function () {
-              for (var e = arguments.length, t = new Array(e), a = 0; a < e; a++)
+              for (
+                var e = arguments.length, t = new Array(e), a = 0;
+                a < e;
+                a++
+              )
                 t[a] = arguments[a];
               var h = $c(t, r.registered);
               return Yf(r, h, !1), r.key + '-' + h.name;
@@ -15161,7 +15447,11 @@ fetch(url, {
             h = {
               css: a,
               cx: function () {
-                for (var e = arguments.length, t = new Array(e), h = 0; h < e; h++)
+                for (
+                  var e = arguments.length, t = new Array(e), h = 0;
+                  h < e;
+                  h++
+                )
                   t[h] = arguments[h];
                 return iA(r.registered, a, hA(t));
               },
@@ -15440,7 +15730,8 @@ fetch(url, {
           : me(r, $);
       }
       ad.all = function (e, r) {
-        if (!Array.isArray(e)) throw new Error('first argument should be an array');
+        if (!Array.isArray(e))
+          throw new Error('first argument should be an array');
         return e.reduce(function (e, $) {
           return ad(e, $, r);
         }, {});
@@ -15449,7 +15740,9 @@ fetch(url, {
       Op = CA;
       var DA = {};
       DA = {
-        _args: [['@emotion/core@10.0.28', '/Users/alexreichert/projects/snippet']],
+        _args: [
+          ['@emotion/core@10.0.28', '/Users/alexreichert/projects/snippet'],
+        ],
         _from: '@emotion/core@10.0.28',
         _id: '@emotion/core@10.0.28',
         _inBundle: !1,
@@ -15476,10 +15769,14 @@ fetch(url, {
           '/@theme-ui/theme-provider',
           '/@types/theme-ui__components',
         ],
-        _resolved: 'https://registry.npmjs.org/@emotion/core/-/core-10.0.28.tgz',
+        _resolved:
+          'https://registry.npmjs.org/@emotion/core/-/core-10.0.28.tgz',
         _spec: '10.0.28',
         _where: '/Users/alexreichert/projects/snippet',
-        author: {name: 'mitchellhamilton', email: 'mitchell@mitchellhamilton.me'},
+        author: {
+          name: 'mitchellhamilton',
+          email: 'mitchell@mitchellhamilton.me',
+        },
         browser: {
           './dist/core.cjs.js': './dist/core.browser.cjs.js',
           './dist/core.esm.js': './dist/core.browser.esm.js',
@@ -15514,7 +15811,8 @@ fetch(url, {
         publishConfig: {access: 'public'},
         repository: {
           type: 'git',
-          url: 'https://github.com/emotion-js/emotion/tree/master/packages/core',
+          url:
+            'https://github.com/emotion-js/emotion/tree/master/packages/core',
         },
         scripts: {'test:typescript': 'dtslint types'},
         types: 'types/index.d.ts',
@@ -15525,7 +15823,10 @@ fetch(url, {
       var EA = function (e) {
           if (e.sx || e.css)
             return function (r) {
-              return [Lb(e.sx)(r), 'function' == typeof e.css ? e.css(r) : e.css];
+              return [
+                Lb(e.sx)(r),
+                'function' == typeof e.css ? e.css(r) : e.css,
+              ];
             };
         },
         FA = function (e) {
@@ -15549,7 +15850,10 @@ fetch(url, {
         HA = Rp ? Symbol.for('react.forward_ref') : 60103,
         Sp = function (e) {
           return (
-            !!e && 'object' == typeof e && e.$$typeof !== GA && e.$$typeof !== HA
+            !!e &&
+            'object' == typeof e &&
+            e.$$typeof !== GA &&
+            e.$$typeof !== HA
           );
         },
         Tp = function (e, r, $) {
@@ -15647,7 +15951,9 @@ fetch(url, {
             Object.keys(r).forEach(function (e) {
               t['&.theme-ui-' + e] = nj('colors', r[e]);
             }),
-            Lb({body: Object.assign({}, t, {color: 'text', bg: 'background'})})(e)
+            Lb({body: Object.assign({}, t, {color: 'text', bg: 'background'})})(
+              e
+            )
           );
         },
         Yp = 'theme-ui-color-mode',
@@ -15735,7 +16041,11 @@ fetch(url, {
             i = QA(r.theme || {}, $),
             s = Object.assign({}, i);
           !1 !== i.useCustomProperties && (s.colors = Xp(s.colors, 'colors'));
-          var n = Object.assign({}, r, {theme: i, colorMode: $, setColorMode: a});
+          var n = Object.assign({}, r, {
+            theme: i,
+            colorMode: $,
+            setColorMode: a,
+          });
           return ta(
             _c.Provider,
             {value: s},
@@ -15788,7 +16098,11 @@ fetch(url, {
             : Object.getOwnPropertyDescriptors
             ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t))
             : _p(t).forEach(function (r) {
-                Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));
+                Object.defineProperty(
+                  e,
+                  r,
+                  Object.getOwnPropertyDescriptor(t, r)
+                );
               });
         }
         return e;
@@ -15812,7 +16126,9 @@ fetch(url, {
         return function () {
           var $ = arguments,
             v =
-              i && void 0 !== r.__emotion_styles ? r.__emotion_styles.slice(0) : [];
+              i && void 0 !== r.__emotion_styles
+                ? r.__emotion_styles.slice(0)
+                : [];
           if (
             (void 0 !== o && v.push('label:' + o + ';'),
             null == $[0] || void 0 === $[0].raw)
@@ -15842,7 +16158,9 @@ fetch(url, {
                 _ = {};
               for (var y in e) (p && 'as' === y) || (f(y) && (_[y] = e[y]));
               return (
-                (_.className = $), (_.ref = t || e.innerRef), aa.createElement(i, _)
+                (_.className = $),
+                (_.ref = t || e.innerRef),
+                aa.createElement(i, _)
               );
             });
           });
@@ -16050,7 +16368,11 @@ fetch(url, {
             : Object.getOwnPropertyDescriptors
             ? Object.defineProperties(r, Object.getOwnPropertyDescriptors(t))
             : aq(Object(t)).forEach(function (e) {
-                Object.defineProperty(r, e, Object.getOwnPropertyDescriptor(t, e));
+                Object.defineProperty(
+                  r,
+                  e,
+                  Object.getOwnPropertyDescriptor(t, e)
+                );
               });
         }
         return r;
@@ -16075,7 +16397,8 @@ fetch(url, {
           for ($ = 0; $ < n.length; $++)
             (t = n[$]),
               e.indexOf(t) >= 0 ||
-                (Object.prototype.propertyIsEnumerable.call(r, t) && (o[t] = r[t]));
+                (Object.prototype.propertyIsEnumerable.call(r, t) &&
+                  (o[t] = r[t]));
         }
         return o;
       }
@@ -16362,7 +16685,8 @@ fetch(url, {
         rB = function () {
           return ta(Lp, {
             styles: function (r) {
-              if (!1 === r.useBodyStyles || (r.styles && !r.styles.root)) return !1;
+              if (!1 === r.useBodyStyles || (r.styles && !r.styles.root))
+                return !1;
               var e = !1 === r.useBorderBox ? null : 'border-box';
               return rj({
                 '*': {boxSizing: e},
@@ -16442,7 +16766,8 @@ fetch(url, {
                   s = e[n],
                   l = bc(e.theme, i.scale, i.defaults);
                 var $J4Nk$$interop$default = za(Pb);
-                if ('object' != typeof s) $J4Nk$$interop$default.d($, i(s, l, e));
+                if ('object' != typeof s)
+                  $J4Nk$$interop$default.d($, i(s, l, e));
                 else {
                   if (
                     ((t.breakpoints =
@@ -16548,7 +16873,11 @@ fetch(url, {
         );
       };
       var hq = function () {
-        for (var e = {}, r = arguments.length, t = new Array(r), $ = 0; $ < r; $++)
+        for (
+          var e = {}, r = arguments.length, t = new Array(r), $ = 0;
+          $ < r;
+          $++
+        )
           t[$] = arguments[$];
         return (
           t.forEach(function (r) {
@@ -16619,7 +16948,11 @@ fetch(url, {
         Pa = nb(DB);
       var uj = {space: [0, 4, 8, 16, 32, 64, 128, 256, 512]},
         EB = {
-          gridGap: {property: 'gridGap', scale: 'space', defaultScale: uj.space},
+          gridGap: {
+            property: 'gridGap',
+            scale: 'space',
+            defaultScale: uj.space,
+          },
           gridColumnGap: {
             property: 'gridColumnGap',
             scale: 'space',
@@ -16663,20 +16996,38 @@ fetch(url, {
             ({property: 'borderBottomRightRadius', scale: 'radii'},
             {property: 'borderBottomRightRadius', scale: 'radii'}),
           borderLeft: {property: 'borderLeft', scale: 'borders'},
-          borderX: {properties: ['borderLeft', 'borderRight'], scale: 'borders'},
-          borderY: {properties: ['borderTop', 'borderBottom'], scale: 'borders'},
+          borderX: {
+            properties: ['borderLeft', 'borderRight'],
+            scale: 'borders',
+          },
+          borderY: {
+            properties: ['borderTop', 'borderBottom'],
+            scale: 'borders',
+          },
           borderTopWidth: {property: 'borderTopWidth', scale: 'borderWidths'},
           borderTopColor: {property: 'borderTopColor', scale: 'colors'},
           borderTopStyle: {property: 'borderTopStyle', scale: 'borderStyles'},
-          borderBottomWidth: {property: 'borderBottomWidth', scale: 'borderWidths'},
+          borderBottomWidth: {
+            property: 'borderBottomWidth',
+            scale: 'borderWidths',
+          },
           borderBottomColor: {property: 'borderBottomColor', scale: 'colors'},
-          borderBottomStyle: {property: 'borderBottomStyle', scale: 'borderStyles'},
+          borderBottomStyle: {
+            property: 'borderBottomStyle',
+            scale: 'borderStyles',
+          },
           borderLeftWidth: {property: 'borderLeftWidth', scale: 'borderWidths'},
           borderLeftColor: {property: 'borderLeftColor', scale: 'colors'},
           borderLeftStyle: {property: 'borderLeftStyle', scale: 'borderStyles'},
-          borderRightWidth: {property: 'borderRightWidth', scale: 'borderWidths'},
+          borderRightWidth: {
+            property: 'borderRightWidth',
+            scale: 'borderWidths',
+          },
           borderRightColor: {property: 'borderRightColor', scale: 'colors'},
-          borderRightStyle: {property: 'borderRightStyle', scale: 'borderStyles'},
+          borderRightStyle: {
+            property: 'borderRightStyle',
+            scale: 'borderStyles',
+          },
         },
         Mb = nb(FB);
       var Nb = {
@@ -16765,7 +17116,11 @@ fetch(url, {
         (ia.margin.mx = ia.margin.marginX),
         (ia.margin.my = ia.margin.marginY),
         (ia.padding = {
-          padding: {property: 'padding', scale: 'space', defaultScale: Qa.space},
+          padding: {
+            property: 'padding',
+            scale: 'space',
+            defaultScale: Qa.space,
+          },
           paddingTop: {
             property: 'paddingTop',
             scale: 'space',
@@ -17110,7 +17465,9 @@ fetch(url, {
           var t = e.theme,
             r = e.variant,
             $ = e.__themeKey;
-          return void 0 === $ && ($ = 'variants'), Lb(Ja(t, $ + '.' + r, Ja(t, r)));
+          return (
+            void 0 === $ && ($ = 'variants'), Lb(Ja(t, $ + '.' + r, Ja(t, r)))
+          );
         },
         ea = vc('div', {shouldForwardProp: XB})(
           {boxSizing: 'border-box', margin: 0, minWidth: 0},
@@ -17214,7 +17571,11 @@ fetch(url, {
             ea,
             Object.assign({}, {ref: t, as: 'img'}, e, {
               __themeKey: 'images',
-              __css: Object.assign({}, {maxWidth: '100%', height: 'auto'}, e.__css),
+              __css: Object.assign(
+                {},
+                {maxWidth: '100%', height: 'auto'},
+                e.__css
+              ),
             })
           );
         }),
@@ -17310,7 +17671,40 @@ fetch(url, {
             Object.assign({}, pq(e), {sx: {display: 'flex'}}),
             Q.d.createElement(
               ea,
-              Object.assign({}, {ref: t, as: 'select', variant: 'select'}, qq(e), {
+              Object.assign(
+                {},
+                {ref: t, as: 'select', variant: 'select'},
+                qq(e),
+                {
+                  __themeKey: 'forms',
+                  __css: {
+                    display: 'block',
+                    width: '100%',
+                    p: 2,
+                    appearance: 'none',
+                    fontSize: 'inherit',
+                    lineHeight: 'inherit',
+                    border: '1px solid',
+                    borderRadius: 4,
+                    color: 'inherit',
+                    bg: 'transparent',
+                  },
+                }
+              )
+            ),
+            Q.d.createElement(gC, {
+              sx: {ml: -28, alignSelf: 'center', pointerEvents: 'none'},
+            })
+          );
+        }),
+        XE = Q.d.forwardRef(function (e, t) {
+          return Q.d.createElement(
+            ea,
+            Object.assign(
+              {},
+              {ref: t, as: 'textarea', variant: 'textarea'},
+              e,
+              {
                 __themeKey: 'forms',
                 __css: {
                   display: 'block',
@@ -17324,31 +17718,8 @@ fetch(url, {
                   color: 'inherit',
                   bg: 'transparent',
                 },
-              })
-            ),
-            Q.d.createElement(gC, {
-              sx: {ml: -28, alignSelf: 'center', pointerEvents: 'none'},
-            })
-          );
-        }),
-        XE = Q.d.forwardRef(function (e, t) {
-          return Q.d.createElement(
-            ea,
-            Object.assign({}, {ref: t, as: 'textarea', variant: 'textarea'}, e, {
-              __themeKey: 'forms',
-              __css: {
-                display: 'block',
-                width: '100%',
-                p: 2,
-                appearance: 'none',
-                fontSize: 'inherit',
-                lineHeight: 'inherit',
-                border: '1px solid',
-                borderRadius: 4,
-                color: 'inherit',
-                bg: 'transparent',
-              },
-            })
+              }
+            )
           );
         });
       function hC(e, t) {
@@ -17364,7 +17735,8 @@ fetch(url, {
             pe,
             e,
             Q.d.createElement('path', {
-              d: 'M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z',
+              d:
+                'M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z',
             })
           );
         },
@@ -17373,7 +17745,8 @@ fetch(url, {
             pe,
             e,
             Q.d.createElement('path', {
-              d: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z',
+              d:
+                'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z',
             })
           );
         },
@@ -17384,13 +17757,19 @@ fetch(url, {
             Q.d.createElement(
               iC,
               Object.assign({}, e, {
-                __css: {display: 'none', 'input:checked ~ &': {display: 'block'}},
+                __css: {
+                  display: 'none',
+                  'input:checked ~ &': {display: 'block'},
+                },
               })
             ),
             Q.d.createElement(
               jC,
               Object.assign({}, e, {
-                __css: {display: 'block', 'input:checked ~ &': {display: 'none'}},
+                __css: {
+                  display: 'block',
+                  'input:checked ~ &': {display: 'none'},
+                },
               })
             )
           );
@@ -17447,7 +17826,8 @@ fetch(url, {
             pe,
             e,
             Q.d.createElement('path', {
-              d: 'M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z',
+              d:
+                'M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z',
             })
           );
         },
@@ -17456,7 +17836,8 @@ fetch(url, {
             pe,
             e,
             Q.d.createElement('path', {
-              d: 'M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z',
+              d:
+                'M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z',
             })
           );
         },
@@ -17467,13 +17848,19 @@ fetch(url, {
             Q.d.createElement(
               mC,
               Object.assign({}, e, {
-                __css: {display: 'none', 'input:checked ~ &': {display: 'block'}},
+                __css: {
+                  display: 'none',
+                  'input:checked ~ &': {display: 'block'},
+                },
               })
             ),
             Q.d.createElement(
               nC,
               Object.assign({}, e, {
-                __css: {display: 'block', 'input:checked ~ &': {display: 'none'}},
+                __css: {
+                  display: 'block',
+                  'input:checked ~ &': {display: 'none'},
+                },
               })
             )
           );
@@ -17572,7 +17959,10 @@ fetch(url, {
             ea,
             pq(a),
             Q.d.createElement(dC, {htmlFor: o}, $),
-            Q.d.createElement(r, Object.assign({}, {ref: t, id: o, name: o}, qq(a)))
+            Q.d.createElement(
+              r,
+              Object.assign({}, {ref: t, id: o, name: o}, qq(a))
+            )
           );
         }),
         aF = Q.d.forwardRef(function (e, t) {
@@ -17736,9 +18126,14 @@ fetch(url, {
           var $ = tC(e, ['size']);
           return Q.d.createElement(
             yj,
-            Object.assign({}, {ref: t, width: r, height: r, variant: 'avatar'}, $, {
-              __css: {borderRadius: 9999},
-            })
+            Object.assign(
+              {},
+              {ref: t, width: r, height: r, variant: 'avatar'},
+              $,
+              {
+                __css: {borderRadius: 9999},
+              }
+            )
           );
         }),
         eF = Q.d.forwardRef(function (e, t) {
@@ -17810,7 +18205,8 @@ fetch(url, {
             viewBox: '0 0 24 24',
           },
           Q.d.createElement('path', {
-            d: 'M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z',
+            d:
+              'M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z',
           })
         ),
         fF = Q.d.forwardRef(function (e, t) {
@@ -17941,7 +18337,13 @@ fetch(url, {
           Q.d.createElement(
             ea,
             Object.assign({}, o, {
-              __css: {position: 'absolute', top: 0, right: 0, bottom: 0, left: 0},
+              __css: {
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0,
+              },
             }),
             $
           )
@@ -18037,7 +18439,12 @@ fetch(url, {
             rq,
             Object.assign(
               {},
-              {ref: t, title: 'Menu', 'aria-label': 'Toggle Menu', variant: 'menu'},
+              {
+                ref: t,
+                title: 'Menu',
+                'aria-label': 'Toggle Menu',
+                variant: 'menu',
+              },
               e
             ),
             Q.d.createElement(BC, null)
@@ -18090,7 +18497,8 @@ fetch(url, {
               transition: {duration: 0.2},
             }),
             Q.d.createElement(xc, {
-              d: 'M22 21.6453C22 20 23 19.5 23 19.5C23 19.5 25.5 18 25.5 14V9C25.5 4 23 1.5 18 1.5H9C4 1.5 1.5 4 1.5 9V14C1.5 19 4 21 9 21H13.5C14 21 14 21 15 21.5L20.25 24.8572L20.8517 25.2118C21.5184 25.6046 22 25.631 22 24.8572V24.0287V22.7858V21.6453Z',
+              d:
+                'M22 21.6453C22 20 23 19.5 23 19.5C23 19.5 25.5 18 25.5 14V9C25.5 4 23 1.5 18 1.5H9C4 1.5 1.5 4 1.5 9V14C1.5 19 4 21 9 21H13.5C14 21 14 21 15 21.5L20.25 24.8572L20.8517 25.2118C21.5184 25.6046 22 25.631 22 24.8572V24.0287V22.7858V21.6453Z',
               variants: {closed: {opacity: 1}, open: {opacity: 0}},
               transition: {duration: 0.2},
             })
@@ -18115,7 +18523,8 @@ fetch(url, {
               transition: {duration: 0.2},
             }),
             Q.d.createElement(je.path, {
-              d: 'M20.5 21.1453C20.5 19.5 21.5 19 21.5 19C21.5 19 24 18.5 24 13.5V8.5C24 3.5 21.5 1 16.5 1H7.5C2.5 1 0 3.5 0 8.5V13.5C0 18.5 2.5 20.5 7.5 20.5H12C12.5 20.5 12.5 20.5 13.5 21L18.75 24.3572L19.3517 24.7118C20.0184 25.1046 20.5 25.131 20.5 24.3572V23.5287V22.2858V21.1453Z',
+              d:
+                'M20.5 21.1453C20.5 19.5 21.5 19 21.5 19C21.5 19 24 18.5 24 13.5V8.5C24 3.5 21.5 1 16.5 1H7.5C2.5 1 0 3.5 0 8.5V13.5C0 18.5 2.5 20.5 7.5 20.5H12C12.5 20.5 12.5 20.5 13.5 21L18.75 24.3572L19.3517 24.7118C20.0184 25.1046 20.5 25.131 20.5 24.3572V23.5287V22.2858V21.1453Z',
               fill: 'white',
               fillOpacity: '0.7',
               variants: {closed: {opacity: 1}, open: {opacity: 0}},
@@ -18124,7 +18533,8 @@ fetch(url, {
             Q.d.createElement(je.path, {
               fillRule: 'evenodd',
               clipRule: 'evenodd',
-              d: 'M21.5 18C21.5 18 20.5 18.5 20.5 20.1453V21.2858V22.5287V23.3572C20.5 24.131 20.0184 24.1046 19.3517 23.7118L18.75 23.3572L13.5 20C12.8174 19.6587 12.6007 19.5504 12.3729 19.516C12.267 19.5 12.1587 19.5 12 19.5H7.5C2.5 19.5 0 17.5 0 12.5V7.5C0 2.5 2.5 0 7.5 0H16.5C21.5 0 24 2.5 24 7.5V12.5C24 17.5 21.5 18 21.5 18ZM21 17.557C21.8581 17.557 24 13.557 23 13.057C22.3869 12.7505 21.8801 13.7414 21.4646 14.554C21.2023 15.0668 20.9764 15.5086 20.783 15.5086C20.283 15.5086 20 16.0554 20 16.7568C20 17.4582 20.1419 17.557 21 17.557Z',
+              d:
+                'M21.5 18C21.5 18 20.5 18.5 20.5 20.1453V21.2858V22.5287V23.3572C20.5 24.131 20.0184 24.1046 19.3517 23.7118L18.75 23.3572L13.5 20C12.8174 19.6587 12.6007 19.5504 12.3729 19.516C12.267 19.5 12.1587 19.5 12 19.5H7.5C2.5 19.5 0 17.5 0 12.5V7.5C0 2.5 2.5 0 7.5 0H16.5C21.5 0 24 2.5 24 7.5V12.5C24 17.5 21.5 18 21.5 18ZM21 17.557C21.8581 17.557 24 13.557 23 13.057C22.3869 12.7505 21.8801 13.7414 21.4646 14.554C21.2023 15.0668 20.9764 15.5086 20.783 15.5086C20.283 15.5086 20 16.0554 20 16.7568C20 17.4582 20.1419 17.557 21 17.557Z',
               fill: 'white',
               variants: {closed: {opacity: 1}, open: {opacity: 0}},
               transition: {duration: 0.2},
@@ -18224,7 +18634,7 @@ fetch(url, {
           var r = {'%FE%FF': '\uFFFD\uFFFD', '%FF%FE': '\uFFFD\uFFFD'},
             t = vq.exec(e);
           t;
-    
+
         ) {
           try {
             r[t[0]] = decodeURIComponent(t[0]);
@@ -18244,7 +18654,9 @@ fetch(url, {
       HC = function (e) {
         if ('string' != typeof e)
           throw new TypeError(
-            'Expected `encodedURI` to be of type `string`, got `' + typeof e + '`'
+            'Expected `encodedURI` to be of type `string`, got `' +
+              typeof e +
+              '`'
           );
         try {
           return (e = e.replace(/\+/g, ' ')), decodeURIComponent(e);
@@ -18367,7 +18779,9 @@ fetch(url, {
                   ? t
                   : [].concat(
                       Dj(t),
-                      null === a ? [Ca(e, r)] : [[Ca(e, r), '=', Ca(a, r)].join('')]
+                      null === a
+                        ? [Ca(e, r)]
+                        : [[Ca(e, r), '=', Ca(a, r)].join('')]
                     );
               };
             };
@@ -18380,7 +18794,9 @@ fetch(url, {
             return function (r, t, a) {
               (e = /\[(\d*)\]$/.exec(r)),
                 (r = r.replace(/\[\d*\]$/, '')),
-                e ? (void 0 === a[r] && (a[r] = {}), (a[r][e[1]] = t)) : (a[r] = t);
+                e
+                  ? (void 0 === a[r] && (a[r] = {}), (a[r][e[1]] = t))
+                  : (a[r] = t);
             };
           case 'bracket':
             return function (r, t, a) {
@@ -18531,7 +18947,9 @@ fetch(url, {
           )).arrayFormatSeparator
         );
         var t = function (t) {
-            return (e.skipNull && OC(r[t])) || (e.skipEmptyString && '' === r[t]);
+            return (
+              (e.skipNull && OC(r[t])) || (e.skipEmptyString && '' === r[t])
+            );
           },
           a = PC(e),
           o = {};
@@ -18561,7 +18979,9 @@ fetch(url, {
         var [t, a] = wq(r, '#');
         return Object.assign(
           {url: t.split('?')[0] || '', query: Cq(Aq(r), e)},
-          e && e.parseFragmentIdentifier && a ? {fragmentIdentifier: re(a, e)} : {}
+          e && e.parseFragmentIdentifier && a
+            ? {fragmentIdentifier: re(a, e)}
+            : {}
         );
       };
       yc.parseUrl = SC;
@@ -18590,41 +19010,39 @@ fetch(url, {
         return t;
       }
       (UC = Wa),
-        (Wa.prototype.on = Wa.prototype.addEventListener =
-          function (t, r) {
-            return (
-              (this._callbacks = this._callbacks || {}),
-              (this._callbacks['$' + t] = this._callbacks['$' + t] || []).push(r),
-              this
-            );
-          }),
+        (Wa.prototype.on = Wa.prototype.addEventListener = function (t, r) {
+          return (
+            (this._callbacks = this._callbacks || {}),
+            (this._callbacks['$' + t] = this._callbacks['$' + t] || []).push(r),
+            this
+          );
+        }),
         (Wa.prototype.once = function (t, r) {
           function e() {
             this.off(t, e), r.apply(this, arguments);
           }
           return (e.fn = r), this.on(t, e), this;
         }),
-        (Wa.prototype.off =
-          Wa.prototype.removeListener =
-          Wa.prototype.removeAllListeners =
-          Wa.prototype.removeEventListener =
-            function (t, r) {
-              if (
-                ((this._callbacks = this._callbacks || {}), 0 == arguments.length)
-              )
-                return (this._callbacks = {}), this;
-              var e,
-                i = this._callbacks['$' + t];
-              if (!i) return this;
-              if (1 == arguments.length)
-                return delete this._callbacks['$' + t], this;
-              for (var s = 0; s < i.length; s++)
-                if ((e = i[s]) === r || e.fn === r) {
-                  i.splice(s, 1);
-                  break;
-                }
-              return 0 === i.length && delete this._callbacks['$' + t], this;
-            }),
+        (Wa.prototype.off = Wa.prototype.removeListener = Wa.prototype.removeAllListeners = Wa.prototype.removeEventListener = function (
+          t,
+          r
+        ) {
+          if (
+            ((this._callbacks = this._callbacks || {}), 0 == arguments.length)
+          )
+            return (this._callbacks = {}), this;
+          var e,
+            i = this._callbacks['$' + t];
+          if (!i) return this;
+          if (1 == arguments.length)
+            return delete this._callbacks['$' + t], this;
+          for (var s = 0; s < i.length; s++)
+            if ((e = i[s]) === r || e.fn === r) {
+              i.splice(s, 1);
+              break;
+            }
+          return 0 === i.length && delete this._callbacks['$' + t], this;
+        }),
         (Wa.prototype.emit = function (t) {
           this._callbacks = this._callbacks || {};
           for (
@@ -18637,7 +19055,8 @@ fetch(url, {
             r[i - 1] = arguments[i];
           if (e) {
             i = 0;
-            for (var s = (e = e.slice(0)).length; i < s; ++i) e[i].apply(this, r);
+            for (var s = (e = e.slice(0)).length; i < s; ++i)
+              e[i].apply(this, r);
           }
           return this;
         }),
@@ -18663,7 +19082,7 @@ fetch(url, {
                 ? JSON.stringify(r, e, $)
                 : JSON.stringify(r, Hq(e), $);
           0 !== Ob.length;
-    
+
         ) {
           var t = Ob.pop();
           4 === t.length
@@ -18705,9 +19124,11 @@ fetch(url, {
           t = Gj(r, '', [], void 0) || r;
         for (
           a =
-            0 === dc.length ? JSON.stringify(t, e, $) : JSON.stringify(t, Hq(e), $);
+            0 === dc.length
+              ? JSON.stringify(t, e, $)
+              : JSON.stringify(t, Hq(e), $);
           0 !== Ob.length;
-    
+
         ) {
           var i = Ob.pop();
           4 === i.length
@@ -18952,13 +19373,18 @@ fetch(url, {
               Object.prototype.hasOwnProperty.call(t, r) && this.set(r, t[r]);
             return this;
           }
-          return (this._header[t.toLowerCase()] = e), (this.header[t] = e), this;
+          return (
+            (this._header[t.toLowerCase()] = e), (this.header[t] = e), this
+          );
         }),
         (fa.prototype.unset = function (t) {
-          return delete this._header[t.toLowerCase()], delete this.header[t], this;
+          return (
+            delete this._header[t.toLowerCase()], delete this.header[t], this
+          );
         }),
         (fa.prototype.field = function (t, e) {
-          if (null == t) throw new Error('.field(name, val) name can not be empty');
+          if (null == t)
+            throw new Error('.field(name, val) name can not be empty');
           if (this._data)
             throw new Error(
               ".field() can't be used if .send() is used. Please use only .send() or only .field() & .attach()"
@@ -18973,7 +19399,8 @@ fetch(url, {
               Object.prototype.hasOwnProperty.call(e, s) && this.field(t, e[s]);
             return this;
           }
-          if (null == e) throw new Error('.field(name, val) val can not be empty');
+          if (null == e)
+            throw new Error('.field(name, val) val can not be empty');
           return (
             'boolean' == typeof e && (e = String(e)),
             this._getFormData().append(t, e),
@@ -19039,7 +19466,8 @@ fetch(url, {
             throw new Error("Can't merge these send calls");
           if (e && dd(this._data))
             for (var s in t)
-              Object.prototype.hasOwnProperty.call(t, s) && (this._data[s] = t[s]);
+              Object.prototype.hasOwnProperty.call(t, s) &&
+                (this._data[s] = t[s]);
           else
             'string' == typeof t
               ? (r || this.type('form'),
@@ -19268,22 +19696,21 @@ fetch(url, {
           (te = void 0))
         : (te = self);
       function mD() {}
-      var ja =
-          (Jj =
-          Jj =
-            function (e, t) {
-              return 'function' == typeof t
-                ? new bg('GET', e).end(t)
-                : 1 === arguments.length
-                ? new bg('GET', e)
-                : new bg(e, t);
-            }),
+      var ja = (Jj = Jj = function (e, t) {
+          return 'function' == typeof t
+            ? new bg('GET', e).end(t)
+            : 1 === arguments.length
+            ? new bg('GET', e)
+            : new bg(e, t);
+        }),
         bg = ra;
       (Jj.Request = bg),
         (ja.getXHR = function () {
           if (
             te.XMLHttpRequest &&
-            (!te.location || 'file:' !== te.location.protocol || !te.ActiveXObject)
+            (!te.location ||
+              'file:' !== te.location.protocol ||
+              !te.ActiveXObject)
           )
             return new XMLHttpRequest();
           try {
@@ -19298,7 +19725,9 @@ fetch(url, {
           try {
             return new ActiveXObject('Msxml2.XMLHTTP');
           } catch (n) {}
-          throw new Error('Browser-only version of superagent could not find XHR');
+          throw new Error(
+            'Browser-only version of superagent could not find XHR'
+          );
         });
       var nD = ''.trim
         ? function (e) {
@@ -19329,7 +19758,11 @@ fetch(url, {
           } else e.push(encodeURI(t));
       }
       function Jq(e) {
-        for (var t, r, n = {}, s = e.split('&'), o = 0, a = s.length; o < a; ++o)
+        for (
+          var t, r, n = {}, s = e.split('&'), o = 0, a = s.length;
+          o < a;
+          ++o
+        )
           -1 === (r = (t = s[o]).indexOf('='))
             ? (n[decodeURIComponent(t)] = '')
             : (n[decodeURIComponent(t.slice(0, r))] = decodeURIComponent(
@@ -19357,7 +19790,8 @@ fetch(url, {
           (this.xhr = this.req.xhr),
           (this.text =
             ('HEAD' !== this.req.method &&
-              ('' === this.xhr.responseType || 'text' === this.xhr.responseType)) ||
+              ('' === this.xhr.responseType ||
+                'text' === this.xhr.responseType)) ||
             void 0 === this.xhr.responseType
               ? this.xhr.responseText
               : null),
@@ -19367,8 +19801,9 @@ fetch(url, {
           this._setStatusProperties(t),
           (this.headers = oD(this.xhr.getAllResponseHeaders())),
           (this.header = this.headers),
-          (this.header['content-type'] =
-            this.xhr.getResponseHeader('content-type')),
+          (this.header['content-type'] = this.xhr.getResponseHeader(
+            'content-type'
+          )),
           this._setHeaderProperties(this.header),
           null === this.text && e._responseType
             ? (this.body = this.xhr.response)
@@ -19392,8 +19827,9 @@ fetch(url, {
               n = new ue(r);
             } catch (s) {
               return (
-                ((t = new Error('Parser is unable to parse the response')).parse =
-                  !0),
+                ((t = new Error(
+                  'Parser is unable to parse the response'
+                )).parse = !0),
                 (t.original = s),
                 r.xhr
                   ? ((t.rawResponse =
@@ -19462,7 +19898,10 @@ fetch(url, {
           var e = this.req,
             t = e.method,
             r = e.url,
-            n = 'cannot '.concat(t, ' ').concat(r, ' (').concat(this.status, ')'),
+            n = 'cannot '
+              .concat(t, ' ')
+              .concat(r, ' (')
+              .concat(this.status, ')'),
             s = new Error(n);
           return (s.status = this.status), (s.method = t), (s.url = r), s;
         }),
@@ -19499,7 +19938,8 @@ fetch(url, {
         }),
         (ra.prototype._getFormData = function () {
           return (
-            this._formData || (this._formData = new te.FormData()), this._formData
+            this._formData || (this._formData = new te.FormData()),
+            this._formData
           );
         }),
         (ra.prototype.callback = function (e, t) {
@@ -19523,7 +19963,9 @@ fetch(url, {
         }),
         (ra.prototype.agent = function () {
           return (
-            console.warn('This is not supported in browser version of superagent'),
+            console.warn(
+              'This is not supported in browser version of superagent'
+            ),
             this
           );
         }),
@@ -19558,7 +20000,11 @@ fetch(url, {
           this._uploadTimeout &&
             !this._uploadTimeoutTimer &&
             (this._uploadTimeoutTimer = setTimeout(function () {
-              e._timeoutError('Upload timeout of ', e._uploadTimeout, 'ETIMEDOUT');
+              e._timeoutError(
+                'Upload timeout of ',
+                e._uploadTimeout,
+                'ETIMEDOUT'
+              );
             }, this._uploadTimeout));
         }),
         (ra.prototype._end = function () {
@@ -19625,7 +20071,8 @@ fetch(url, {
           ) {
             var s = this._header['content-type'],
               o = this._serializer || ja.serialize[s ? s.split(';')[0] : ''];
-            !o && Kq(s) && (o = ja.serialize['application/json']), o && (r = o(r));
+            !o && Kq(s) && (o = ja.serialize['application/json']),
+              o && (r = o(r));
           }
           for (var a in this.header)
             null !== this.header[a] &&
@@ -19638,7 +20085,9 @@ fetch(url, {
         (ja.agent = function () {
           return new ag();
         }),
-        ['GET', 'POST', 'OPTIONS', 'PATCH', 'PUT', 'DELETE'].forEach(function (e) {
+        ['GET', 'POST', 'OPTIONS', 'PATCH', 'PUT', 'DELETE'].forEach(function (
+          e
+        ) {
           ag.prototype[e.toLowerCase()] = function (t, r) {
             var n = new ja.Request(e, t);
             return this._setDefaults(n), r && n.end(r), n;
@@ -19701,7 +20150,8 @@ fetch(url, {
             n
           );
         });
-      var Mq = 'https://inhotel-chat.eastus.cloudapp.azure.com';
+      //   var Mq = 'https://inhotel-chat.eastus.cloudapp.azure.com';
+      var Mq = 'https://inhotel-bda7de42c465.herokuapp.com';
       var Nq =
           (cd && cd.__awaiter) ||
           function (t, e, n, r) {
@@ -19797,7 +20247,10 @@ fetch(url, {
                             o = 0;
                             continue;
                           }
-                          if (3 === a[0] && (!i || (a[1] > i[0] && a[1] < i[3]))) {
+                          if (
+                            3 === a[0] &&
+                            (!i || (a[1] > i[0] && a[1] < i[3]))
+                          ) {
                             o.label = a[1];
                             break;
                           }
@@ -19833,7 +20286,7 @@ fetch(url, {
                 return [
                   2,
                   $jn4M$$interop$default.d
-                    .get(e + '/api/widget_settings')
+                    .get(Mq + '/api/v1/core/get_widget_settings')
                     .query(t)
                     .then(function (t) {
                       return t.body.data;
@@ -19994,7 +20447,10 @@ fetch(url, {
                       );
                     }
                     if (
-                      ((t = $(t, 360)), (r = $(r, 100)), (e = $(e, 100)), 0 === r)
+                      ((t = $(t, 360)),
+                      (r = $(r, 100)),
+                      (e = $(e, 100)),
+                      0 === r)
                     )
                       n = a = i = e;
                     else {
@@ -20189,7 +20645,7 @@ fetch(url, {
           for (
             var e = f(t).toHsv(), n = e.h, a = e.s, i = e.v, s = [], o = 1 / r;
             r--;
-    
+
           )
             s.push(f({h: n, s: a, v: i})), (i = (i + o) % 1);
           return s;
@@ -20235,7 +20691,9 @@ fetch(url, {
             );
           },
           setAlpha: function (t) {
-            return (this._a = F(t)), (this._roundA = a(100 * this._a) / 100), this;
+            return (
+              (this._a = F(t)), (this._roundA = a(100 * this._a) / 100), this
+            );
           },
           toHsv: function () {
             var t = l(this._r, this._g, this._b);
@@ -20285,7 +20743,10 @@ fetch(url, {
                 s[3].charAt(0) == s[3].charAt(1)
               )
                 return (
-                  s[0].charAt(0) + s[1].charAt(0) + s[2].charAt(0) + s[3].charAt(0)
+                  s[0].charAt(0) +
+                  s[1].charAt(0) +
+                  s[2].charAt(0) +
+                  s[3].charAt(0)
                 );
               return s.join('');
             })(this._r, this._g, this._b, this._a, t);
@@ -20298,7 +20759,13 @@ fetch(url, {
           },
           toRgbString: function () {
             return 1 == this._a
-              ? 'rgb(' + a(this._r) + ', ' + a(this._g) + ', ' + a(this._b) + ')'
+              ? 'rgb(' +
+                  a(this._r) +
+                  ', ' +
+                  a(this._g) +
+                  ', ' +
+                  a(this._b) +
+                  ')'
               : 'rgba(' +
                   a(this._r) +
                   ', ' +
@@ -20513,7 +20980,9 @@ fetch(url, {
               s,
               o = null,
               h = 0;
-            (a = (e = e || {}).includeFallbackColors), (i = e.level), (s = e.size);
+            (a = (e = e || {}).includeFallbackColors),
+              (i = e.level),
+              (s = e.size);
             for (var l = 0; l < r.length; l++)
               (n = f.readability(t, r[l])) > h && ((h = n), (o = f(r[l])));
             return f.isReadable(t, o, {level: i, size: s}) || !a
@@ -20678,12 +21147,16 @@ fetch(url, {
             return r;
           })(H));
         function F(t) {
-          return (t = parseFloat(t)), (isNaN(t) || t < 0 || t > 1) && (t = 1), t;
+          return (
+            (t = parseFloat(t)), (isNaN(t) || t < 0 || t > 1) && (t = 1), t
+          );
         }
         function $(r, e) {
           (function (t) {
             return (
-              'string' == typeof t && -1 != t.indexOf('.') && 1 === parseFloat(t)
+              'string' == typeof t &&
+              -1 != t.indexOf('.') &&
+              1 === parseFloat(t)
             );
           })(r) && (r = '100%');
           var n = (function (t) {
@@ -20783,7 +21256,7 @@ fetch(url, {
             zIndex: 2147483e3,
             position: 'fixed',
             bottom: 100,
-            right: 20,
+            left: 20,
             width: 376,
             maxWidth: ['90%', '376px'],
             minHeight: 250,
@@ -20812,7 +21285,7 @@ fetch(url, {
             position: 'fixed',
             zIndex: 2147483003,
             bottom: '20px',
-            right: '20px',
+            left: '20px',
           },
           WidgetToggle: {
             outline: 'none !important',
@@ -20840,7 +21313,8 @@ fetch(url, {
             useBodyStyles: !1,
             space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
             fonts: {
-              body: '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;',
+              body:
+                '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;',
               heading:
                 '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;',
               monospace: '"Roboto Mono", monospace',
@@ -21196,10 +21670,9 @@ fetch(url, {
           l = r.getQueryParam,
           h = {
             campaignParams: function () {
-              var e =
-                  'utm_source utm_medium utm_campaign utm_content utm_term'.split(
-                    ' '
-                  ),
+              var e = 'utm_source utm_medium utm_campaign utm_content utm_term'.split(
+                  ' '
+                ),
                 r = '',
                 o = {};
               return (
@@ -21358,7 +21831,8 @@ fetch(url, {
                   host: e.location.host,
                   pathname: e.location.pathname,
                   browser_version:
-                    null === (r = h.browserVersion(t, o.vendor, n)) || void 0 === r
+                    null === (r = h.browserVersion(t, o.vendor, n)) ||
+                    void 0 === r
                       ? void 0
                       : r.toString(),
                   screen_height: screen.height,
@@ -21450,8 +21924,7 @@ fetch(url, {
           D,
           k = function (r) {
             var n = function (r) {
-              var n =
-                  /[\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+              var n = /[\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
                 t = {
                   '\b': '\\b',
                   '\t': '\\t',
@@ -21469,7 +21942,8 @@ fetch(url, {
                       var n = t[r];
                       return 'string' == typeof n
                         ? n
-                        : '\\u' + ('0000' + r.charCodeAt(0).toString(16)).slice(-4);
+                        : '\\u' +
+                            ('0000' + r.charCodeAt(0).toString(16)).slice(-4);
                     }) +
                     '"'
                   : '"' + r + '"'
@@ -21500,7 +21974,9 @@ fetch(url, {
                   return String(y);
                 case 'object':
                   if (!y) return 'null';
-                  if (((u += '    '), (p = []), '[object Array]' === o.apply(y))) {
+                  if (
+                    ((u += '    '), (p = []), '[object Array]' === o.apply(y))
+                  ) {
                     for (l = y.length, c = 0; c < l; c += 1)
                       p[c] = r(c, y) || 'null';
                     return (
@@ -21548,7 +22024,9 @@ fetch(url, {
             }),
             (B = function (r) {
               return (
-                r && r !== A && E("Expected '" + r + "' instead of '" + A + "'"),
+                r &&
+                  r !== A &&
+                  E("Expected '" + r + "' instead of '" + A + "'"),
                 (A = F.charAt($)),
                 ($ += 1),
                 A
@@ -21559,12 +22037,13 @@ fetch(url, {
                 n = '';
               for ('-' === A && ((n = '-'), B('-')); A >= '0' && A <= '9'; )
                 (n += A), B();
-              if ('.' === A) for (n += '.'; B() && A >= '0' && A <= '9'; ) n += A;
+              if ('.' === A)
+                for (n += '.'; B() && A >= '0' && A <= '9'; ) n += A;
               if ('e' === A || 'E' === A)
                 for (
                   n += A, B(), ('-' !== A && '+' !== A) || ((n += A), B());
                   A >= '0' && A <= '9';
-    
+
                 )
                   (n += A), B();
               if (((r = +n), isFinite(r))) return r;
@@ -21677,7 +22156,8 @@ fetch(url, {
             i = '';
           for (
             n = t = 0,
-              e = (r = (r + '').replace(/\r\n/g, '\n').replace(/\r/g, '\n')).length,
+              e = (r = (r + '').replace(/\r\n/g, '\n').replace(/\r/g, '\n'))
+                .length,
               o = 0;
             o < e;
             o++
@@ -21841,7 +22321,8 @@ fetch(url, {
                 (t = (i >> 12) & 63),
                 (e = (i >> 6) & 63),
                 (o = 63 & i),
-                (l[a++] = u.charAt(n) + u.charAt(t) + u.charAt(e) + u.charAt(o));
+                (l[a++] =
+                  u.charAt(n) + u.charAt(t) + u.charAt(e) + u.charAt(o));
             } while (c < r.length);
             switch (((f = l.join('')), r.length % 3)) {
               case 1:
@@ -21861,7 +22342,9 @@ fetch(url, {
             try {
               e = decodeURIComponent(e);
             } catch (o) {
-              console.error('Skipping decoding for malformed query param: ' + e);
+              console.error(
+                'Skipping decoding for malformed query param: ' + e
+              );
             }
             return e.replace(/\+/g, ' ');
           },
@@ -22000,7 +22483,10 @@ fetch(url, {
                             o = 0;
                             continue;
                           }
-                          if (3 === i[0] && (!a || (i[1] > a[0] && i[1] < a[3]))) {
+                          if (
+                            3 === i[0] &&
+                            (!a || (i[1] > a[0] && i[1] < a[3]))
+                          ) {
                             o.label = i[1];
                             break;
                           }
@@ -22035,7 +22521,10 @@ fetch(url, {
               Object.prototype.hasOwnProperty.call(e, r) &&
                 t.indexOf(r) < 0 &&
                 (n[r] = e[r]);
-            if (null != e && 'function' == typeof Object.getOwnPropertySymbols) {
+            if (
+              null != e &&
+              'function' == typeof Object.getOwnPropertySymbols
+            ) {
               var a = 0;
               for (r = Object.getOwnPropertySymbols(e); a < r.length; a++)
                 t.indexOf(r[a]) < 0 &&
@@ -22072,7 +22561,8 @@ fetch(url, {
             };
           }
           return (
-            console.error('Custom events are not supported in your browser!'), ed
+            console.error('Custom events are not supported in your browser!'),
+            ed
           );
         },
         Xq = (function (e) {
@@ -22212,11 +22702,18 @@ fetch(url, {
                       (n = e.inbox),
                       (r = e.accountId),
                       (a = e.baseUrl),
-                      (i = {account_id: r || t, inbox_id: n, metadata: Qj(window)}),
+                      (i = {
+                        account_id: r || t,
+                        inbox_id: n,
+                        metadata: Qj(window),
+                      }),
                       [
                         2,
                         Qq(i, a).catch(function (e) {
-                          o.logger.error('Failed to update widget metadata:', e);
+                          o.logger.error(
+                            'Failed to update widget metadata:',
+                            e
+                          );
                         }),
                       ]
                     );
@@ -22315,13 +22812,17 @@ fetch(url, {
               (n.handleUnseenMessages = function (e) {
                 n.logger.debug('Handling unseen messages:', e),
                   n.setState({shouldDisplayNotifications: !0}),
-                  n.send('notifications:display', {shouldDisplayNotifications: !0});
+                  n.send('notifications:display', {
+                    shouldDisplayNotifications: !0,
+                  });
               }),
               (n.handleMessagesSeen = function () {
                 n.logger.debug('Handling messages seen'),
                   n.setState({shouldDisplayNotifications: !1}),
                   n.storage.setPopupSeen(!0),
-                  n.send('notifications:display', {shouldDisplayNotifications: !1});
+                  n.send('notifications:display', {
+                    shouldDisplayNotifications: !1,
+                  });
               }),
               (n.shouldOpenByDefault = function () {
                 var e = n.props,
@@ -22447,9 +22948,12 @@ fetch(url, {
                   (!t && a
                     ? n.setState({isTransitioning: !0}, function () {
                         setTimeout(function () {
-                          n.setState({isOpen: i, isTransitioning: !1}, function () {
-                            return n.emitToggleEvent(i);
-                          });
+                          n.setState(
+                            {isOpen: i, isTransitioning: !1},
+                            function () {
+                              return n.emitToggleEvent(i);
+                            }
+                          );
                         }, 200);
                       })
                     : n.setState({isOpen: i}, function () {
@@ -22515,14 +23019,24 @@ fetch(url, {
                   X,
                   O,
                   T,
-                  x;
+                  x,
+                  position;
+
                 return gd(this, function (I) {
                   switch (I.label) {
                     case 0:
                       return (r = +new Date()), [4, this.fetchWidgetSettings()];
                     case 1:
+                      a = I.sent();
+                      (m = BD(a.position || this.props.position)),
+                        (_ = CD({}, m));
+                      y = _.chatContainer;
+                      C = void 0 === y ? {} : y;
+                      T = _.toggleContainer;
+                      xT = void 0 === T ? {} : T;
+                      F = _.toggleButton;
+                      E = void 0 === F ? {} : F;
                       return (
-                        (a = I.sent()),
                         (i = this.props),
                         (o = i.token),
                         (s = i.inbox),
@@ -22543,6 +23057,7 @@ fetch(url, {
                         (b = void 0 === _ ? {} : _),
                         (w = i.debug),
                         (J = void 0 !== w && w),
+                        (position = a.position || i.position),
                         (this.logger = new Uq(!!J)),
                         (this.subscriptions = [
                           yD(window, this.postMessageHandlers),
@@ -22559,7 +23074,9 @@ fetch(url, {
                         [4, this.getDefaultTitle(a)]
                       );
                     case 2:
-                      return (T.title = I.sent()), [4, this.getDefaultSubtitle(a)];
+                      return (
+                        (T.title = I.sent()), [4, this.getDefaultSubtitle(a)]
+                      );
                     case 3:
                       return (
                         (T.subtitle = I.sent()),
@@ -22571,8 +23088,10 @@ fetch(url, {
                       return (
                         (T.greeting = I.sent()),
                         (T.awayMessage = p || a.away_message),
-                        (T.newMessagePlaceholder = d || a.new_message_placeholder),
-                        (T.emailInputPlaceholder = g || a.email_input_placeholder),
+                        (T.newMessagePlaceholder =
+                          d || a.new_message_placeholder),
+                        (T.emailInputPlaceholder =
+                          g || a.email_input_placeholder),
                         (T.newMessagesNotificationText =
                           f || a.new_messages_notification_text),
                         (T.companyName =
@@ -22585,7 +23104,8 @@ fetch(url, {
                         (T.showAgentAvailability =
                           m || a.show_agent_availability ? 1 : 0),
                         (T.agentAvailableText = a.agent_available_text || $),
-                        (T.agentUnavailableText = a.agent_unavailable_text || v),
+                        (T.agentUnavailableText =
+                          a.agent_unavailable_text || v),
                         (T.closeable = y ? 1 : 0),
                         (T.customerId = this.storage.getCustomerId()),
                         (T.subscriptionPlan =
@@ -22854,15 +23374,7 @@ fetch(url, {
                 p = t.position,
                 X = void 0 === p ? 'right' : p,
                 f = t.styles,
-                v = void 0 === f ? {} : f,
-                m = BD(X),
-                _ = CD(v, m),
-                y = _.chatContainer,
-                C = void 0 === y ? {} : y,
-                T = _.toggleContainer,
-                x = void 0 === T ? {} : T,
-                F = _.toggleButton,
-                E = void 0 === F ? {} : F;
+                v = void 0 === f ? {} : f;
               return ta(
                 Q.d.Fragment,
                 null,
@@ -22881,7 +23393,9 @@ fetch(url, {
                     },
                     transition: {duration: 0.2, ease: 'easeIn'},
                     src: s + '?' + g,
-                    style: o ? C : {pointerEvents: 'none', height: 0, minHeight: 0},
+                    style: o
+                      ? C
+                      : {pointerEvents: 'none', height: 0, minHeight: 0},
                     sx: {
                       border: 'none',
                       bg: 'background',
@@ -22900,7 +23414,7 @@ fetch(url, {
                     {
                       className: 'Papercups-toggleButtonContainer',
                       initial: !1,
-                      style: x,
+                      style: xT,
                       animate: n ? 'open' : 'closed',
                       sx: {variant: 'styles.WidgetToggleContainer'},
                     },
@@ -23026,6 +23540,4 @@ fetch(url, {
           document.getElementById('InhotelChatWidget')
         );
     })();
-  
   });
-

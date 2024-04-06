@@ -654,7 +654,12 @@ class ChatWindow extends React.Component<Props, State> {
       typeof shouldShowContactForm
     );
     return (
-      <Box>
+      <Box
+        sx={{
+          height: '100%',
+          width: '100%',
+        }}
+      >
         <Flex
           className={isMobile ? 'Mobile' : ''}
           sx={{
@@ -662,7 +667,7 @@ class ChatWindow extends React.Component<Props, State> {
             flexDirection: 'column',
             height: '100%',
             width: '100%',
-            minWidth: '376px',
+            // minWidth: '376px',
             flex: 1,
           }}
         >

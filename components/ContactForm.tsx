@@ -30,8 +30,8 @@ class ContactForm extends React.Component<Props> {
         as="form"
         p={2}
         sx={{
-          minHeight: '490px',
-          minWidth: '376px',
+          height: '100%',
+          width: '100%',
         }}
       >
         <Heading

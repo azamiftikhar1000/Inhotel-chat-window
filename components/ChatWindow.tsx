@@ -33,6 +33,7 @@ import EmbeddedGame from './EmbeddedGame';
 import UnreadMessages from './UnreadMessages';
 import QuickReplies from './QuickReplies';
 import ContactForm from './ContactForm';
+// import Swal from 'sweetalert2';
 
 type Props = {
   inboxId?: string;
@@ -578,6 +579,24 @@ class ChatWindow extends React.Component<Props, State> {
   handleSubmitCF = () => {
     // e.preventDefault();
     const {firstName, lastName, email, message} = this.state;
+
+    // if (!((firstName || '').trim())){
+    //   Swal.fire('Validation Error', 'Please enter your first name.', 'error');
+    //   return;
+    // }
+    // if (!((lastName || '').trim())) {
+    //     Swal.fire('Validation Error', 'Please enter your last name.', 'error');
+    //     return;
+    // }
+    // if (!((email || '').trim()) || !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    //     Swal.fire('Validation Error', 'Please enter a valid email address.', 'error');
+    //     return;
+    // }
+    // if (!((message || '').trim()) || message.length<20) { // Example: requiring a minimum length for the message
+    //     Swal.fire('Validation Error', 'Please enter a message at least 20 characters long.', 'error');
+    //     return;
+    // }
+
     this.setState((prevState) => ({
       isContactFormSubmitted: !prevState.isContactFormSubmitted,
     }));
@@ -663,7 +682,9 @@ class ChatWindow extends React.Component<Props, State> {
         <Flex
           className={isMobile ? 'Mobile' : ''}
           sx={{
-            bg: this.state.isMailIconClicked ? '#f5f5f5' : 'background',
+            bg: this.state.isMailIconClicked
+              ? 'rgba(233, 233, 233, 0.7)'
+              : 'background',
             flexDirection: 'column',
             height: '100%',
             width: '100%',
@@ -751,20 +772,25 @@ class ChatWindow extends React.Component<Props, State> {
           )}
 
           {this.state.isMailIconClicked && (
-            <ContactForm
-              handleChange={this.handleChangeCF}
-              handleSubmit={this.handleSubmitCF}
-              firstName={this.state.firstName}
-              lastName={this.state.lastName}
-              email={this.state.email}
-              message={this.state.message}
-            />
+            <Box sx={{flex: 1}}>
+              <ContactForm
+                handleChange={this.handleChangeCF}
+                handleSubmit={this.handleSubmitCF}
+                firstName={this.state.firstName}
+                lastName={this.state.lastName}
+                email={this.state.email}
+                message={this.state.message}
+              />
+            </Box>
           )}
           <Box
             px={2}
-            className="footer-bg"
+            // className="footer-bg"
             sx={{
-              borderTop: '1px solid rgb(230, 230, 230)',
+              bg: this.state.isMailIconClicked
+                ? 'rgba(233, 233, 233, 0.7)'
+                : 'background',
+              // borderTop: '1px solid rgb(230, 230, 230)',
               // TODO: only show shadow on focus TextArea below
               boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 100px 0px',
             }}
@@ -790,8 +816,18 @@ class ChatWindow extends React.Component<Props, State> {
               hotelPhone={this.props.hotelPhone}
               shouldShowContactForm={shouldShowContactForm}
             />
-            <Box sx={{bg: '#f5f5f5'}}>
-              {shouldDisplayBranding && <PapercupsBranding />}
+            <Box
+              sx={{
+                bg: this.state.isMailIconClicked
+                  ? 'rgba(233, 233, 233, 0.7)'
+                  : 'background',
+              }}
+            >
+              {shouldDisplayBranding && (
+                <PapercupsBranding
+                  isMailIconClicked={this.state.isMailIconClicked}
+                />
+              )}
             </Box>
           </Box>
 

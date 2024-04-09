@@ -5,7 +5,9 @@ var ACCOUNT_ID;
 var url =
   'https://inhotel-bda7de42c465.herokuapp.com/api/v1/core/get_account_id_by_inbox_id?inbox_id=' +
   encodeURIComponent(inbox_id);
-// var url = 'http://127.0.0.1:8000/api/v1/core/get_account_id_by_inbox_id?inbox_id=' + encodeURIComponent(inbox_id);
+// var url =
+//   'http://127.0.0.1:8000/api/v1/core/get_account_id_by_inbox_id?inbox_id=' +
+//   encodeURIComponent(inbox_id);
 
 fetch(url, {
   method: 'POST',
@@ -20154,7 +20156,7 @@ fetch(url, {
         });
       //   var Mq = 'https://inhotel-chat.eastus.cloudapp.azure.com';
       var Mq = 'https://inhotel-bda7de42c465.herokuapp.com';
-      // var Mq = 'http://127.0.0.1:8000'
+      // var Mq = 'http://127.0.0.1:8000';
       var Nq =
           (cd && cd.__awaiter) ||
           function (t, e, n, r) {
@@ -23485,7 +23487,7 @@ fetch(url, {
         MD = ga.customer,
         ND = 'https://inhotel-chat.eastus.cloudapp.azure.com',
         OD = 'https://inhotel-chat-window-639f6321c606.herokuapp.com',
-        // OD = 'http://127.0.0.1:3000'
+        // OD = 'http://127.0.0.1:3000';
         PD = ga.customIconUrl,
         QD = ga.agentAvailableText,
         RD = ga.agentUnavailableText,

@@ -1,7 +1,13 @@
 import React from 'react';
 import {Flex, Link} from 'theme-ui';
+import MailIcon from './MailIcon';
 
-const PapercupsBranding = () => {
+const PapercupsBranding = ({
+  isMailIconClicked,
+}: {
+  isMailIconClicked: boolean;
+}) => {
+  // console.log("MailIcon: ", isMailIconClicked, "Type: ", typeof isMailIconClicked);
   return (
     <Flex p={2} pt={0} sx={{justifyContent: 'center', alignItems: 'center'}}>
       <Link
@@ -10,7 +16,7 @@ const PapercupsBranding = () => {
         rel="noopener noreferrer"
         sx={{
           color: 'gray',
-          bg: '#f5f5f5',
+          bg: isMailIconClicked ? 'rgba(233, 233, 233, 0.7)' : '#fff',
           opacity: 0.8,
           transition: '0.2s',
           '&:hover': {opacity: 1},

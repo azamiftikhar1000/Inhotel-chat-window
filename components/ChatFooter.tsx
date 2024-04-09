@@ -118,29 +118,23 @@ const ChatFooter = ({
       handleSendMessage(e);
     }
   };
-  console.log(
-    'Footer: ',
-    Boolean(shouldShowContactForm),
-    'Type: ',
-    typeof shouldShowContactForm
-  );
+
   let shouldShowCF: boolean = Boolean(shouldShowContactForm);
-  console.log(
-    'shouldShowCF:',
-    typeof shouldShowCF,
-    'Conversion: ',
-    Boolean(shouldShowContactForm)
-  );
-  console.log('shouldShowCF: ', shouldShowCF);
+
+  // console.log('shouldShowCF: ', shouldShowCF);
   return (
     <Box
     // className='footer-bg'
+    // sx={{bg: 'rgba(245, 245, 245, 0.3)'}}
     >
       {!shouldShowCF && (
         <Box>
           <form onSubmit={handleSetEmail}>
             {shouldRequireEmail && (
-              <Box py={1} sx={{borderBottom: '1px solid rgb(230, 230, 230)'}}>
+              <Box
+                py={1}
+                // sx={{borderBottom: '1px solid rgb(230, 230, 230)'}}
+              >
                 <Input
                   sx={{variant: 'styles.input.transparent'}}
                   placeholder={emailInputPlaceholder}
@@ -229,10 +223,12 @@ const ChatFooter = ({
       )}
       {shouldShowCF && (
         <Box
-          sx={{
-            minHeight: '90px',
-            // bg: '#f5f5f5',
-          }}
+          sx={
+            {
+              // minHeight: '90px',
+              // bg: '#f5f5f5',
+            }
+          }
         >
           {isMailIconClicked && (
             <Box>
@@ -258,7 +254,7 @@ const ChatFooter = ({
                       height: '36px',
                       width: '36px',
                       padding: '2px',
-                      borderColor: 'blue',
+                      // borderColor: 'blue',
                       borderWidth: '2px',
                     }}
                   >
@@ -450,9 +446,8 @@ const ChatFooter = ({
                   p={1}
                   sx={{
                     mr: 2,
-                    wordWrap: 'break-word', // Ensure text wraps
-                    // maxWidth: 'calc(100% - 200px)',
-                    maxWidth: '100px',
+                    wordWrap: 'break-word',
+                    fontSize: '1.1em',
                   }}
                 >
                   {hotelPhone}
@@ -466,10 +461,9 @@ const ChatFooter = ({
               >
                 <Box
                   sx={{
-                    wordWrap: 'break-word', // Ensure text wraps
-                    // maxWidth: 'calc(100% - 10px)',
-                    maxWidth: '150px',
+                    wordWrap: 'break-word',
                     mr: 2,
+                    fontSize: '1.1em',
                   }}
                 >
                   {hotelEmail}

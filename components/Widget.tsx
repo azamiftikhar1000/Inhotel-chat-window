@@ -180,10 +180,10 @@ class Wrapper extends React.Component<Props, State> {
     const theme = getThemeConfig({primary: primaryColor});
     const customer = parseCustomerMetadata(metadata);
     let shouldShowCF: boolean = false;
-    if (shouldShowContactForm === 'false') {
-      shouldShowCF = false;
-    } else {
+    if (shouldShowContactForm === 'true') {
       shouldShowCF = true;
+    } else {
+      shouldShowCF = false;
     }
     // console.log('Widget: ', shouldShowCF, 'Type: ', typeof shouldShowCF);
     return (

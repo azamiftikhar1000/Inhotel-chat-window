@@ -254,8 +254,10 @@ const ChatFooter = ({
                       height: '36px',
                       width: '36px',
                       padding: '2px',
-                      // borderColor: 'blue',
+                      borderStyle: 'solid',
+                      borderColor: 'black',
                       borderWidth: '2px',
+                      bg: '#f5f5f5',
                     }}
                   >
                     <DiscardIcon fill="white" />
@@ -305,7 +307,7 @@ const ChatFooter = ({
                 {isSubmittedCF && (
                   <Box
                     sx={{
-                      fontSize: '0.9em',
+                      fontSize: '0.85em',
                       display: 'flex',
                       marginLeft: '8px', // Ensure some space between the button and text, adjust as needed
                     }}
@@ -447,7 +449,7 @@ const ChatFooter = ({
                   sx={{
                     mr: 2,
                     wordWrap: 'break-word',
-                    fontSize: '1.1em',
+                    fontSize: '1.4em',
                   }}
                 >
                   {hotelPhone}
@@ -463,7 +465,7 @@ const ChatFooter = ({
                   sx={{
                     wordWrap: 'break-word',
                     mr: 2,
-                    fontSize: '1.1em',
+                    fontSize: '1.4em',
                   }}
                 >
                   {hotelEmail}

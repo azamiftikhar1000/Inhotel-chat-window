@@ -119,6 +119,13 @@ const ChatFooter = ({
     }
   };
 
+  const [isDiscardFocused, setIsDiscardFocused] = useState(false);
+  const useHoverStylesOnEnter = () => {
+    setIsDiscardFocused(true);
+  };
+  const useHoverStylesOnLeave = () => {
+    setIsDiscardFocused(false);
+  };
   let shouldShowCF: boolean = Boolean(shouldShowContactForm);
 
   // console.log('shouldShowCF: ', shouldShowCF);
@@ -246,6 +253,8 @@ const ChatFooter = ({
                 >
                   <Button
                     onClick={onClickMailIcon}
+                    onMouseEnter={useHoverStylesOnEnter}
+                    onMouseLeave={useHoverStylesOnLeave}
                     sx={{
                       display: 'flex',
                       justifyContent: 'center',
@@ -260,7 +269,7 @@ const ChatFooter = ({
                       bg: '#f5f5f5',
                     }}
                   >
-                    <DiscardIcon fill="white" />
+                    <DiscardIcon fill={isDiscardFocused ? 'white' : 'black'} />
                   </Button>
                   {!isSubmittedCF && (
                     <Box
@@ -420,7 +429,7 @@ const ChatFooter = ({
               // bg: '#f8f8f8',
               // variant: 'styles.input.transparent',
               flex: 1,
-              fontSize: '0.8em',
+              fontSize: '14px',
               alignItems: 'center',
               // justifyContent: 'space-between'
             }}
@@ -449,7 +458,7 @@ const ChatFooter = ({
                   sx={{
                     mr: 2,
                     wordWrap: 'break-word',
-                    fontSize: '1.4em',
+                    fontSize: '14px',
                   }}
                 >
                   {hotelPhone}
@@ -465,7 +474,7 @@ const ChatFooter = ({
                   sx={{
                     wordWrap: 'break-word',
                     mr: 2,
-                    fontSize: '1.4em',
+                    fontSize: '14px',
                   }}
                 >
                   {hotelEmail}

@@ -74,6 +74,7 @@ export type WidgetSettings = {
   iframe_url_override?: string;
   icon_variant?: 'outlined' | 'filled';
   account?: Account;
+  position?: string;
 };
 
 export type QuickReply = {

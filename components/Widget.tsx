@@ -34,6 +34,10 @@ type Config = {
   metadata?: string; // stringified CustomerMetadata JSON
   version?: string;
   ts?: string;
+  position?: string;
+  shouldShowContactForm?: string;
+  hotelPhone?: string;
+  hotelEmail?: string;
 };
 
 const parseCustomerMetadata = (str: string): CustomerMetadata => {
@@ -71,6 +75,10 @@ const sanitizeConfigPayload = (payload: any): Config => {
     'closeable',
     'debug',
     'version',
+    'position',
+    'shouldShowContactForm',
+    'hotelPhone',
+    'hotelEmail',
   ];
 
   return valid.reduce((acc, key) => {
@@ -163,11 +171,21 @@ class Wrapper extends React.Component<Props, State> {
       metadata = '{}',
       version = '1.0.0',
       ts,
+      position = 'left',
+      shouldShowContactForm = false,
+      hotelPhone,
+      hotelEmail,
     } = config;
 
     const theme = getThemeConfig({primary: primaryColor});
     const customer = parseCustomerMetadata(metadata);
-
+    let shouldShowCF: boolean = false;
+    if (shouldShowContactForm === 'true') {
+      shouldShowCF = true;
+    } else {
+      shouldShowCF = false;
+    }
+    // console.log('Widget: ', shouldShowCF, 'Type: ', typeof shouldShowCF);
     return (
       <ThemeProvider theme={theme}>
         <ChatWindow
@@ -194,6 +212,10 @@ class Wrapper extends React.Component<Props, State> {
           customer={customer}
           version={version}
           ts={ts}
+          position={position}
+          shouldShowContactForm={shouldShowCF}
+          hotelPhone={hotelPhone}
+          hotelEmail={hotelEmail}
         />
       </ThemeProvider>
     );

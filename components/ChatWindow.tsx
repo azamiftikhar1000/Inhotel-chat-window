@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Box, Flex, Heading, Text} from 'theme-ui';
 import {Presence} from 'phoenix';
 import {motion} from 'framer-motion';
@@ -32,6 +32,8 @@ import analytics from '../helpers/analytics';
 import EmbeddedGame from './EmbeddedGame';
 import UnreadMessages from './UnreadMessages';
 import QuickReplies from './QuickReplies';
+import ContactForm from './ContactForm';
+// import Swal from 'sweetalert2';
 
 type Props = {
   inboxId?: string;
@@ -57,6 +59,10 @@ type Props = {
   debug?: boolean;
   version?: string;
   ts?: string;
+  position?: string;
+  shouldShowContactForm?: boolean;
+  hotelPhone?: string;
+  hotelEmail?: string;
 };
 
 type State = {
@@ -72,6 +78,12 @@ type State = {
   shouldDisplayNotifications: boolean;
   popUpInitialMessage?: boolean;
   shouldDisplayBranding: boolean;
+  isMailIconClicked: boolean;
+  isContactFormSubmitted: boolean;
+  firstName: string;
+  lastName: string;
+  email: string;
+  message: string;
 };
 
 class ChatWindow extends React.Component<Props, State> {
@@ -94,7 +106,7 @@ class ChatWindow extends React.Component<Props, State> {
     } else {
       this.logger.debug('Analytics disabled.');
     }
-
+    console.log('Here is the position from Frontend: ' + this.props.position);
     const win = window as any;
     const doc = (document || win.document) as any;
 
@@ -136,6 +148,12 @@ class ChatWindow extends React.Component<Props, State> {
       shouldDisplayNotifications: false,
       popUpInitialMessage: false,
       shouldDisplayBranding: false,
+      isMailIconClicked: false,
+      isContactFormSubmitted: false,
+      firstName: null,
+      lastName: null,
+      email: null,
+      message: null,
     };
   }
 
@@ -541,6 +559,51 @@ class ChatWindow extends React.Component<Props, State> {
       });
   };
 
+  handleClickMailIcon = () => {
+    this.setState((prevState) => ({
+      isMailIconClicked: !prevState.isMailIconClicked,
+    }));
+    this.setState((prevState) => ({
+      isContactFormSubmitted: false,
+    }));
+  };
+
+  handleChangeCF = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const {name, value} = e.target;
+    const updatedValue: unknown = {[name]: value};
+    this.setState(updatedValue as Pick<State, keyof State>);
+  };
+
+  handleSubmitCF = () => {
+    // e.preventDefault();
+    const {firstName, lastName, email, message} = this.state;
+
+    // if (!((firstName || '').trim())){
+    //   Swal.fire('Validation Error', 'Please enter your first name.', 'error');
+    //   return;
+    // }
+    // if (!((lastName || '').trim())) {
+    //     Swal.fire('Validation Error', 'Please enter your last name.', 'error');
+    //     return;
+    // }
+    // if (!((email || '').trim()) || !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    //     Swal.fire('Validation Error', 'Please enter a valid email address.', 'error');
+    //     return;
+    // }
+    // if (!((message || '').trim()) || message.length<20) { // Example: requiring a minimum length for the message
+    //     Swal.fire('Validation Error', 'Please enter a message at least 20 characters long.', 'error');
+    //     return;
+    // }
+
+    this.setState((prevState) => ({
+      isContactFormSubmitted: !prevState.isContactFormSubmitted,
+    }));
+    console.log('Submitted!');
+    // this.props.onSubmit(firstName, lastName, email, message);
+  };
+
   render() {
     const {
       title = 'Welcome!',
@@ -556,6 +619,7 @@ class ChatWindow extends React.Component<Props, State> {
       showAgentAvailability = false,
       accountId,
       baseUrl,
+      shouldShowContactForm = false,
     } = this.props;
     const {
       customerId,
@@ -602,129 +666,179 @@ class ChatWindow extends React.Component<Props, State> {
     const shouldAskForEmail = this.askForEmailUpfront();
     const hasAvailableAgents = availableAgents.length > 0;
     const replies = this.getQuickReplies(messages);
-
+    console.log(
+      'ChatWindow: ',
+      shouldShowContactForm,
+      'Type: ',
+      typeof shouldShowContactForm
+    );
     return (
-      <Flex
-        className={isMobile ? 'Mobile' : ''}
+      <Box
         sx={{
-          bg: 'background',
-          flexDirection: 'column',
           height: '100%',
           width: '100%',
-          flex: 1,
         }}
       >
-        <Box sx={{bg: 'primary', position: 'relative'}}>
-          <Box pt={3} pb={showAgentAvailability ? 12 : 16} px={20}>
-            {/* TODO: wrap in a button element */}
-            {isCloseable && !this.isOnDeprecatedVersion() && (
-              <CloseIcon
-                className="CloseIcon"
-                width={24}
-                height={24}
-                onClick={this.emitCloseWindow}
+        <Flex
+          className={isMobile ? 'Mobile' : ''}
+          sx={{
+            bg: this.state.isMailIconClicked
+              ? 'rgba(233, 233, 233, 0.7)'
+              : 'background',
+            flexDirection: 'column',
+            height: '100%',
+            width: '100%',
+            // minWidth: '376px',
+            flex: 1,
+          }}
+        >
+          <Box sx={{bg: 'primary', position: 'relative'}}>
+            <Box pt={3} pb={showAgentAvailability ? 12 : 16} px={20}>
+              {/* TODO: wrap in a button element */}
+              {isCloseable && !this.isOnDeprecatedVersion() && (
+                <CloseIcon
+                  className="CloseIcon"
+                  width={24}
+                  height={24}
+                  onClick={this.emitCloseWindow}
+                />
+              )}
+              <Heading
+                as="h2"
+                className="Papercups-heading"
+                sx={{color: 'background', my: 1, mr: 12}}
+              >
+                {title}
+              </Heading>
+              <Text sx={{color: 'offset'}}>{subtitle}</Text>
+            </Box>
+
+            {showAgentAvailability && (
+              <AgentAvailability
+                hasAvailableAgents={hasAvailableAgents}
+                agentAvailableText={agentAvailableText}
+                agentUnavailableText={agentUnavailableText}
               />
             )}
-            <Heading
-              as="h2"
-              className="Papercups-heading"
-              sx={{color: 'background', my: 1, mr: 12}}
-            >
-              {title}
-            </Heading>
-            <Text sx={{color: 'offset'}}>{subtitle}</Text>
           </Box>
+          {!this.state.isMailIconClicked && (
+            <Box
+              p={3}
+              sx={{
+                flex: 1,
+                boxShadow: 'rgba(0, 0, 0, 0.2) 0px 21px 4px -20px inset',
+                overflowY: 'scroll',
+              }}
+            >
+              {messages.map((msg, key) => {
+                // Slight hack
+                const next = messages[key + 1];
+                const isLastInGroup = next
+                  ? msg.customer_id !== next.customer_id
+                  : true;
+                const shouldDisplayTimestamp = key === messages.length - 1;
+                // NB: `msg.type` doesn't come from the server, it's just a way to
+                // help identify unsent messages in the frontend for now
+                const isMe = isCustomerMessage(msg, customerId);
 
-          {showAgentAvailability && (
-            <AgentAvailability
-              hasAvailableAgents={hasAvailableAgents}
-              agentAvailableText={agentAvailableText}
-              agentUnavailableText={agentUnavailableText}
-            />
-          )}
-        </Box>
+                return (
+                  <motion.div
+                    key={key}
+                    initial={{opacity: 0, x: isMe ? 2 : -2}}
+                    animate={{opacity: 1, x: 0}}
+                    transition={{duration: 0.2, ease: 'easeIn'}}
+                  >
+                    <ChatMessage
+                      key={key}
+                      message={msg}
+                      isMe={isMe}
+                      companyName={companyName}
+                      isLastInGroup={isLastInGroup}
+                      shouldDisplayTimestamp={shouldDisplayTimestamp}
+                    />
+                  </motion.div>
+                );
+              })}
 
-        <Box
-          p={3}
-          sx={{
-            flex: 1,
-            boxShadow: 'rgba(0, 0, 0, 0.2) 0px 21px 4px -20px inset',
-            overflowY: 'scroll',
-          }}
-        >
-          {messages.map((msg, key) => {
-            // Slight hack
-            const next = messages[key + 1];
-            const isLastInGroup = next
-              ? msg.customer_id !== next.customer_id
-              : true;
-            const shouldDisplayTimestamp = key === messages.length - 1;
-            // NB: `msg.type` doesn't come from the server, it's just a way to
-            // help identify unsent messages in the frontend for now
-            const isMe = isCustomerMessage(msg, customerId);
-
-            return (
-              <motion.div
-                key={key}
-                initial={{opacity: 0, x: isMe ? 2 : -2}}
-                animate={{opacity: 1, x: 0}}
-                transition={{duration: 0.2, ease: 'easeIn'}}
-              >
-                <ChatMessage
-                  key={key}
-                  message={msg}
-                  isMe={isMe}
-                  companyName={companyName}
-                  isLastInGroup={isLastInGroup}
-                  shouldDisplayTimestamp={shouldDisplayTimestamp}
+              {replies && replies.length > 0 ? (
+                <QuickReplies
+                  replies={replies}
+                  onSelect={this.handleSelectQuickReply}
                 />
-              </motion.div>
-            );
-          })}
+              ) : null}
 
-          {replies && replies.length > 0 ? (
-            <QuickReplies
-              replies={replies}
-              onSelect={this.handleSelectQuickReply}
-            />
-          ) : null}
+              <div ref={(el) => (this.scrollToEl = el)} />
+            </Box>
+          )}
 
-          <div ref={(el) => (this.scrollToEl = el)} />
-        </Box>
-
-        {shouldDisplayBranding && <PapercupsBranding />}
-
-        <Box
-          px={2}
-          sx={{
-            borderTop: '1px solid rgb(230, 230, 230)',
-            // TODO: only show shadow on focus TextArea below
-            boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 100px 0px',
-          }}
-        >
-          {/*
+          {this.state.isMailIconClicked && (
+            <Box sx={{flex: 1}}>
+              <ContactForm
+                handleChange={this.handleChangeCF}
+                handleSubmit={this.handleSubmitCF}
+                firstName={this.state.firstName}
+                lastName={this.state.lastName}
+                email={this.state.email}
+                message={this.state.message}
+              />
+            </Box>
+          )}
+          <Box
+            px={2}
+            // className="footer-bg"
+            sx={{
+              bg: this.state.isMailIconClicked
+                ? 'rgba(233, 233, 233, 0.7)'
+                : 'background',
+              // borderTop: '1px solid rgb(230, 230, 230)',
+              // TODO: only show shadow on focus TextArea below
+              boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 100px 0px',
+            }}
+          >
+            {/*
             NB: we use a `key` prop here to force re-render on open so
             that the input will auto-focus appropriately
           */}
-          <ChatFooter
-            key={isOpen ? 1 : 0}
-            accountId={accountId}
-            baseUrl={baseUrl}
-            placeholder={newMessagePlaceholder}
-            emailInputPlaceholder={emailInputPlaceholder}
-            isSending={isSending}
-            shouldRequireEmail={shouldAskForEmail}
-            onSendMessage={this.handleSendMessage}
-          />
-        </Box>
+            <ChatFooter
+              key={isOpen ? 1 : 0}
+              accountId={accountId}
+              baseUrl={baseUrl}
+              placeholder={newMessagePlaceholder}
+              emailInputPlaceholder={emailInputPlaceholder}
+              isSending={isSending}
+              shouldRequireEmail={shouldAskForEmail}
+              onSendMessage={this.handleSendMessage}
+              onClickMailIcon={this.handleClickMailIcon}
+              isMailIconClicked={this.state.isMailIconClicked}
+              handleSubmitCF={this.handleSubmitCF}
+              isSubmittedCF={this.state.isContactFormSubmitted}
+              hotelEmail={this.props.hotelEmail}
+              hotelPhone={this.props.hotelPhone}
+              shouldShowContactForm={shouldShowContactForm}
+            />
+            <Box
+              sx={{
+                bg: this.state.isMailIconClicked
+                  ? 'rgba(233, 233, 233, 0.7)'
+                  : 'background',
+              }}
+            >
+              {shouldDisplayBranding && (
+                <PapercupsBranding
+                  isMailIconClicked={this.state.isMailIconClicked}
+                />
+              )}
+            </Box>
+          </Box>
 
-        <img
-          alt="Papercups"
-          src="https://papercups.s3.us-east-2.amazonaws.com/papercups-logo.svg"
-          width="0"
-          height="0"
-        />
-      </Flex>
+          <img
+            alt="Papercups"
+            src="https://papercups.s3.us-east-2.amazonaws.com/papercups-logo.svg"
+            width="0"
+            height="0"
+          />
+        </Flex>
+      </Box>
     );
   }
 }

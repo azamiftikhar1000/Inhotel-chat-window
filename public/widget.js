@@ -5,6 +5,9 @@ var ACCOUNT_ID;
 var url =
   'https://inhotel-bda7de42c465.herokuapp.com/api/v1/core/get_account_id_by_inbox_id?inbox_id=' +
   encodeURIComponent(inbox_id);
+// var url =
+//   'http://127.0.0.1:8000/api/v1/core/get_account_id_by_inbox_id?inbox_id=' +
+//   encodeURIComponent(inbox_id);
 
 fetch(url, {
   method: 'POST',
@@ -16,7 +19,6 @@ fetch(url, {
   .then((data) => {
     if (data.status === 0) {
       ACCOUNT_ID = data.account_id;
-      console.log(data);
     } else {
       console.error('Failed to retrieve account ID:', data.message);
     }
@@ -5100,6 +5102,7 @@ fetch(url, {
         r ? Th(t, e, $) : Uh(t, e, $);
       }
       function Th(t, $, e) {
+        // console.trace();
         var r = t.tag,
           i = 5 === r || 6 === r;
         if (i)
@@ -18994,6 +18997,7 @@ fetch(url, {
           $ = Fq(n, e);
         $ && ($ = '?'.concat($));
         var v = RC(r.url);
+        // console.log("Here Here!: "+ v)
         return (
           r.fragmentIdentifier && (v = '#'.concat(Ca(r.fragmentIdentifier, e))),
           ''.concat(t).concat($).concat(v)
@@ -20152,6 +20156,7 @@ fetch(url, {
         });
       //   var Mq = 'https://inhotel-chat.eastus.cloudapp.azure.com';
       var Mq = 'https://inhotel-bda7de42c465.herokuapp.com';
+      // var Mq = 'http://127.0.0.1:8000';
       var Nq =
           (cd && cd.__awaiter) ||
           function (t, e, n, r) {
@@ -22534,6 +22539,7 @@ fetch(url, {
             return n;
           },
         xD = 'https://inhotel-chat-window-639f6321c606.herokuapp.com',
+        // xD = 'http://127.0.0.1:3000',
         yD = function (e, t) {
           var n = function (e) {
             t(e);
@@ -22644,6 +22650,7 @@ fetch(url, {
                 return n.props.iframeUrlOverride || xD;
               }),
               (n.handleConfigUpdated = function (e) {
+                // console.trace();
                 n.setState({config: Bb(Bb({}, n.state.config), e)}),
                   n.send('config:update', e);
               }),
@@ -23020,7 +23027,9 @@ fetch(url, {
                   O,
                   T,
                   x,
-                  position;
+                  position,
+                  email,
+                  phone;
 
                 return gd(this, function (I) {
                   switch (I.label) {
@@ -23058,6 +23067,8 @@ fetch(url, {
                         (w = i.debug),
                         (J = void 0 !== w && w),
                         (position = a.position || i.position),
+                        (email = a.hotel_email || i.hotelEmail),
+                        (phone = a.hotel_phone || i.hotelPhone),
                         (this.logger = new Uq(!!J)),
                         (this.subscriptions = [
                           yD(window, this.postMessageHandlers),
@@ -23085,6 +23096,12 @@ fetch(url, {
                       );
                     case 4:
                       var $FvpG$$interop$default = za(yc);
+                      console.log(
+                        'Widget.js: ',
+                        a.should_show_contact_form,
+                        'Type: ',
+                        typeof a.should_show_contact_form
+                      );
                       return (
                         (T.greeting = I.sent()),
                         (T.awayMessage = p || a.away_message),
@@ -23125,6 +23142,12 @@ fetch(url, {
                         (T.debug = J ? 1 : 0),
                         (T.version = '1.2.0'),
                         (T.ts = r.toString()),
+                        (T.position = position),
+                        (T.shouldShowContactForm = Boolean(
+                          a.should_show_contact_form
+                        )),
+                        (T.hotelEmail = a.hotel_email),
+                        (T.hotelPhone = a.hotel_phone),
                         (O = T),
                         (x = $FvpG$$interop$default.d.stringify(O, {
                           skipEmptyString: !0,
@@ -23162,7 +23185,8 @@ fetch(url, {
                 $ = t.agentAvailableText,
                 v = t.agentUnavailableText,
                 m = t.customer,
-                h = [n, r, a, i, o, s, u, l, c, p, d, g, f, $, v],
+                pt = t.position,
+                h = [n, r, a, i, o, s, u, l, c, p, d, g, f, $, v, pt],
                 U = [
                   e.token,
                   e.inbox,
@@ -23179,6 +23203,7 @@ fetch(url, {
                   e.showAgentAvailability,
                   e.agentAvailableText,
                   e.agentUnavailableText,
+                  e.position,
                 ],
                 y = this.state.config.customerId;
               h.some(function (e, t) {
@@ -23200,6 +23225,7 @@ fetch(url, {
                   agentUnavailableText: v,
                   requireEmailUpfront: g ? 1 : 0,
                   showAgentAvailability: f ? 1 : 0,
+                  position: pt,
                 }),
                 y &&
                   this.shouldUpdateCustomer(m, e.customer) &&
@@ -23375,6 +23401,14 @@ fetch(url, {
                 X = void 0 === p ? 'right' : p,
                 f = t.styles,
                 v = void 0 === f ? {} : f;
+              // m = BD(X),
+              // _ = CD(v, m),
+              // y = _.chatContainer,
+              // C = void 0 === y ? {} : y,
+              // T = _.toggleContainer,
+              // x = void 0 === T ? {} : T,
+              // F = _.toggleButton,
+              // E = void 0 === F ? {} : F;
               return ta(
                 Q.d.Fragment,
                 null,
@@ -23435,6 +23469,7 @@ fetch(url, {
         };
       di.default = Zq;
       Ka();
+
       var ye = function () {},
         $q = window,
         ga = ($q.InhotelChatWindow && $q.InhotelChatWindow.config) || {},
@@ -23452,6 +23487,7 @@ fetch(url, {
         MD = ga.customer,
         ND = 'https://inhotel-chat.eastus.cloudapp.azure.com',
         OD = 'https://inhotel-chat-window-639f6321c606.herokuapp.com',
+        // OD = 'http://127.0.0.1:3000';
         PD = ga.customIconUrl,
         QD = ga.agentAvailableText,
         RD = ga.agentUnavailableText,

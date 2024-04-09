@@ -86,3 +86,26 @@ body {
 .CloseIcon:hover {
   opacity: 1;
 }
+
+.CloseIconSmall {
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+.CloseIconSmall:hover {
+  opacity: 1;
+}
+
+.footer-bg {
+  background-color: rgba(245, 245, 245, 0.3);
+}
+
+input::placeholder {
+  color: rgba(148, 148, 156, 1);
+  font-family: 'Ubuntu';
+}
+
+textarea::placeholder {
+  color: rgba(148, 148, 156, 1);
+  font-family: 'Ubuntu';
+}

@@ -2,13 +2,13 @@ var inbox_id = ASSISTANT_INTERACTION_PROFILE_ID;
 
 var ACCOUNT_ID;
 
-// var url =
-//   'https://inhotel-bda7de42c465.herokuapp.com/api/v1/core/get_account_id_by_inbox_id?inbox_id=' +
-//   encodeURIComponent(inbox_id);
 var url =
-  'http://127.0.0.1:8000/api/v1/core/get_account_id_by_inbox_id?inbox_id=' +
+  'https://inhotel-bda7de42c465.herokuapp.com/api/v1/core/get_account_id_by_inbox_id?inbox_id=' +
   encodeURIComponent(inbox_id);
-
+// var url =
+//   'http://127.0.0.1:8000/api/v1/core/get_account_id_by_inbox_id?inbox_id=' +
+//   encodeURIComponent(inbox_id);
+// //
 fetch(url, {
   method: 'POST',
   headers: {
@@ -20155,8 +20155,8 @@ fetch(url, {
           );
         });
       //   var Mq = 'https://inhotel-chat.eastus.cloudapp.azure.com';
-      // var Mq = 'https://inhotel-bda7de42c465.herokuapp.com';
-      var Mq = 'http://127.0.0.1:8000';
+      var Mq = 'https://inhotel-bda7de42c465.herokuapp.com';
+      // var Mq = 'http://127.0.0.1:8000';
       var Nq =
           (cd && cd.__awaiter) ||
           function (t, e, n, r) {
@@ -22538,8 +22538,8 @@ fetch(url, {
             }
             return n;
           },
-        // xD = 'https://inhotel-chat-window-639f6321c606.herokuapp.com',
-        xD = 'http://127.0.0.1:3000',
+        xD = 'https://inhotel-chat-window-639f6321c606.herokuapp.com',
+        // xD = 'http://127.0.0.1:3000',
         yD = function (e, t) {
           var n = function (e) {
             t(e);
@@ -23486,47 +23486,47 @@ fetch(url, {
         LD = ga.awayMessage,
         MD = ga.customer,
         ND = 'https://inhotel-chat.eastus.cloudapp.azure.com',
-        // OD = 'https://inhotel-chat-window-639f6321c606.herokuapp.com',
-        OD = 'http://127.0.0.1:3000';
-      (PD = ga.customIconUrl),
-        (QD = ga.agentAvailableText),
-        (RD = ga.agentUnavailableText),
-        (SD = ga.showAgentAvailability),
-        (br = ga.iconVariant),
-        (TD = void 0 === br ? 'outlined' : br),
-        (cr = ga.hideToggleButton),
-        (UD = void 0 !== cr && cr),
-        (dr = ga.requireEmailUpfront),
-        (VD = void 0 !== dr && dr),
-        (er = ga.defaultIsOpen),
-        (WD = void 0 !== er && er),
-        (fr = ga.isOpenByDefault),
-        (XD = void 0 !== fr && fr),
-        (gr = ga.persistOpenState),
-        (YD = void 0 !== gr && gr),
-        (hr = ga.hideOutsideWorkingHours),
-        (ZD = void 0 !== hr && hr),
-        (ir = ga.popUpInitialMessage),
-        ($D = void 0 !== ir && ir),
-        (jr = ga.disableAnalyticsTracking),
-        (_D = void 0 !== jr && jr),
-        (kr = ga.debug),
-        (aE = void 0 !== kr && kr),
-        (lr = ga.position),
-        (bE = void 0 === lr ? 'right' : lr),
-        (mr = ga.styles),
-        (cE = void 0 === mr ? {} : mr),
-        (nr = ga.onChatLoaded),
-        (dE = void 0 === nr ? ye : nr),
-        (or = ga.onChatOpened),
-        (eE = void 0 === or ? ye : or),
-        (pr = ga.onChatClosed),
-        (fE = void 0 === pr ? ye : pr),
-        (qr = ga.onMessageSent),
-        (gE = void 0 === qr ? ye : qr),
-        (rr = ga.onMessageReceived),
-        (hE = void 0 === rr ? ye : rr),
-        (iE = _q || ar);
+        OD = 'https://inhotel-chat-window-639f6321c606.herokuapp.com',
+        // OD = 'http://127.0.0.1:3000';
+        PD = ga.customIconUrl,
+        QD = ga.agentAvailableText,
+        RD = ga.agentUnavailableText,
+        SD = ga.showAgentAvailability,
+        br = ga.iconVariant,
+        TD = void 0 === br ? 'outlined' : br,
+        cr = ga.hideToggleButton,
+        UD = void 0 !== cr && cr,
+        dr = ga.requireEmailUpfront,
+        VD = void 0 !== dr && dr,
+        er = ga.defaultIsOpen,
+        WD = void 0 !== er && er,
+        fr = ga.isOpenByDefault,
+        XD = void 0 !== fr && fr,
+        gr = ga.persistOpenState,
+        YD = void 0 !== gr && gr,
+        hr = ga.hideOutsideWorkingHours,
+        ZD = void 0 !== hr && hr,
+        ir = ga.popUpInitialMessage,
+        $D = void 0 !== ir && ir,
+        jr = ga.disableAnalyticsTracking,
+        _D = void 0 !== jr && jr,
+        kr = ga.debug,
+        aE = void 0 !== kr && kr,
+        lr = ga.position,
+        bE = void 0 === lr ? 'right' : lr,
+        mr = ga.styles,
+        cE = void 0 === mr ? {} : mr,
+        nr = ga.onChatLoaded,
+        dE = void 0 === nr ? ye : nr,
+        or = ga.onChatOpened,
+        eE = void 0 === or ? ye : or,
+        pr = ga.onChatClosed,
+        fE = void 0 === pr ? ye : pr,
+        qr = ga.onMessageSent,
+        gE = void 0 === qr ? ye : qr,
+        rr = ga.onMessageReceived,
+        hE = void 0 === rr ? ye : rr,
+        iE = _q || ar;
       if (!iE)
         throw new Error(
           'An account token is required to render the InhotelChatWindow chat widget!'

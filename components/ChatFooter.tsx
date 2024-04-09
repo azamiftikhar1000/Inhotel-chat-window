@@ -119,6 +119,13 @@ const ChatFooter = ({
     }
   };
 
+  const [isDiscardFocused, setIsDiscardFocused] = useState(false);
+  const useHoverStylesOnEnter = () => {
+    setIsDiscardFocused(true);
+  };
+  const useHoverStylesOnLeave = () => {
+    setIsDiscardFocused(false);
+  };
   let shouldShowCF: boolean = Boolean(shouldShowContactForm);
 
   // console.log('shouldShowCF: ', shouldShowCF);
@@ -245,7 +252,12 @@ const ChatFooter = ({
                   sx={{flex: '0 0 auto', display: 'flex', alignItems: 'center'}}
                 >
                   <Button
-                    onClick={onClickMailIcon}
+                    onClick={() => {
+                      onClickMailIcon();
+                      useHoverStylesOnLeave();
+                    }}
+                    onMouseEnter={useHoverStylesOnEnter}
+                    onMouseLeave={useHoverStylesOnLeave}
                     sx={{
                       display: 'flex',
                       justifyContent: 'center',
@@ -260,7 +272,7 @@ const ChatFooter = ({
                       bg: '#f5f5f5',
                     }}
                   >
-                    <DiscardIcon fill="white" />
+                    <DiscardIcon fill={isDiscardFocused ? 'white' : 'black'} />
                   </Button>
                   {!isSubmittedCF && (
                     <Box
@@ -276,7 +288,7 @@ const ChatFooter = ({
                 </Box>
 
                 {!isSubmittedCF && (
-                  <Box sx={{display: 'flex', alignItems: 'center'}}>
+                  <Box sx={{display: 'flex', alignItems: 'center', mb: '2px'}}>
                     <Box
                       sx={{
                         display: 'flex',
@@ -420,7 +432,7 @@ const ChatFooter = ({
               // bg: '#f8f8f8',
               // variant: 'styles.input.transparent',
               flex: 1,
-              fontSize: '0.8em',
+              fontSize: '14px',
               alignItems: 'center',
               // justifyContent: 'space-between'
             }}
@@ -433,6 +445,7 @@ const ChatFooter = ({
                 borderTop: isMailIconClicked
                   ? '1px solid rgb(230, 230, 230)'
                   : '',
+                minHeight: '40px',
                 // TODO: only show shadow on focus TextArea below
                 // boxShadow: isMailIconClicked? 'rgba(0, 0, 0, 0.1) 0px 0px 100px 0px': '',
               }}
@@ -449,7 +462,7 @@ const ChatFooter = ({
                   sx={{
                     mr: 2,
                     wordWrap: 'break-word',
-                    fontSize: '1.4em',
+                    fontSize: '14px',
                   }}
                 >
                   {hotelPhone}
@@ -465,7 +478,7 @@ const ChatFooter = ({
                   sx={{
                     wordWrap: 'break-word',
                     mr: 2,
-                    fontSize: '1.4em',
+                    fontSize: '14px',
                   }}
                 >
                   {hotelEmail}

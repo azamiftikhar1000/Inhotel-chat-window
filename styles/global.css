@@ -109,3 +109,11 @@ textarea::placeholder {
   color: rgba(148, 148, 156, 1);
   font-family: 'Ubuntu';
 }
+
+.DiscardIcon {
+  fill: red;
+}
+
+.DiscardIcon:hover {
+  fill: white;
+}

@@ -674,6 +674,7 @@ class ChatWindow extends React.Component<Props, State> {
     );
     return (
       <Box
+        id="widgetContainer"
         sx={{
           height: '100%',
           width: '100%',
@@ -793,6 +794,7 @@ class ChatWindow extends React.Component<Props, State> {
               // borderTop: '1px solid rgb(230, 230, 230)',
               // TODO: only show shadow on focus TextArea below
               boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 100px 0px',
+              marginTop: '2px',
             }}
           >
             {/*

@@ -14,7 +14,50 @@ type Props = {
   message: string;
 };
 
-class ContactForm extends React.Component<Props> {
+type State = {
+  textAreaRows: number;
+};
+class ContactForm extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      textAreaRows: 15, // Default rows count
+    };
+  }
+
+  componentDidMount() {
+    this.adjustTextAreaRows();
+    window.addEventListener('resize', this.adjustTextAreaRows);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.adjustTextAreaRows);
+  }
+
+  adjustTextAreaRows = () => {
+    let height = 704;
+    const widgetContainer = document.getElementById('widgetContainer');
+    if (widgetContainer !== null) {
+      height = widgetContainer.offsetHeight;
+    }
+
+    // const screenHeight = window.innerHeight;
+    // const containerheight=Math.min(screenHeight*0.6,704)
+    let rows = Number((height - 300) / 30) - 1;
+    // console.log("containerheight",height)
+    // console.log("rows",rows)
+    // rows=2;
+    // if (screenHeight > 900) {
+    //   rows = 30;
+    // } else if (screenHeight > 600) {
+    //   rows = 20;
+    // } else {
+    //   rows = 2;
+    // }
+
+    this.setState({textAreaRows: rows});
+    this.adjustTextAreaRows = this.adjustTextAreaRows.bind(this);
+  };
   render() {
     const {
       handleChange,
@@ -24,7 +67,7 @@ class ContactForm extends React.Component<Props> {
       email,
       message,
     } = this.props;
-
+    const {textAreaRows} = this.state;
     return (
       <Box
         as="form"
@@ -110,7 +153,7 @@ class ContactForm extends React.Component<Props> {
           p={1}
           name="message"
           id="message"
-          rows={15}
+          rows={textAreaRows}
           mb={2}
           value={message}
           placeholder="Message"

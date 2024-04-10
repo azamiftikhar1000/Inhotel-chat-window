@@ -31,7 +31,7 @@
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-emoji-render": "^1.2.4",
-    "react-markdown": "^9.0.1",
+    "react-markdown": "^5.0.0",
     "remark-breaks": "^2.0.0",
     "superagent": "^5.3.1",
     "theme-ui": "^0.3.1",

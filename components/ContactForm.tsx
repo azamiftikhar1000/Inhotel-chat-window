@@ -59,14 +59,8 @@ class ContactForm extends React.Component<Props, State> {
     this.adjustTextAreaRows = this.adjustTextAreaRows.bind(this);
   };
   render() {
-    const {
-      handleChange,
-      handleSubmit,
-      firstName,
-      lastName,
-      email,
-      message,
-    } = this.props;
+    const {handleChange, handleSubmit, firstName, lastName, email, message} =
+      this.props;
     const {textAreaRows} = this.state;
     return (
       <Box
@@ -84,6 +78,7 @@ class ContactForm extends React.Component<Props, State> {
             fontFamily: 'body',
             color: 'rgba(148, 148, 156, 1.0)',
             fontWeight: 400,
+            fontSize: '18px',
           }}
         >
           Contact Us

@@ -11,6 +11,7 @@ import CloseIcon from './CloseIcon';
 import displayContactForm from './ChatWindow';
 import PhoneIcon from './PhoneIcon';
 import DiscardIcon from './DiscardIcon';
+import {Tooltip} from '@mui/material';
 
 const ChatFooter = ({
   placeholder,
@@ -298,22 +299,24 @@ const ChatFooter = ({
                     >
                       Send
                     </Box>
-                    <Button
-                      onClick={handleSubmitCF}
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        borderRadius: '50%',
-                        height: '36px',
-                        width: '36px',
-                        padding: '2px',
-                        borderWidth: '2px',
-                        ml: 'auto', // Push it to the right if needed, or adjust as per design
-                      }}
-                    >
-                      <SendIcon fill="background" />
-                    </Button>
+                    <Tooltip title="Send as email" placement="top">
+                      <Button
+                        onClick={handleSubmitCF}
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          borderRadius: '50%',
+                          height: '36px',
+                          width: '36px',
+                          padding: '2px',
+                          borderWidth: '2px',
+                          ml: 'auto', // Push it to the right if needed, or adjust as per design
+                        }}
+                      >
+                        <SendIcon fill="background" />
+                      </Button>
+                    </Tooltip>
                   </Box>
                 )}
                 {isSubmittedCF && (

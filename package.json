@@ -47,7 +47,7 @@
     "@types/phoenix": "^1.5.0",
     "@types/react": "^16.9.43",
     "@types/superagent": "^4.1.8",
-    "@types/theme-ui": "^0.3.6",
+    "@types/theme-ui": "^0.6.0",
     "@types/tinycolor2": "^1.4.2",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",

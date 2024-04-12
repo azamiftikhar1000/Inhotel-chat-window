@@ -220,10 +220,8 @@ class ChatWindow extends React.Component<Props, State> {
   };
 
   handleDisplayNotifications = (payload: any) => {
-    const {
-      shouldDisplayNotifications = false,
-      popUpInitialMessage = false,
-    } = payload;
+    const {shouldDisplayNotifications = false, popUpInitialMessage = false} =
+      payload;
 
     return this.setState(
       {
@@ -579,29 +577,32 @@ class ChatWindow extends React.Component<Props, State> {
   handleSubmitCF = () => {
     // e.preventDefault();
     const {firstName, lastName, email, message} = this.state;
-
-    // if (!((firstName || '').trim())){
-    //   Swal.fire('Validation Error', 'Please enter your first name.', 'error');
-    //   return;
+    // let errors = {};
+    // if (!firstName.trim()) {
+    //   errors.firstName = 'Please enter your first name.';
     // }
-    // if (!((lastName || '').trim())) {
-    //     Swal.fire('Validation Error', 'Please enter your last name.', 'error');
-    //     return;
+    // if (!lastName.trim()) {
+    //   errors.lastName = 'Please enter your last name.';
     // }
-    // if (!((email || '').trim()) || !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-    //     Swal.fire('Validation Error', 'Please enter a valid email address.', 'error');
-    //     return;
+    // if (!email.trim() || !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    //   errors.email = 'Please enter a valid email address.';
     // }
-    // if (!((message || '').trim()) || message.length<20) { // Example: requiring a minimum length for the message
-    //     Swal.fire('Validation Error', 'Please enter a message at least 20 characters long.', 'error');
-    //     return;
+    // if (!message.trim() || message.length < 20) {
+    //   errors.message = 'Please enter a message at least 20 characters long.';
     // }
 
-    this.setState((prevState) => ({
-      isContactFormSubmitted: !prevState.isContactFormSubmitted,
-    }));
+    // if (Object.keys(errors).length > 0) {
+    //   this.setState({ errors });
+    //   return; // Stop submission if there are errors
+    // } else {
+    //   this.setState({
+    //     isContactFormSubmitted: true,
+    //     errors: {} // Clear errors if form is valid
+    //   });
     console.log('Submitted!');
+    // Optionally, invoke the onSubmit props method
     // this.props.onSubmit(firstName, lastName, email, message);
+    // }
   };
 
   render() {
@@ -725,6 +726,7 @@ class ChatWindow extends React.Component<Props, State> {
           {!this.state.isMailIconClicked && (
             <Box
               p={3}
+              px={'20px'}
               sx={{
                 flex: 1,
                 boxShadow: 'rgba(0, 0, 0, 0.2) 0px 21px 4px -20px inset',
@@ -773,7 +775,7 @@ class ChatWindow extends React.Component<Props, State> {
           )}
 
           {this.state.isMailIconClicked && (
-            <Box sx={{flex: 1}}>
+            <Box sx={{flex: 1}} px={'20px'}>
               <ContactForm
                 handleChange={this.handleChangeCF}
                 handleSubmit={this.handleSubmitCF}
@@ -785,7 +787,7 @@ class ChatWindow extends React.Component<Props, State> {
             </Box>
           )}
           <Box
-            px={2}
+            px={'20px'}
             // className="footer-bg"
             sx={{
               bg: this.state.isMailIconClicked

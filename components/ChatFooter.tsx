@@ -12,7 +12,6 @@ import displayContactForm from './ChatWindow';
 import PhoneIcon from './PhoneIcon';
 import DiscardIcon from './DiscardIcon';
 import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
 
 const ChatFooter = ({
   placeholder,
@@ -253,29 +252,38 @@ const ChatFooter = ({
                   mr={2}
                   sx={{flex: '0 0 auto', display: 'flex', alignItems: 'center'}}
                 >
-                  <Button
-                    onClick={() => {
-                      onClickMailIcon();
-                      useHoverStylesOnLeave();
-                    }}
-                    onMouseEnter={useHoverStylesOnEnter}
-                    onMouseLeave={useHoverStylesOnLeave}
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      borderRadius: '50%',
-                      height: '36px',
-                      width: '36px',
-                      padding: '2px',
-                      borderStyle: 'solid',
-                      borderColor: 'black',
-                      borderWidth: '2px',
-                      bg: '#f5f5f5',
-                    }}
+                  <Tippy
+                    content="Discard message"
+                    interactive={true}
+                    interactiveBorder={20}
+                    delay={100}
                   >
-                    <DiscardIcon fill={isDiscardFocused ? 'white' : 'black'} />
-                  </Button>
+                    <Button
+                      onClick={() => {
+                        onClickMailIcon();
+                        useHoverStylesOnLeave();
+                      }}
+                      onMouseEnter={useHoverStylesOnEnter}
+                      onMouseLeave={useHoverStylesOnLeave}
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        borderRadius: '50%',
+                        height: '36px',
+                        width: '36px',
+                        padding: '2px',
+                        borderStyle: 'solid',
+                        borderColor: 'black',
+                        borderWidth: '2px',
+                        bg: '#f5f5f5',
+                      }}
+                    >
+                      <DiscardIcon
+                        fill={isDiscardFocused ? 'white' : 'black'}
+                      />
+                    </Button>
+                  </Tippy>
                   {!isSubmittedCF && (
                     <Box
                       sx={{
@@ -301,7 +309,7 @@ const ChatFooter = ({
                       Send
                     </Box>
                     <Tippy
-                      content="Tooltip"
+                      content="Send as email"
                       interactive={true}
                       interactiveBorder={20}
                       delay={100}
@@ -493,14 +501,21 @@ const ChatFooter = ({
                   {hotelEmail}
                 </Box>
                 {!isMailIconClicked && (
-                  <Box
-                    onClick={onClickMailIcon}
-                    sx={{
-                      cursor: 'pointer',
-                    }}
+                  <Tippy
+                    content="Contact Us"
+                    interactive={true}
+                    interactiveBorder={20}
+                    delay={100}
                   >
-                    <MailIcon />
-                  </Box>
+                    <Box
+                      onClick={onClickMailIcon}
+                      sx={{
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <MailIcon />
+                    </Box>
+                  </Tippy>
                 )}
               </Box>
             </Flex>

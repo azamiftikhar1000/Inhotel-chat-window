@@ -65,7 +65,7 @@ class ContactForm extends React.Component<Props, State> {
     return (
       <Box
         as="form"
-        p={2}
+        // py={2}
         sx={{
           height: '100%',
           width: '100%',
@@ -144,6 +144,7 @@ class ContactForm extends React.Component<Props, State> {
             borderStyle: 'none',
             borderRadius: '0px',
             bg: 'white',
+            resize: 'none',
           }}
           p={1}
           name="message"

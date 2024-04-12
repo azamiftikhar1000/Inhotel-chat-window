@@ -11,7 +11,8 @@ import CloseIcon from './CloseIcon';
 import displayContactForm from './ChatWindow';
 import PhoneIcon from './PhoneIcon';
 import DiscardIcon from './DiscardIcon';
-import {Tooltip} from '@mui/material';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 const ChatFooter = ({
   placeholder,
@@ -299,7 +300,12 @@ const ChatFooter = ({
                     >
                       Send
                     </Box>
-                    <Tooltip title="Send as email" placement="top">
+                    <Tippy
+                      content="Tooltip"
+                      interactive={true}
+                      interactiveBorder={20}
+                      delay={100}
+                    >
                       <Button
                         onClick={handleSubmitCF}
                         sx={{
@@ -316,7 +322,7 @@ const ChatFooter = ({
                       >
                         <SendIcon fill="background" />
                       </Button>
-                    </Tooltip>
+                    </Tippy>
                   </Box>
                 )}
                 {isSubmittedCF && (

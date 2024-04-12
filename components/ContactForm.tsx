@@ -78,8 +78,8 @@ class ContactForm extends React.Component<Props, State> {
         }}
       >
         <Heading
-          mt={3}
-          mb={3}
+          mt={2}
+          mb={2}
           sx={{
             fontFamily: 'body',
             color: 'rgba(148, 148, 156, 1.0)',

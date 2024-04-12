@@ -10,7 +10,6 @@
       "dependencies": {
         "@papercups-io/browser": "0.0.4-beta.0",
         "@sentry/react": "^6.5.1",
-        "@tippyjs/react": "^4.2.6",
         "antd": "^4.4.2",
         "dayjs": "^1.10.6",
         "framer-motion": "^2.3.0",
@@ -23,9 +22,8 @@
         "react-markdown": "^4.3.1",
         "remark-breaks": "^2.0.0",
         "superagent": "^5.3.1",
-        "theme-ui": "0.3.1",
+        "theme-ui": "^0.3.1",
         "tinycolor2": "^1.4.1",
-        "tippy.js": "^6.3.7",
         "use-composed-ref": "^1.1.0",
         "use-latest": "^1.2.0"
       },
@@ -40,10 +38,6 @@
         "lint-staged": "^10.2.11",
         "prettier": "^2.0.5",
         "typescript": "^3.9.7"
-      },
-      "engines": {
-        "node": "16.20.2",
-        "npm": "8.19.4"
       }
     },
     "node_modules/@ampproject/toolbox-core": {
@@ -1680,15 +1674,6 @@
         "tslib": "^1.10.0"
       }
     },
-    "node_modules/@popperjs/core": {
-      "version": "2.11.8",
-      "resolved": "https://registry.npmjs.org/@popperjs/core/-/core-2.11.8.tgz",
-      "integrity": "sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==",
-      "funding": {
-        "type": "opencollective",
-        "url": "https://opencollective.com/popperjs"
-      }
-    },
     "node_modules/@sentry/browser": {
       "version": "6.5.1",
       "resolved": "https://registry.npmjs.org/@sentry/browser/-/browser-6.5.1.tgz",
@@ -1967,18 +1952,6 @@
         "@theme-ui/color-modes": "^0.3.1",
         "@theme-ui/core": "^0.3.1",
         "@theme-ui/mdx": "^0.3.0"
-      }
-    },
-    "node_modules/@tippyjs/react": {
-      "version": "4.2.6",
-      "resolved": "https://registry.npmjs.org/@tippyjs/react/-/react-4.2.6.tgz",
-      "integrity": "sha512-91RicDR+H7oDSyPycI13q3b7o4O60wa2oRbjlz2fyRLmHImc4vyDwuUP8NtZaN0VARJY5hybvDYrFzhY9+Lbyw==",
-      "dependencies": {
-        "tippy.js": "^6.3.1"
-      },
-      "peerDependencies": {
-        "react": ">=16.8",
-        "react-dom": ">=16.8"
       }
     },
     "node_modules/@types/color-name": {
@@ -3596,9 +3569,7 @@
       "version": "1.6.2",
       "resolved": "https://registry.npmjs.org/concat-stream/-/concat-stream-1.6.2.tgz",
       "integrity": "sha512-27HBghJxjiZtIk3Ycvn/4kbJk/1uZuJFfuPEns6LaEvpvG1f0hTea8lilrouyo9mVc2GWdcEZ8OLoGmSADlrCw==",
-      "engines": [
-        "node >= 0.8"
-      ],
+      "engines": ["node >= 0.8"],
       "dependencies": {
         "buffer-from": "^1.0.0",
         "inherits": "^2.0.3",
@@ -4984,9 +4955,7 @@
       "deprecated": "\"Please update to latest v2.3 or v2.2\"",
       "hasInstallScript": true,
       "optional": true,
-      "os": [
-        "darwin"
-      ],
+      "os": ["darwin"],
       "engines": {
         "node": "^8.16.0 || ^10.6.0 || >=11.0.0"
       }
@@ -5149,9 +5118,7 @@
       "deprecated": "The v1 package contains DANGEROUS / INSECURE binaries. Upgrade to safe fsevents v2",
       "hasInstallScript": true,
       "optional": true,
-      "os": [
-        "darwin"
-      ],
+      "os": ["darwin"],
       "dependencies": {
         "bindings": "^1.5.0",
         "nan": "^2.12.1"
@@ -10996,14 +10963,6 @@
         "node": "*"
       }
     },
-    "node_modules/tippy.js": {
-      "version": "6.3.7",
-      "resolved": "https://registry.npmjs.org/tippy.js/-/tippy.js-6.3.7.tgz",
-      "integrity": "sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==",
-      "dependencies": {
-        "@popperjs/core": "^2.9.0"
-      }
-    },
     "node_modules/to-arraybuffer": {
       "version": "1.0.1",
       "resolved": "https://registry.npmjs.org/to-arraybuffer/-/to-arraybuffer-1.0.1.tgz",
@@ -11695,9 +11654,7 @@
       "deprecated": "\"Please update to latest v2.3 or v2.2\"",
       "hasInstallScript": true,
       "optional": true,
-      "os": [
-        "darwin"
-      ],
+      "os": ["darwin"],
       "engines": {
         "node": "^8.16.0 || ^10.6.0 || >=11.0.0"
       }

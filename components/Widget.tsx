@@ -179,6 +179,7 @@ class Wrapper extends React.Component<Props, State> {
 
     const theme = getThemeConfig({primary: primaryColor});
     const customer = parseCustomerMetadata(metadata);
+    document.documentElement.style.setProperty('--primary-color', primaryColor);
     let shouldShowCF: boolean = false;
     if (shouldShowContactForm === 'true') {
       shouldShowCF = true;

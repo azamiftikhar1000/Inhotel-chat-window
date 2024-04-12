@@ -117,3 +117,35 @@ textarea::placeholder {
 .DiscardIcon:hover {
   fill: white;
 }
+
+:root {
+  --primary-color: #007bff;
+}
+
+.tippy-box[data-theme~='dynamic-primary'] {
+  background-color: var(--primary-color);
+}
+
+.tippy-box[data-theme='dynamic-primary'] > .tippy-arrow:before {
+  border-color: transparent !important;
+}
+
+.tippy-box[data-theme='dynamic-primary'][data-placement^='top']
+  > .tippy-arrow:before {
+  border-top-color: var(--primary-color) !important;
+}
+
+.tippy-box[data-theme='dynamic-primary'][data-placement^='bottom']
+  > .tippy-arrow:before {
+  border-bottom-color: var(--primary-color) !important;
+}
+
+.tippy-box[data-theme='dynamic-primary'][data-placement^='left']
+  > .tippy-arrow:before {
+  border-left-color: var(--primary-color) !important;
+}
+
+.tippy-box[data-theme='dynamic-primary'][data-placement^='right']
+  > .tippy-arrow:before {
+  border-right-color: var(--primary-color) !important;
+}

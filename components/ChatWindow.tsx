@@ -220,8 +220,10 @@ class ChatWindow extends React.Component<Props, State> {
   };
 
   handleDisplayNotifications = (payload: any) => {
-    const {shouldDisplayNotifications = false, popUpInitialMessage = false} =
-      payload;
+    const {
+      shouldDisplayNotifications = false,
+      popUpInitialMessage = false,
+    } = payload;
 
     return this.setState(
       {
@@ -595,10 +597,10 @@ class ChatWindow extends React.Component<Props, State> {
     //   this.setState({ errors });
     //   return; // Stop submission if there are errors
     // } else {
-    //   this.setState({
-    //     isContactFormSubmitted: true,
-    //     errors: {} // Clear errors if form is valid
-    //   });
+    this.setState({
+      isContactFormSubmitted: true,
+      //     errors: {} // Clear errors if form is valid
+    });
     console.log('Submitted!');
     // Optionally, invoke the onSubmit props method
     // this.props.onSubmit(firstName, lastName, email, message);

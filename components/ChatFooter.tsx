@@ -253,6 +253,7 @@ const ChatFooter = ({
                   sx={{flex: '0 0 auto', display: 'flex', alignItems: 'center'}}
                 >
                   <Tippy
+                    theme="dynamic-primary"
                     content="Discard message"
                     interactive={true}
                     interactiveBorder={20}
@@ -309,6 +310,7 @@ const ChatFooter = ({
                       Send
                     </Box>
                     <Tippy
+                      theme="dynamic-primary"
                       content="Send as email"
                       interactive={true}
                       interactiveBorder={20}
@@ -502,6 +504,7 @@ const ChatFooter = ({
                 </Box>
                 {!isMailIconClicked && (
                   <Tippy
+                    theme="dynamic-primary"
                     content="Contact Us"
                     interactive={true}
                     interactiveBorder={20}

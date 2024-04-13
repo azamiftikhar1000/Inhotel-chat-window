@@ -150,7 +150,7 @@ textarea::placeholder {
   border-right-color: var(--primary-color) !important;
 }
 
-.remove-border-on-focus:focus {
+.on-focus:focus {
   outline: none !important;
-  border: none !important;
+  border: 2px solid rgba(148, 148, 156, 0.8) !important;
 }

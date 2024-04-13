@@ -84,6 +84,12 @@ type State = {
   lastName: string;
   email: string;
   message: string;
+  errors: {
+    firstName: '';
+    lastName: '';
+    email: '';
+    message: '';
+  };
 };
 
 class ChatWindow extends React.Component<Props, State> {
@@ -154,6 +160,12 @@ class ChatWindow extends React.Component<Props, State> {
       lastName: null,
       email: null,
       message: null,
+      errors: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        message: '',
+      },
     };
   }
 

@@ -14,8 +14,8 @@ export const PhoneIcon = ({
       aria-hidden="true"
       viewBox="0 0 100000 100000"
       sx={{
-        height: '20px',
-        width: '20px',
+        height: '17px',
+        width: '17px',
       }}
     >
       <defs>

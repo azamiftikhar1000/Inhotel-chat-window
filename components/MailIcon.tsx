@@ -15,8 +15,8 @@ export const MailIcon = ({
       aria-hidden="true"
       viewBox="0 0 24 24"
       sx={{
-        height: '2.5em',
-        width: '2.5em',
+        height: '1.6em',
+        width: '1.6em',
       }}
       onClick={onClick}
     >

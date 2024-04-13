@@ -13,10 +13,10 @@ export const MailIcon = ({
     <svg
       focusable="false"
       aria-hidden="true"
-      viewBox="0 0 24 24"
+      viewBox="0 0 23 23"
       sx={{
-        height: '1.6em',
-        width: '1.6em',
+        height: '2em',
+        width: '2em',
       }}
       onClick={onClick}
     >

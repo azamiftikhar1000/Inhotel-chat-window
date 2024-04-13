@@ -81,6 +81,7 @@ class ContactForm extends React.Component<Props, State> {
       message,
     } = this.props;
     const {textAreaRows, errors} = this.state;
+
     return (
       <Box
         as="form"

@@ -502,24 +502,23 @@ const ChatFooter = ({
                 >
                   {hotelEmail}
                 </Box>
-                {!isMailIconClicked && (
-                  <Tippy
-                    theme="dynamic-primary"
-                    content="Contact Us"
-                    interactive={true}
-                    interactiveBorder={20}
-                    delay={100}
+                <Tippy
+                  theme="dynamic-primary"
+                  content="Contact Us"
+                  interactive={true}
+                  interactiveBorder={20}
+                  delay={100}
+                >
+                  <Box
+                    onClick={onClickMailIcon}
+                    sx={{
+                      cursor: 'pointer',
+                      visibility: isMailIconClicked ? 'hidden' : 'visible',
+                    }}
                   >
-                    <Box
-                      onClick={onClickMailIcon}
-                      sx={{
-                        cursor: 'pointer',
-                      }}
-                    >
-                      <MailIcon />
-                    </Box>
-                  </Tippy>
-                )}
+                    <MailIcon />
+                  </Box>
+                </Tippy>
               </Box>
             </Flex>
           </Flex>

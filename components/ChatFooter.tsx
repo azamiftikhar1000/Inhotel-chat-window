@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Box, Button, Flex, Input, Link} from 'theme-ui';
+import {Box, Button, Flex, Input, Link, Text} from 'theme-ui';
 import Upload from 'rc-upload';
 import ResizableTextArea from './ResizableTextArea';
 import SendIcon from './SendIcon';
@@ -44,6 +44,29 @@ const ChatFooter = ({
   hotelPhone: string;
   shouldShowContactForm: boolean;
 }) => {
+  const [tooltipContentEmail, setTooltipContentEmail] = useState(
+    'Click to copy email'
+  );
+  const [tooltipContentPhone, setTooltipContentPhone] = useState(
+    'Click to copy phone'
+  );
+
+  const copyToClipboard = (
+    text: string,
+    setTooltipContent: React.Dispatch<React.SetStateAction<string>>
+  ) => {
+    navigator.clipboard.writeText(text).then(
+      () => {
+        setTooltipContent('Copied!');
+        setTimeout(() => setTooltipContent('Click to copy'), 1500);
+      },
+      (err) => {
+        console.error('Failed to copy:', err);
+        setTooltipContent('Failed to copy');
+        setTimeout(() => setTooltipContent('Click to copy'), 1500);
+      }
+    );
+  };
   const [message, setMessage] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [isUploading, setIsUploading] = React.useState(false);
@@ -484,7 +507,16 @@ const ChatFooter = ({
                     fontSize: '14px',
                   }}
                 >
-                  {hotelPhone}
+                  <Tippy content={tooltipContentPhone}>
+                    <Text
+                      sx={{ml: 2, whiteSpace: 'nowrap', cursor: 'pointer'}}
+                      onClick={() =>
+                        copyToClipboard(hotelPhone, setTooltipContentPhone)
+                      }
+                    >
+                      {hotelPhone}
+                    </Text>
+                  </Tippy>
                 </Box>
               </Box>
               <Box
@@ -500,7 +532,24 @@ const ChatFooter = ({
                     fontSize: '14px',
                   }}
                 >
-                  {hotelEmail}
+                  <Tippy content={tooltipContentEmail}>
+                    <Text
+                      sx={{
+                        ml: 2,
+                        mr: 2,
+                        maxWidth: '122px',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                        cursor: 'pointer',
+                      }}
+                      onClick={() =>
+                        copyToClipboard(hotelEmail, setTooltipContentEmail)
+                      }
+                    >
+                      {hotelEmail}
+                    </Text>
+                  </Tippy>
                 </Box>
                 <Tippy
                   theme="dynamic-primary"

@@ -149,3 +149,8 @@ textarea::placeholder {
   > .tippy-arrow:before {
   border-right-color: var(--primary-color) !important;
 }
+
+.remove-border-on-focus:focus {
+  outline: none !important;
+  border: none !important;
+}

@@ -14,8 +14,16 @@ type Props = {
   message: string;
 };
 
+// type FormErrors = {
+//   firstName: string;
+//   lastName: string;
+//   email: string;
+//   message: string
+
+// }
 type State = {
   textAreaRows: number;
+  // errors:
 };
 class ContactForm extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -59,8 +67,14 @@ class ContactForm extends React.Component<Props, State> {
     this.adjustTextAreaRows = this.adjustTextAreaRows.bind(this);
   };
   render() {
-    const {handleChange, handleSubmit, firstName, lastName, email, message} =
-      this.props;
+    const {
+      handleChange,
+      handleSubmit,
+      firstName,
+      lastName,
+      email,
+      message,
+    } = this.props;
     const {textAreaRows} = this.state;
     return (
       <Box
@@ -72,7 +86,7 @@ class ContactForm extends React.Component<Props, State> {
         }}
       >
         <Heading
-          mt={2}
+          mt={3}
           mb={3}
           sx={{
             fontFamily: 'body',
@@ -91,10 +105,11 @@ class ContactForm extends React.Component<Props, State> {
           }}
         >
           <Input
+            className="remove-border-on-focus"
             name="firstName"
             id="firstName"
             mb={3}
-            mr={2}
+            mr={3}
             p={1}
             sx={{
               borderStyle: 'none',
@@ -107,6 +122,7 @@ class ContactForm extends React.Component<Props, State> {
           />
 
           <Input
+            className="remove-border-on-focus"
             sx={{
               borderStyle: 'none',
               borderRadius: '0px',
@@ -123,6 +139,7 @@ class ContactForm extends React.Component<Props, State> {
         </Flex>
 
         <Input
+          className="remove-border-on-focus"
           sx={{
             borderStyle: 'none',
             borderRadius: '0px',
@@ -140,6 +157,7 @@ class ContactForm extends React.Component<Props, State> {
 
         {/* <Label htmlFor="message">Message</Label> */}
         <Textarea
+          className="remove-border-on-focus"
           sx={{
             borderStyle: 'none',
             borderRadius: '0px',
@@ -150,7 +168,7 @@ class ContactForm extends React.Component<Props, State> {
           name="message"
           id="message"
           rows={textAreaRows}
-          mb={2}
+          mb={3}
           value={message}
           placeholder="Message"
           onChange={handleChange}

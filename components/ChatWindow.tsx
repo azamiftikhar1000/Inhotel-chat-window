@@ -588,35 +588,61 @@ class ChatWindow extends React.Component<Props, State> {
     this.setState(updatedValue as Pick<State, keyof State>);
   };
 
-  handleSubmitCF = () => {
-    // e.preventDefault();
-    const {firstName, lastName, email, message} = this.state;
-    // let errors = {};
-    // if (!firstName.trim()) {
-    //   errors.firstName = 'Please enter your first name.';
-    // }
-    // if (!lastName.trim()) {
-    //   errors.lastName = 'Please enter your last name.';
-    // }
-    // if (!email.trim() || !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-    //   errors.email = 'Please enter a valid email address.';
-    // }
-    // if (!message.trim() || message.length < 20) {
-    //   errors.message = 'Please enter a message at least 20 characters long.';
-    // }
+  // handleSubmitCF = () => {
+  //   const {firstName, lastName, email, message} = this.state;
+  //   this.setState({
+  //     isContactFormSubmitted: true,
+  //   });
+  //   console.log('Submitted!');
 
-    // if (Object.keys(errors).length > 0) {
-    //   this.setState({ errors });
-    //   return; // Stop submission if there are errors
-    // } else {
+  // };
+
+  handleSubmitCF = () => {
+    const {firstName, lastName, email, message} = this.state;
+
+    // Set loading to true before starting the submission
     this.setState({
-      isContactFormSubmitted: true,
-      //     errors: {} // Clear errors if form is valid
+      isContactFormSubmitted: false,
+      isLoading: true,
     });
-    console.log('Submitted!');
-    // Optionally, invoke the onSubmit props method
-    // this.props.onSubmit(firstName, lastName, email, message);
-    // }
+    console.log('Submitting...');
+
+    fetch('http://localhost:8000/api/v1/core/send-email/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstname: firstName,
+        lastname: lastName,
+        email: email,
+        message: message,
+        manager_email: 'azamiftikhar1000@gmail.com',
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('Success:', data);
+        // Update the state to reflect the success and stop loading
+        this.setState({
+          isContactFormSubmitted: true,
+          isLoading: false,
+        });
+        // Optionally, clear the form fields here if needed
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        // Update the state to stop loading and handle errors
+        this.setState({
+          isLoading: false,
+        });
+        // Show an error message here if needed
+      });
   };
 
   render() {

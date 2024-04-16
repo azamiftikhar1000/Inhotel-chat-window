@@ -1,14 +1,15 @@
-// ContactForm.tsx
 import React from 'react';
 import {Box, Input, Textarea, Button, Flex, Heading} from 'theme-ui';
 
 type Props = {
-  handleSubmit: (formData: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    message: string;
-  }) => void;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  firstName: string;
+  lastName: string;
+  email: string;
+  message: string;
 };
 
 type FormErrors = {
@@ -19,12 +20,6 @@ type FormErrors = {
 };
 
 type State = {
-  formData: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    message: string;
-  };
   textAreaRows: number;
   errors: FormErrors;
 };
@@ -33,12 +28,6 @@ class ContactForm extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      formData: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        message: '',
-      },
       textAreaRows: 15,
       errors: {
         firstName: '',
@@ -65,42 +54,16 @@ class ContactForm extends React.Component<Props, State> {
     this.setState({textAreaRows: rows});
   };
 
-  validateInput = (name: string, value: string): string => {
-    switch (name) {
-      case 'firstName':
-      case 'lastName':
-        if (!value.trim()) return 'This field cannot be empty.';
-        break;
-      case 'email':
-        if (!value) return 'Email is required.';
-        if (!/\S+@\S+\.\S+/.test(value)) return 'Email is invalid.';
-        break;
-      case 'message':
-        if (!value.trim()) return 'Message cannot be empty.';
-        break;
-      default:
-        return '';
-    }
-    return '';
-  };
-
-  handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const {name, value} = event.target;
-    const error = this.validateInput(name, value);
-    this.setState((prevState) => ({
-      formData: {...prevState.formData, [name]: value},
-      errors: {...prevState.errors, [name]: error},
-    }));
-  };
-
   render() {
     const {
-      formData: {firstName, lastName, email, message},
-      textAreaRows,
-      errors,
-    } = this.state;
+      handleChange,
+      handleSubmit,
+      firstName,
+      lastName,
+      email,
+      message,
+    } = this.props;
+    const {textAreaRows, errors} = this.state;
 
     return (
       <Box as="form" sx={{height: '100%', width: '100%'}}>
@@ -133,7 +96,7 @@ class ContactForm extends React.Component<Props, State> {
             }}
             value={firstName}
             placeholder="First Name"
-            onChange={this.handleChange}
+            onChange={handleChange}
             required
           />
 
@@ -152,7 +115,7 @@ class ContactForm extends React.Component<Props, State> {
             mb={3}
             value={lastName}
             placeholder="Last Name"
-            onChange={this.handleChange}
+            onChange={handleChange}
           />
         </Flex>
 
@@ -172,7 +135,7 @@ class ContactForm extends React.Component<Props, State> {
           type="email"
           value={email}
           placeholder="Email"
-          onChange={this.handleChange}
+          onChange={handleChange}
         />
 
         <Textarea
@@ -191,7 +154,7 @@ class ContactForm extends React.Component<Props, State> {
           mb={3}
           value={message}
           placeholder="Message"
-          onChange={this.handleChange}
+          onChange={handleChange}
         />
       </Box>
     );

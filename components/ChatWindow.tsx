@@ -607,27 +607,38 @@ class ChatWindow extends React.Component<Props, State> {
   handleSubmitCF = () => {
     const {firstName, lastName, email, message} = this.state;
 
-    // Set loading to true before starting the submission
+    if (
+      !firstName.trim() ||
+      !lastName.trim() ||
+      !email.trim() ||
+      !message.trim()
+    ) {
+      console.log('Missing value');
+      return;
+    }
+
     this.setState({
       isContactFormSubmitted: false,
       isLoading: true,
     });
     console.log('Submitting...');
 
-    fetch('http://localhost:8000/api/v1/core/send-email/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        firstname: firstName,
-        lastname: lastName,
-        email: email,
-        message: message,
-        // manager_email: 'aadilhasun@gmail.com',
-        inbox_id: this.props.inboxId,
-      }),
-    })
+    fetch(
+      'https://inhotel-bda7de42c465.herokuapp.com/api/v1/core/send-email/',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstname: firstName,
+          lastname: lastName,
+          email: email,
+          message: message,
+          inbox_id: this.props.inboxId,
+        }),
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

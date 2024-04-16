@@ -1,17 +1,14 @@
 // ContactForm.tsx
 import React from 'react';
-import {Box, Input, Label, Textarea, Button, Flex, Heading} from 'theme-ui';
-import DiscardIcon from './DiscardIcon';
+import {Box, Input, Textarea, Button, Flex, Heading} from 'theme-ui';
 
 type Props = {
-  handleChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  firstName: string;
-  lastName: string;
-  email: string;
-  message: string;
+  handleSubmit: (formData: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    message: string;
+  }) => void;
 };
 
 type FormErrors = {
@@ -20,15 +17,29 @@ type FormErrors = {
   email: string;
   message: string;
 };
+
 type State = {
+  formData: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    message: string;
+  };
   textAreaRows: number;
   errors: FormErrors;
 };
+
 class ContactForm extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      textAreaRows: 15, // Default rows count
+      formData: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        message: '',
+      },
+      textAreaRows: 15,
       errors: {
         firstName: '',
         lastName: '',
@@ -48,49 +59,51 @@ class ContactForm extends React.Component<Props, State> {
   }
 
   adjustTextAreaRows = () => {
-    let height = 704;
     const widgetContainer = document.getElementById('widgetContainer');
-    if (widgetContainer !== null) {
-      height = widgetContainer.offsetHeight;
-    }
-
-    // const screenHeight = window.innerHeight;
-    // const containerheight=Math.min(screenHeight*0.6,704)
-    let rows = Number((height - 300) / 30) - 1;
-    // console.log("containerheight",height)
-    // console.log("rows",rows)
-    // rows=2;
-    // if (screenHeight > 900) {
-    //   rows = 30;
-    // } else if (screenHeight > 600) {
-    //   rows = 20;
-    // } else {
-    //   rows = 2;
-    // }
-
+    const height = widgetContainer ? widgetContainer.offsetHeight : 704;
+    const rows = Math.max((height - 300) / 30 - 1, 2);
     this.setState({textAreaRows: rows});
-    this.adjustTextAreaRows = this.adjustTextAreaRows.bind(this);
   };
+
+  validateInput = (name: string, value: string): string => {
+    switch (name) {
+      case 'firstName':
+      case 'lastName':
+        if (!value.trim()) return 'This field cannot be empty.';
+        break;
+      case 'email':
+        if (!value) return 'Email is required.';
+        if (!/\S+@\S+\.\S+/.test(value)) return 'Email is invalid.';
+        break;
+      case 'message':
+        if (!value.trim()) return 'Message cannot be empty.';
+        break;
+      default:
+        return '';
+    }
+    return '';
+  };
+
+  handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const {name, value} = event.target;
+    const error = this.validateInput(name, value);
+    this.setState((prevState) => ({
+      formData: {...prevState.formData, [name]: value},
+      errors: {...prevState.errors, [name]: error},
+    }));
+  };
+
   render() {
     const {
-      handleChange,
-      handleSubmit,
-      firstName,
-      lastName,
-      email,
-      message,
-    } = this.props;
-    const {textAreaRows, errors} = this.state;
+      formData: {firstName, lastName, email, message},
+      textAreaRows,
+      errors,
+    } = this.state;
 
     return (
-      <Box
-        as="form"
-        // py={2}
-        sx={{
-          height: '100%',
-          width: '100%',
-        }}
-      >
+      <Box as="form" sx={{height: '100%', width: '100%'}}>
         <Heading
           mt={3}
           mb={3}
@@ -103,13 +116,7 @@ class ContactForm extends React.Component<Props, State> {
         >
           Contact Us
         </Heading>
-        <Flex
-          sx={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
+        <Flex sx={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           <Input
             className="on-focus"
             name="firstName"
@@ -118,23 +125,26 @@ class ContactForm extends React.Component<Props, State> {
             mr={3}
             p={1}
             sx={{
-              borderStyle: 'none',
-              borderRadius: '0px',
+              borderStyle: errors.firstName ? 'solid' : 'none',
+              borderRadius: '4px',
               bg: 'white',
-              borderWidth: '1px',
+              borderWidth: '1.5px',
+              borderColor: errors.firstName ? 'red' : 'normal',
             }}
             value={firstName}
             placeholder="First Name"
-            onChange={handleChange}
+            onChange={this.handleChange}
+            required
           />
 
           <Input
             className="on-focus"
             sx={{
-              borderStyle: 'none',
-              borderRadius: '0px',
+              borderStyle: errors.lastName ? 'solid' : 'none',
+              borderRadius: '4px',
               bg: 'white',
-              borderWidth: '1px',
+              borderWidth: '1.5px',
+              borderColor: errors.lastName ? 'red' : 'normal',
             }}
             p={1}
             name="lastName"
@@ -142,16 +152,18 @@ class ContactForm extends React.Component<Props, State> {
             mb={3}
             value={lastName}
             placeholder="Last Name"
-            onChange={handleChange}
+            onChange={this.handleChange}
           />
         </Flex>
 
         <Input
           className="on-focus"
           sx={{
-            borderStyle: 'none',
-            borderRadius: '0px',
+            borderStyle: errors.email ? 'solid' : 'none',
+            borderRadius: '4px',
             bg: 'white',
+            borderWidth: '1.5px',
+            borderColor: errors.email ? 'red' : 'normal',
           }}
           p={1}
           name="email"
@@ -160,17 +172,17 @@ class ContactForm extends React.Component<Props, State> {
           type="email"
           value={email}
           placeholder="Email"
-          onChange={handleChange}
+          onChange={this.handleChange}
         />
 
-        {/* <Label htmlFor="message">Message</Label> */}
         <Textarea
           className="on-focus"
           sx={{
-            borderStyle: 'none',
-            borderRadius: '0px',
+            borderStyle: errors.message ? 'solid' : 'none',
+            borderRadius: '4px',
             bg: 'white',
-            resize: 'none',
+            borderWidth: '1.5px',
+            borderColor: errors.message ? 'red' : 'normal',
           }}
           p={1}
           name="message"
@@ -179,7 +191,7 @@ class ContactForm extends React.Component<Props, State> {
           mb={3}
           value={message}
           placeholder="Message"
-          onChange={handleChange}
+          onChange={this.handleChange}
         />
       </Box>
     );

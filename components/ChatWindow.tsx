@@ -33,6 +33,7 @@ import EmbeddedGame from './EmbeddedGame';
 import UnreadMessages from './UnreadMessages';
 import QuickReplies from './QuickReplies';
 import ContactForm from './ContactForm';
+import SyncLoader from 'react-spinners';
 // import Swal from 'sweetalert2';
 
 type Props = {
@@ -90,6 +91,8 @@ type State = {
     email: '';
     message: '';
   };
+  isLoading: boolean;
+  statusMessageCF: string;
 };
 
 class ChatWindow extends React.Component<Props, State> {
@@ -166,6 +169,8 @@ class ChatWindow extends React.Component<Props, State> {
         email: '',
         message: '',
       },
+      isLoading: false,
+      statusMessageCF: '',
     };
   }
 
@@ -399,6 +404,7 @@ class ChatWindow extends React.Component<Props, State> {
   };
 
   emitCloseWindow = (e: any) => {
+    this.setState({statusMessageCF: null});
     this.emit('papercups:close', {});
   };
 
@@ -578,6 +584,7 @@ class ChatWindow extends React.Component<Props, State> {
     this.setState((prevState) => ({
       isContactFormSubmitted: false,
     }));
+    this.setState({statusMessageCF: null});
   };
 
   handleChangeCF = (
@@ -617,7 +624,8 @@ class ChatWindow extends React.Component<Props, State> {
         lastname: lastName,
         email: email,
         message: message,
-        manager_email: 'azamiftikhar1000@gmail.com',
+        // manager_email: 'aadilhasun@gmail.com',
+        inbox_id: this.props.inboxId,
       }),
     })
       .then((response) => {
@@ -629,6 +637,20 @@ class ChatWindow extends React.Component<Props, State> {
       .then((data) => {
         console.log('Success:', data);
         // Update the state to reflect the success and stop loading
+        console.log('Response data:', data.message); // This will log the actual data object
+        if (data.status === -1) {
+          console.log('Error');
+          this.setState({statusMessageCF: data.message});
+          this.setState({
+            isLoading: false,
+          });
+        } else {
+          this.setState({
+            isContactFormSubmitted: true,
+            isLoading: false,
+          });
+          this.setState({statusMessageCF: null});
+        }
         this.setState({
           isContactFormSubmitted: true,
           isLoading: false,
@@ -798,6 +820,7 @@ class ChatWindow extends React.Component<Props, State> {
                       companyName={companyName}
                       isLastInGroup={isLastInGroup}
                       shouldDisplayTimestamp={shouldDisplayTimestamp}
+                      isSending={this.state.isSending}
                     />
                   </motion.div>
                 );
@@ -859,6 +882,8 @@ class ChatWindow extends React.Component<Props, State> {
               hotelEmail={this.props.hotelEmail}
               hotelPhone={this.props.hotelPhone}
               shouldShowContactForm={shouldShowContactForm}
+              isLoading={this.state.isLoading}
+              statusMessageCF={this.state.statusMessageCF}
             />
             <Box
               sx={{

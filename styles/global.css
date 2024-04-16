@@ -118,7 +118,7 @@ textarea::placeholder {
   fill: white;
 }
 
-:root {
+/* :root {
   --primary-color: #007bff;
 }
 
@@ -148,7 +148,7 @@ textarea::placeholder {
 .tippy-box[data-theme='dynamic-primary'][data-placement^='right']
   > .tippy-arrow:before {
   border-right-color: var(--primary-color) !important;
-}
+} */
 
 .on-focus:focus {
   outline: none !important;

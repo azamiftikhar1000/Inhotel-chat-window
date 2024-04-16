@@ -12,6 +12,7 @@ import displayContactForm from './ChatWindow';
 import PhoneIcon from './PhoneIcon';
 import DiscardIcon from './DiscardIcon';
 import Tippy from '@tippyjs/react';
+import {FadeLoader} from 'react-spinners';
 
 const ChatFooter = ({
   placeholder,
@@ -28,6 +29,8 @@ const ChatFooter = ({
   hotelEmail,
   hotelPhone,
   shouldShowContactForm,
+  isLoading,
+  statusMessageCF,
 }: {
   placeholder?: string;
   emailInputPlaceholder?: string;
@@ -43,6 +46,8 @@ const ChatFooter = ({
   hotelEmail: string;
   hotelPhone: string;
   shouldShowContactForm: boolean;
+  isLoading: boolean;
+  statusMessageCF: string;
 }) => {
   const [tooltipContentEmail, setTooltipContentEmail] = useState(
     'Click to copy email'
@@ -265,8 +270,10 @@ const ChatFooter = ({
             <Box>
               <Flex
                 sx={{
-                  alignItems: 'stretch',
-                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  justifyContent:
+                    statusMessageCF === null ? 'space-between' : 'left',
+                  // justifyContent:'left',
                   flexDirection: 'row',
                 }}
                 py={2}
@@ -276,7 +283,7 @@ const ChatFooter = ({
                   sx={{flex: '0 0 auto', display: 'flex', alignItems: 'center'}}
                 >
                   <Tippy
-                    theme="dynamic-primary"
+                    // theme="dynamic-primary"
                     content="Discard message"
                     interactive={true}
                     interactiveBorder={20}
@@ -323,17 +330,30 @@ const ChatFooter = ({
 
                 {!isSubmittedCF && (
                   <Box sx={{display: 'flex', alignItems: 'center', mb: '2px'}}>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        color: 'rgba(148, 148, 156, 1.0)',
-                        marginRight: '8px',
-                      }}
-                    >
-                      Send
-                    </Box>
+                    {!isLoading && (
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          color: 'rgba(148, 148, 156, 1.0)',
+                          marginRight: '8px',
+                        }}
+                      >
+                        Send
+                      </Box>
+                    )}
+                    {isLoading && (
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          color: 'rgba(148, 148, 156, 1.0)',
+                          marginRight: '8px',
+                        }}
+                      >
+                        Sending
+                      </Box>
+                    )}
                     <Tippy
-                      theme="dynamic-primary"
+                      // theme="dynamic-primary"
                       content="Send as email"
                       interactive={true}
                       interactiveBorder={20}
@@ -343,6 +363,7 @@ const ChatFooter = ({
                         onClick={handleSubmitCF}
                         sx={{
                           display: 'flex',
+                          position: 'relative',
                           justifyContent: 'center',
                           alignItems: 'center',
                           borderRadius: '50%',
@@ -353,12 +374,38 @@ const ChatFooter = ({
                           ml: 'auto', // Push it to the right if needed, or adjust as per design
                         }}
                       >
-                        <SendIcon fill="background" />
+                        {!isLoading && <SendIcon fill="background" />}
+                        {/* {isLoading && (<FadeLoader color="background" height={'16px'} width={'16px'} />)} */}
+                        {isLoading && (
+                          <div
+                            style={{
+                              position: 'absolute', // Use absolute positioning within the button
+                              top: 0,
+                              left: 0,
+                              right: 0,
+                              bottom: 0,
+                              display: 'flex',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                            }}
+                          >
+                            <FadeLoader
+                              color="background"
+                              height="6px"
+                              width="4px"
+                              margin={-5}
+                              cssOverride={{
+                                marginTop: '16px',
+                                marginLeft: '8px',
+                              }}
+                            />
+                          </div>
+                        )}
                       </Button>
                     </Tippy>
                   </Box>
                 )}
-                {isSubmittedCF && (
+                {isSubmittedCF && statusMessageCF == null && (
                   <Box
                     sx={{
                       fontSize: '0.85em',
@@ -368,6 +415,18 @@ const ChatFooter = ({
                   >
                     Thank you for your message! Please expect our reply within 1
                     working day.
+                  </Box>
+                )}
+
+                {statusMessageCF != null && (
+                  <Box
+                    sx={{
+                      fontSize: '0.85em',
+                      display: 'flex',
+                      marginLeft: '8px', // Ensure some space between the button and text, adjust as needed
+                    }}
+                  >
+                    {statusMessageCF}
                   </Box>
                 )}
               </Flex>
@@ -552,7 +611,7 @@ const ChatFooter = ({
                   </Tippy>
                 </Box>
                 <Tippy
-                  theme="dynamic-primary"
+                  // theme="dynamic-primary"
                   content="Contact Us"
                   interactive={true}
                   interactiveBorder={20}

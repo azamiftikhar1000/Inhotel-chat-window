@@ -187,7 +187,7 @@ const ChatFooter = ({
                 <ResizableTextArea
                   sx={{
                     fontFamily: 'body',
-                    color: 'input',
+                    color: 'black',
                     variant: 'styles.input.transparent',
                   }}
                   ref={messageInput}
@@ -456,7 +456,7 @@ const ChatFooter = ({
                     <ResizableTextArea
                       sx={{
                         fontFamily: 'body',
-                        color: 'input',
+                        color: 'black',
                         variant: 'styles.input.transparent',
                       }}
                       ref={messageInput}

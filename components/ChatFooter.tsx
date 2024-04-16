@@ -50,10 +50,10 @@ const ChatFooter = ({
   statusMessageCF: string;
 }) => {
   const [tooltipContentEmail, setTooltipContentEmail] = useState(
-    'Click to copy email'
+    'Copy to clipboard'
   );
   const [tooltipContentPhone, setTooltipContentPhone] = useState(
-    'Click to copy phone'
+    'Copy to clipboard'
   );
 
   const copyToClipboard = (
@@ -99,7 +99,7 @@ const ChatFooter = ({
 
   const handleSendMessage = (e?: React.FormEvent<HTMLFormElement>) => {
     e && e.preventDefault();
-
+    console.log('isSending', isSending);
     onSendMessage({body: message}, email);
     setMessage('');
     setEmail('');

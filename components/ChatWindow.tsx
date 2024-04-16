@@ -820,7 +820,6 @@ class ChatWindow extends React.Component<Props, State> {
                       companyName={companyName}
                       isLastInGroup={isLastInGroup}
                       shouldDisplayTimestamp={shouldDisplayTimestamp}
-                      isSending={this.state.isSending}
                     />
                   </motion.div>
                 );

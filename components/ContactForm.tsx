@@ -1,6 +1,7 @@
 import React from 'react';
 import {Box, Input, Label, Textarea, Button, Flex, Heading} from 'theme-ui';
 import DiscardIcon from './DiscardIcon';
+import {BeatLoader} from 'react-spinners';
 
 type Props = {
   handleChange: (
@@ -12,6 +13,8 @@ type Props = {
   email: string;
   message: string;
   clickedSubmit: boolean;
+  shouldSummarize: boolean;
+  primaryColor: string;
 };
 
 type FormErrors = {
@@ -122,6 +125,8 @@ class ContactForm extends React.Component<Props, State> {
       email,
       message,
       clickedSubmit,
+      shouldSummarize,
+      primaryColor,
     } = this.props;
     const {textAreaRows, errors} = this.state;
 
@@ -211,7 +216,7 @@ class ContactForm extends React.Component<Props, State> {
         />
 
         {/* <Label htmlFor="message">Message</Label> */}
-        <Textarea
+        {/* <Textarea
           sx={{
             borderStyle: !message && clickedSubmit ? 'solid' : 'none',
             borderRadius: '4px',
@@ -228,7 +233,51 @@ class ContactForm extends React.Component<Props, State> {
           value={message}
           placeholder="Message"
           onChange={handleChange}
-        />
+        /> */}
+        <div style={{position: 'relative'}}>
+          <Textarea
+            className="on-focus"
+            sx={{
+              borderStyle: !message && clickedSubmit ? 'solid' : 'none',
+              borderRadius: '4px',
+              bg: 'white',
+              borderWidth: '1.5px',
+              borderColor: !message && clickedSubmit ? 'red' : 'normal',
+              resize: 'none',
+              opacity: shouldSummarize ? 0.1 : 1, // Apply fading effect based on shouldSummarize
+              pointerEvents: shouldSummarize ? 'none' : 'auto', // Prevent interaction when faded/disabled
+            }}
+            p={1}
+            name="message"
+            id="message"
+            rows={textAreaRows}
+            mb={0}
+            value={message}
+            placeholder="Message"
+            onChange={handleChange}
+            disabled={shouldSummarize} // Disable based on shouldSummarize
+          />
+          {shouldSummarize && (
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                color: 'black',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '16px',
+                zIndex: 1,
+              }}
+            >
+              <BeatLoader color={primaryColor} />
+            </div>
+          )}
+        </div>
       </Box>
     );
   }

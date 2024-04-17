@@ -213,6 +213,7 @@ class Wrapper extends React.Component<Props, State> {
           customer={customer}
           version={version}
           ts={ts}
+          primaryColor={primaryColor}
           position={position}
           shouldShowContactForm={shouldShowCF}
           hotelPhone={hotelPhone}

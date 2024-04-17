@@ -31,6 +31,7 @@ const ChatFooter = ({
   shouldShowContactForm,
   isLoading,
   statusMessageCF,
+  handleSummarize,
 }: {
   placeholder?: string;
   emailInputPlaceholder?: string;
@@ -48,6 +49,7 @@ const ChatFooter = ({
   shouldShowContactForm: boolean;
   isLoading: boolean;
   statusMessageCF: string;
+  handleSummarize: () => void;
 }) => {
   const [tooltipContentEmail, setTooltipContentEmail] = useState(
     'Copy to clipboard'
@@ -618,7 +620,9 @@ const ChatFooter = ({
                   delay={100}
                 >
                   <Box
-                    onClick={onClickMailIcon}
+                    onClick={() => {
+                      onClickMailIcon(), handleSummarize();
+                    }}
                     sx={{
                       cursor: 'pointer',
                       visibility: isMailIconClicked ? 'hidden' : 'visible',

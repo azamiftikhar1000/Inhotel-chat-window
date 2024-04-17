@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Box, Flex, Heading, Text} from 'theme-ui';
+import {Box, Flex, Heading, Text, ThemeProvider} from 'theme-ui';
 import {Presence} from 'phoenix';
 import {motion} from 'framer-motion';
 import {
@@ -60,6 +60,7 @@ type Props = {
   debug?: boolean;
   version?: string;
   ts?: string;
+  primaryColor?: string;
   position?: string;
   shouldShowContactForm?: boolean;
   hotelPhone?: string;
@@ -94,6 +95,8 @@ type State = {
   };
   isLoading: boolean;
   statusMessageCF: string;
+  numberOfMessages: number;
+  shouldSummarize: boolean;
 };
 
 class ChatWindow extends React.Component<Props, State> {
@@ -173,6 +176,8 @@ class ChatWindow extends React.Component<Props, State> {
       },
       isLoading: false,
       statusMessageCF: '',
+      numberOfMessages: 0,
+      shouldSummarize: false,
     };
   }
 
@@ -588,6 +593,64 @@ class ChatWindow extends React.Component<Props, State> {
     }));
     this.setState({statusMessageCF: null});
   };
+  handleSummarize = () => {
+    const updateMessages = this.props.greeting
+      ? this.state.messages.length - 1
+      : this.state.messages.length;
+
+    this.setState({numberOfMessages: updateMessages}, () => {
+      if (Math.floor(this.state.numberOfMessages / 2) >= 5) {
+        this.setState({shouldSummarize: true});
+        console.log('Call an API');
+        console.log('Conversation ID: ', this.state.conversationId);
+        fetch(
+          'https://inhotel-bda7de42c465.herokuapp.com/api/v1/core/summarize_chathistory/',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              conversation_id: this.state.conversationId,
+              inbox_id: this.props.inboxId,
+            }),
+          }
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then((data) => {
+            // console.log('Success:', data);
+            // this.setState({clickedSubmit: false});
+            // console.log('Response data:', data.message); // This will log the actual data object
+            if (data.status === -1) {
+              console.log('Error');
+              this.setState({shouldSummarize: false});
+            } else {
+              // console.log("message before summarize: ", this.state.message);
+              this.setState({message: data.summarize_chat_message});
+              // console.log("message after summarize: ", this.state.message);
+            }
+            this.setState({
+              shouldSummarize: false,
+            });
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+            this.setState({
+              shouldSummarize: false,
+            });
+          });
+        // setTimeout(() => {
+        //   this.setState({ shouldSummarize: false });
+        //   console.log('State updated');
+        // }, 3000);
+      }
+    });
+  };
 
   handleChangeCF = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -605,7 +668,6 @@ class ChatWindow extends React.Component<Props, State> {
   //   console.log('Submitted!');
 
   // };
-
   handleSubmitCF = () => {
     this.setState({clickedSubmit: true});
     const {firstName, lastName, email, message} = this.state;
@@ -744,6 +806,12 @@ class ChatWindow extends React.Component<Props, State> {
       'Type: ',
       typeof shouldShowContactForm
     );
+    // const {greeting}= this.props
+    // var numberOfMessages = 0;
+
+    console.log('no. of messages', Math.floor(this.state.numberOfMessages / 2));
+    console.log('Theme: ');
+    // console.log("Greeting", this.props.greeting)
     return (
       <Box
         id="widgetContainer"
@@ -855,6 +923,8 @@ class ChatWindow extends React.Component<Props, State> {
                 email={this.state.email}
                 message={this.state.message}
                 clickedSubmit={this.state.clickedSubmit}
+                shouldSummarize={this.state.shouldSummarize}
+                primaryColor={this.props.primaryColor}
               />
             </Box>
           )}
@@ -893,6 +963,7 @@ class ChatWindow extends React.Component<Props, State> {
               shouldShowContactForm={shouldShowContactForm}
               isLoading={this.state.isLoading}
               statusMessageCF={this.state.statusMessageCF}
+              handleSummarize={this.handleSummarize}
             />
             <Box
               sx={{

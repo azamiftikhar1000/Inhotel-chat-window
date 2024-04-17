@@ -19,7 +19,6 @@ type FormErrors = {
   lastName: string;
   email: string;
   message: string;
-  clickedSubmit: boolean;
 };
 type State = {
   textAreaRows: number;

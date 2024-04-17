@@ -46,7 +46,35 @@ class ContactForm extends React.Component<Props, State> {
   componentWillUnmount() {
     window.removeEventListener('resize', this.adjustTextAreaRows);
   }
+  measureSingleRowHeight() {
+    // Create a temporary div element to measure the text height
+    const tempDiv = document.createElement('div');
+    const tempText = document.createTextNode('A'); // Single line of text
 
+    tempDiv.appendChild(tempText);
+    document.body.appendChild(tempDiv);
+
+    // Apply styles to mimic those of the Textarea
+    tempDiv.style.position = 'absolute';
+    tempDiv.style.visibility = 'hidden'; // Make sure it doesn't show on screen
+    tempDiv.style.borderStyle = 'solid';
+    tempDiv.style.borderWidth = '1.5px';
+    tempDiv.style.borderColor = 'red'; // Assume clickedSubmit is true for example
+    tempDiv.style.borderRadius = '4px';
+    tempDiv.style.background = 'white';
+    tempDiv.style.padding = '1'; // Same as padding 'p' value in sx
+    tempDiv.style.fontSize = '16px'; // Assume default browser font size, adjust as needed
+    tempDiv.style.fontFamily = 'sans-serif'; // Use a generic font family, adjust as needed
+    tempDiv.style.whiteSpace = 'nowrap'; // Single line
+
+    // Measure the height
+    const height = tempDiv.offsetHeight;
+
+    // Clean up by removing the element from the DOM
+    document.body.removeChild(tempDiv);
+
+    return height;
+  }
   adjustTextAreaRows = () => {
     let height = 704;
     const widgetContainer = document.getElementById('widgetContainer');
@@ -56,7 +84,20 @@ class ContactForm extends React.Component<Props, State> {
 
     // const screenHeight = window.innerHeight;
     // const containerheight=Math.min(screenHeight*0.6,704)
-    let rows = Number((height - 300) / 29) - 1;
+
+    // Use the function to log the height of a single text row
+    console.log('Height of a single text row:', this.measureSingleRowHeight());
+    console.log('Height:', height);
+    let row_static = 0;
+    let rows_calculated = 0;
+    if (height > 700) {
+      row_static = 15;
+    } else if (height > 650) {
+      row_static = 12;
+    } else if (height > 600) {
+      row_static = 11;
+    }
+    rows_calculated = Math.floor((height - 300) / 27);
     // console.log("containerheight",height)
     // console.log("rows",rows)
     // rows=2;
@@ -67,8 +108,9 @@ class ContactForm extends React.Component<Props, State> {
     // } else {
     //   rows = 2;
     // }
-
-    this.setState({textAreaRows: rows});
+    console.log('rows_calculated', rows_calculated);
+    console.log('row_static', row_static);
+    this.setState({textAreaRows: Math.max(rows_calculated, row_static)});
     this.adjustTextAreaRows = this.adjustTextAreaRows.bind(this);
   };
   render() {

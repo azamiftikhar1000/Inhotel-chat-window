@@ -85,6 +85,7 @@ type State = {
   lastName: string;
   email: string;
   message: string;
+  clickedSubmit: boolean;
   errors: {
     firstName: '';
     lastName: '';
@@ -163,6 +164,7 @@ class ChatWindow extends React.Component<Props, State> {
       lastName: null,
       email: null,
       message: null,
+      clickedSubmit: false,
       errors: {
         firstName: '',
         lastName: '',
@@ -605,14 +607,9 @@ class ChatWindow extends React.Component<Props, State> {
   // };
 
   handleSubmitCF = () => {
+    this.setState({clickedSubmit: true});
     const {firstName, lastName, email, message} = this.state;
-
-    if (
-      !firstName.trim() ||
-      !lastName.trim() ||
-      !email.trim() ||
-      !message.trim()
-    ) {
+    if (!firstName || !lastName || !email || !message) {
       console.log('Missing value');
       return;
     }
@@ -647,6 +644,7 @@ class ChatWindow extends React.Component<Props, State> {
       })
       .then((data) => {
         console.log('Success:', data);
+        this.setState({clickedSubmit: false});
         // Update the state to reflect the success and stop loading
         console.log('Response data:', data.message); // This will log the actual data object
         if (data.status === -1) {
@@ -856,6 +854,7 @@ class ChatWindow extends React.Component<Props, State> {
                 lastName={this.state.lastName}
                 email={this.state.email}
                 message={this.state.message}
+                clickedSubmit={this.state.clickedSubmit}
               />
             </Box>
           )}

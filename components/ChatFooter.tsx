@@ -563,14 +563,14 @@ const ChatFooter = ({
                 <Box
                   p={1}
                   sx={{
-                    mr: 2,
+                    mr: 0,
                     wordWrap: 'break-word',
                     fontSize: '14px',
                   }}
                 >
                   <Tippy content={tooltipContentPhone}>
                     <Text
-                      sx={{ml: 2, whiteSpace: 'nowrap', cursor: 'pointer'}}
+                      sx={{ml: 0, whiteSpace: 'nowrap', cursor: 'pointer'}}
                       onClick={() =>
                         copyToClipboard(hotelPhone, setTooltipContentPhone)
                       }
@@ -597,7 +597,7 @@ const ChatFooter = ({
                     <Text
                       sx={{
                         ml: 2,
-                        mr: 2,
+                        mr: 0,
                         maxWidth: '122px',
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',

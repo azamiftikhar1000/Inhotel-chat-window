@@ -91,13 +91,13 @@ class ContactForm extends React.Component<Props, State> {
     let row_static = 0;
     let rows_calculated = 0;
     if (height > 700) {
-      row_static = 15;
+      row_static = 14;
     } else if (height > 650) {
       row_static = 12;
     } else if (height > 600) {
       row_static = 11;
     }
-    rows_calculated = Math.floor((height - 300) / 27);
+    rows_calculated = Math.floor((height - 300) / 27) - 1;
     // console.log("containerheight",height)
     // console.log("rows",rows)
     // rows=2;

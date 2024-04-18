@@ -97,6 +97,7 @@ type State = {
   statusMessageCF: string;
   numberOfMessages: number;
   shouldSummarize: boolean;
+  isSummarizeGenerated: boolean;
 };
 
 class ChatWindow extends React.Component<Props, State> {
@@ -178,6 +179,7 @@ class ChatWindow extends React.Component<Props, State> {
       statusMessageCF: '',
       numberOfMessages: 0,
       shouldSummarize: false,
+      isSummarizeGenerated: false,
     };
   }
 
@@ -465,8 +467,8 @@ class ChatWindow extends React.Component<Props, State> {
 
       return;
     }
-
     this.papercups.sendNewMessage(message, email);
+    this.setState({isSummarizeGenerated: false});
   };
 
   // If this is true, we don't allow the customer to send any messages
@@ -599,7 +601,10 @@ class ChatWindow extends React.Component<Props, State> {
       : this.state.messages.length;
 
     this.setState({numberOfMessages: updateMessages}, () => {
-      if (Math.floor(this.state.numberOfMessages / 2) >= 5) {
+      if (
+        Math.floor(this.state.numberOfMessages / 2) >= 5 &&
+        !this.state.isSummarizeGenerated
+      ) {
         this.setState({shouldSummarize: true});
         console.log('Call an API');
         console.log('Conversation ID: ', this.state.conversationId);
@@ -632,6 +637,7 @@ class ChatWindow extends React.Component<Props, State> {
             } else {
               // console.log("message before summarize: ", this.state.message);
               this.setState({message: data.summarize_chat_message});
+              this.setState({isSummarizeGenerated: true});
               // console.log("message after summarize: ", this.state.message);
             }
             this.setState({
@@ -810,7 +816,7 @@ class ChatWindow extends React.Component<Props, State> {
     // var numberOfMessages = 0;
 
     console.log('no. of messages', Math.floor(this.state.numberOfMessages / 2));
-    console.log('Theme: ');
+    console.log('SummarizeGenerated?: ', this.state.isSummarizeGenerated);
     // console.log("Greeting", this.props.greeting)
     return (
       <Box

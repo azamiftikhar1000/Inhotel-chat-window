@@ -831,7 +831,7 @@ class ChatWindow extends React.Component<Props, State> {
           className={isMobile ? 'Mobile' : ''}
           sx={{
             bg: this.state.isMailIconClicked
-              ? 'rgba(233, 233, 233, 0.7)'
+              ? 'rgb(239, 239, 239)'
               : 'background',
             flexDirection: 'column',
             height: '100%',
@@ -977,7 +977,7 @@ class ChatWindow extends React.Component<Props, State> {
                 // bg: this.state.isMailIconClicked
                 //   ? 'rgba(233, 233, 233, 0.7)'
                 //   : 'background',
-                bg: 'rgba(233, 233, 233, 0.7)',
+                bg: 'rgb(239, 239, 239)',
                 // borderTop: '1px solid rgb(230, 230, 230)',
                 // TODO: only show shadow on focus TextArea below
                 // boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 100px 0px',
@@ -1004,7 +1004,7 @@ class ChatWindow extends React.Component<Props, State> {
               // bg: this.state.isMailIconClicked
               //   ? 'rgba(233, 233, 233, 0.7)'
               //   : 'background',
-              bg: 'rgba(233, 233, 233, 0.7)',
+              bg: 'rgb(239, 239, 239)',
             }}
           >
             {shouldDisplayBranding && (

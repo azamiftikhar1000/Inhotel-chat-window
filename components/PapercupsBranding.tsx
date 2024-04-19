@@ -17,7 +17,7 @@ const PapercupsBranding = ({
         sx={{
           color: 'gray',
           // bg: isMailIconClicked ? 'rgba(233, 233, 233, 0.7)' : '#fff',
-          bg: 'rgba(233, 233, 233, 0.7)',
+          bg: 'rgb(239, 239, 239)',
           opacity: 0.8,
           transition: '0.2s',
           '&:hover': {opacity: 1},

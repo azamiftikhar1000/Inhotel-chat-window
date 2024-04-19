@@ -34,6 +34,7 @@ import UnreadMessages from './UnreadMessages';
 import QuickReplies from './QuickReplies';
 import ContactForm from './ContactForm';
 import SyncLoader from 'react-spinners';
+import ChatFooterEmail from './ChatFooterEmail';
 // import Swal from 'sweetalert2';
 
 type Props = {
@@ -934,56 +935,83 @@ class ChatWindow extends React.Component<Props, State> {
               />
             </Box>
           )}
-          <Box
-            px={'20px'}
-            // className="footer-bg"
-            sx={{
-              bg: this.state.isMailIconClicked
-                ? 'rgba(233, 233, 233, 0.7)'
-                : 'background',
-              // borderTop: '1px solid rgb(230, 230, 230)',
-              // TODO: only show shadow on focus TextArea below
-              boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 100px 0px',
-              marginTop: '2px',
-            }}
-          >
-            {/*
-            NB: we use a `key` prop here to force re-render on open so
-            that the input will auto-focus appropriately
-          */}
-            <ChatFooter
-              key={isOpen ? 1 : 0}
-              accountId={accountId}
-              baseUrl={baseUrl}
-              placeholder={newMessagePlaceholder}
-              emailInputPlaceholder={emailInputPlaceholder}
-              isSending={isSending}
-              shouldRequireEmail={shouldAskForEmail}
-              onSendMessage={this.handleSendMessage}
-              onClickMailIcon={this.handleClickMailIcon}
-              isMailIconClicked={this.state.isMailIconClicked}
-              handleSubmitCF={this.handleSubmitCF}
-              isSubmittedCF={this.state.isContactFormSubmitted}
-              hotelEmail={this.props.hotelEmail}
-              hotelPhone={this.props.hotelPhone}
-              shouldShowContactForm={shouldShowContactForm}
-              isLoading={this.state.isLoading}
-              statusMessageCF={this.state.statusMessageCF}
-              handleSummarize={this.handleSummarize}
-            />
+          {!this.state.isMailIconClicked && (
             <Box
+              px={'20px'}
+              // className="footer-bg"
               sx={{
-                bg: this.state.isMailIconClicked
-                  ? 'rgba(233, 233, 233, 0.7)'
-                  : 'background',
+                // bg: this.state.isMailIconClicked
+                //   ? 'rgba(233, 233, 233, 0.7)'
+                //   : 'background',
+                bg: 'background',
+                // bg:'rgba(248,248,248, 1.0)',
+                borderTop: '1px solid rgb(230, 230, 230)',
+                // TODO: only show shadow on focus TextArea below
+                boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 100px 0px',
+                marginTop: '2px',
               }}
             >
-              {shouldDisplayBranding && (
-                <PapercupsBranding
-                  isMailIconClicked={this.state.isMailIconClicked}
-                />
-              )}
+              {/*
+              NB: we use a `key` prop here to force re-render on open so
+              that the input will auto-focus appropriately
+            */}
+              <ChatFooter
+                key={isOpen ? 1 : 0}
+                accountId={accountId}
+                baseUrl={baseUrl}
+                placeholder={newMessagePlaceholder}
+                emailInputPlaceholder={emailInputPlaceholder}
+                isSending={isSending}
+                shouldRequireEmail={shouldAskForEmail}
+                onSendMessage={this.handleSendMessage}
+                // isMailIconClicked={this.state.isMailIconClicked}
+              />
             </Box>
+          )}
+
+          {shouldShowContactForm && (
+            <Box
+              px={'20px'}
+              // className="footer-bg"
+              sx={{
+                // bg: this.state.isMailIconClicked
+                //   ? 'rgba(233, 233, 233, 0.7)'
+                //   : 'background',
+                bg: 'rgba(233, 233, 233, 0.7)',
+                // borderTop: '1px solid rgb(230, 230, 230)',
+                // TODO: only show shadow on focus TextArea below
+                // boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 100px 0px',
+                marginTop: '2px',
+              }}
+            >
+              <ChatFooterEmail
+                onClickMailIcon={this.handleClickMailIcon}
+                isMailIconClicked={this.state.isMailIconClicked}
+                handleSubmitCF={this.handleSubmitCF}
+                isSubmittedCF={this.state.isContactFormSubmitted}
+                hotelEmail={this.props.hotelEmail}
+                hotelPhone={this.props.hotelPhone}
+                shouldShowContactForm={shouldShowContactForm}
+                isLoading={this.state.isLoading}
+                statusMessageCF={this.state.statusMessageCF}
+                handleSummarize={this.handleSummarize}
+              />
+            </Box>
+          )}
+
+          <Box
+            sx={{
+              // bg: this.state.isMailIconClicked
+              //   ? 'rgba(233, 233, 233, 0.7)'
+              //   : 'background',
+              bg: 'rgba(233, 233, 233, 0.7)',
+            }}
+          >
+            {shouldDisplayBranding && (
+              <PapercupsBranding
+                isMailIconClicked={this.state.isMailIconClicked}
+              />
+            )}
           </Box>
 
           <img

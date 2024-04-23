@@ -33,7 +33,7 @@ import EmbeddedGame from './EmbeddedGame';
 import UnreadMessages from './UnreadMessages';
 import QuickReplies from './QuickReplies';
 import ContactForm from './ContactForm';
-import SyncLoader from 'react-spinners';
+import {SyncLoader} from 'react-spinners';
 import ChatFooterEmail from './ChatFooterEmail';
 // import Swal from 'sweetalert2';
 
@@ -99,6 +99,7 @@ type State = {
   numberOfMessages: number;
   shouldSummarize: boolean;
   isSummarizeGenerated: boolean;
+  shouldShowMessageLoading: boolean;
 };
 
 class ChatWindow extends React.Component<Props, State> {
@@ -181,6 +182,7 @@ class ChatWindow extends React.Component<Props, State> {
       numberOfMessages: 0,
       shouldSummarize: false,
       isSummarizeGenerated: false,
+      shouldShowMessageLoading: false,
     };
   }
 
@@ -322,6 +324,12 @@ class ChatWindow extends React.Component<Props, State> {
       const [firstUnseenMessage] = unseenMessages;
 
       this.emitUnseenMessage(firstUnseenMessage);
+    }
+    const lastMessage = messages[messages.length - 1];
+    if (lastMessage.user !== null) {
+      // console.log("LAst Message: ", messages[messages.length-1]);
+      this.setState({shouldShowMessageLoading: false});
+      // console.log("shouldShowMessageLoading: ", this.state.shouldShowMessageLoading);
     }
   };
 
@@ -470,6 +478,7 @@ class ChatWindow extends React.Component<Props, State> {
     }
     this.papercups.sendNewMessage(message, email);
     this.setState({isSummarizeGenerated: false});
+    this.setState({shouldShowMessageLoading: true});
   };
 
   // If this is true, we don't allow the customer to send any messages
@@ -815,9 +824,10 @@ class ChatWindow extends React.Component<Props, State> {
     );
     // const {greeting}= this.props
     // var numberOfMessages = 0;
-
-    console.log('no. of messages', Math.floor(this.state.numberOfMessages / 2));
-    console.log('SummarizeGenerated?: ', this.state.isSummarizeGenerated);
+    // console.log("NewMessagePlaceholder: ", newMessagePlaceholder);
+    // console.log("newMessagesNotificationText: ", newMessagesNotificationText);
+    // console.log('no. of messages', Math.floor(this.state.numberOfMessages / 2));
+    // console.log('SummarizeGenerated?: ', this.state.isSummarizeGenerated);
     // console.log("Greeting", this.props.greeting)
     return (
       <Box
@@ -880,32 +890,67 @@ class ChatWindow extends React.Component<Props, State> {
               }}
             >
               {messages.map((msg, key) => {
-                // Slight hack
                 const next = messages[key + 1];
                 const isLastInGroup = next
                   ? msg.customer_id !== next.customer_id
                   : true;
-                const shouldDisplayTimestamp = key === messages.length - 1;
-                // NB: `msg.type` doesn't come from the server, it's just a way to
-                // help identify unsent messages in the frontend for now
+                const isLastMessage = key === messages.length - 1;
                 const isMe = isCustomerMessage(msg, customerId);
-
-                return (
-                  <motion.div
-                    key={key}
-                    initial={{opacity: 0, x: isMe ? 2 : -2}}
-                    animate={{opacity: 1, x: 0}}
-                    transition={{duration: 0.2, ease: 'easeIn'}}
-                  >
-                    <ChatMessage
-                      key={key}
-                      message={msg}
-                      isMe={isMe}
-                      companyName={companyName}
-                      isLastInGroup={isLastInGroup}
-                      shouldDisplayTimestamp={shouldDisplayTimestamp}
+                var userBot = {
+                  archived_at: null,
+                  created_at: '2024-03-11T07:13:39',
+                  disabled_at: null,
+                  display_name: null,
+                  email: 'testhotel@inhotel.io',
+                  full_name: null,
+                  id: 117,
+                  object: 'user',
+                  profile_photo_url:
+                    'https://uploads-ssl.webflow.com/657ae60d92ed823479730a3f/65c81fd78f53ab369e2e65d1_guest-relations-assistant-avatar-64x64-black.png',
+                  role: 'admin',
+                };
+                // if (msg.user != null){
+                //   userBot = msg.user;
+                // }
+                const loader =
+                  isLastMessage && this.state.shouldShowMessageLoading ? (
+                    <SyncLoader
+                      color={this.props.primaryColor}
+                      size="7px"
+                      speedMultiplier={0.5}
                     />
-                  </motion.div>
+                  ) : null;
+                return (
+                  <React.Fragment key={key}>
+                    <motion.div
+                      initial={{opacity: 0, x: isMe ? 2 : -2}}
+                      animate={{opacity: 1, x: 0}}
+                      transition={{duration: 0.2, ease: 'easeIn'}}
+                    >
+                      <ChatMessage
+                        message={msg}
+                        isMe={isMe}
+                        companyName={companyName}
+                        isLastInGroup={isLastInGroup}
+                        shouldDisplayTimestamp={isLastMessage}
+                        shouldShowLoader={false}
+                      />
+                    </motion.div>
+                    {isLastMessage && this.state.shouldShowMessageLoading && (
+                      <motion.div
+                        initial={{opacity: 0}}
+                        animate={{opacity: 1}}
+                        transition={{duration: 0.2}}
+                      >
+                        <ChatMessage
+                          message={{body: '', user: userBot}}
+                          loader={loader}
+                          shouldShowLoader={true}
+                        />
+                        {/* <SyncLoader color={this.props.primaryColor}  size='7px'/> */}
+                      </motion.div>
+                    )}
+                  </React.Fragment>
                 );
               })}
 

@@ -6,6 +6,7 @@ import BotIcon from './BotIcon';
 import ChatMessageBody from './ChatMessageBody';
 import {Message, User} from '../helpers/types';
 import styles from './ChatMessage.module.css';
+import {SyncLoader} from 'react-spinners';
 
 dayjs.extend(utc);
 
@@ -103,6 +104,8 @@ type Props = {
   isLastInGroup?: boolean;
   companyName?: string;
   shouldDisplayTimestamp?: boolean;
+  shouldShowLoader?: boolean;
+  loader?: React.ReactNode;
 };
 
 const ChatMessage = ({
@@ -111,6 +114,8 @@ const ChatMessage = ({
   companyName,
   isLastInGroup,
   shouldDisplayTimestamp,
+  shouldShowLoader,
+  loader,
 }: Props) => {
   const {body, created_at, user, type, attachments = []} = message;
   const created = created_at ? dayjs.utc(created_at) : null;
@@ -216,6 +221,7 @@ const ChatMessage = ({
     </span>
   );
 
+  // console.log("ShowLoader?: ",shouldShowLoader);
   if (isMe) {
     return (
       <Box pr={0} pl={4} pb={isLastInGroup ? 3 : 2}>
@@ -246,18 +252,21 @@ const ChatMessage = ({
     <Box pr={4} pl={0} pb={isLastInGroup ? 3 : 2}>
       <Flex sx={{justifyContent: 'flex-start', alignItems: 'center'}}>
         <SenderAvatar name={identifer} user={user} isBot={isBot} />
+        {!shouldShowLoader && (
+          <ChatMessageBody
+            sx={{
+              color: 'text',
+              bg: 'rgb(245, 245, 245)',
+              whiteSpace: 'pre-wrap',
+            }}
+            content={body}
+            attachments={attachments}
+            thumbsup={thumbsup}
+            thumbsdown={thumbsdown}
+          />
+        )}
 
-        <ChatMessageBody
-          sx={{
-            color: 'text',
-            bg: 'rgb(245, 245, 245)',
-            whiteSpace: 'pre-wrap',
-          }}
-          content={body}
-          attachments={attachments}
-          thumbsup={thumbsup}
-          thumbsdown={thumbsdown}
-        />
+        {loader}
       </Flex>
 
       {shouldDisplayTimestamp && (

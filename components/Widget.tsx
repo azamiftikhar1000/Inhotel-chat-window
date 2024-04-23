@@ -186,7 +186,6 @@ class Wrapper extends React.Component<Props, State> {
     } else {
       shouldShowCF = false;
     }
-    // console.log('Widget: ', shouldShowCF, 'Type: ', typeof shouldShowCF);
     return (
       <ThemeProvider theme={theme}>
         <ChatWindow

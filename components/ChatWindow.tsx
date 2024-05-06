@@ -326,12 +326,12 @@ class ChatWindow extends React.Component<Props, State> {
   };
 
   scrollIntoView = () => {
-    this.scrollToEl && this.scrollToEl.scrollIntoView(false);
+    if (this.scrollToEl && this.scrollToEl.parentElement) {
+      const parent = this.scrollToEl.parentElement;
+      parent.scrollTop = this.scrollToEl.offsetTop - parent.offsetTop;
+    }
   };
 
-  // If the page is not visible (i.e. user is looking at another tab),
-  // we want to mark messages as read once the chat widget becomes visible
-  // again, as long as it's open.
   handleVisibilityChange = (e?: any) => {
     const doc = document || (e && e.target);
 

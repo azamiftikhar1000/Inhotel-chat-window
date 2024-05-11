@@ -21,6 +21,7 @@ const ChatFooterEmail = ({
   isSubmittedCF,
   hotelEmail,
   hotelPhone,
+  shouldShowContactForm,
   isLoading,
   statusMessageCF,
   handleSummarize,
@@ -352,7 +353,7 @@ const ChatFooterEmail = ({
                   visibility: isMailIconClicked ? 'hidden' : 'visible',
                 }}
               >
-                <MailIcon />
+                {shouldShowContactForm && <MailIcon />}
               </Box>
             </Tippy>
           </Box>

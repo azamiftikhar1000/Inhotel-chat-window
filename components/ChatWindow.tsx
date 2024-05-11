@@ -969,7 +969,7 @@ class ChatWindow extends React.Component<Props, State> {
             </Box>
           )}
 
-          {shouldShowContactForm && (
+          {true && (
             <Box
               px={'20px'}
               // className="footer-bg"

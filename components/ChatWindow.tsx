@@ -638,6 +638,9 @@ class ChatWindow extends React.Component<Props, State> {
             } else {
               // console.log("message before summarize: ", this.state.message);
               this.setState({message: data.summarize_chat_message});
+              this.setState({email: data.email});
+              this.setState({firstName: data.first_name});
+              this.setState({lastName: data.last_name});
               this.setState({isSummarizeGenerated: true});
               // console.log("message after summarize: ", this.state.message);
             }

@@ -33,7 +33,7 @@ import EmbeddedGame from './EmbeddedGame';
 import UnreadMessages from './UnreadMessages';
 import QuickReplies from './QuickReplies';
 import ContactForm from './ContactForm';
-import {SyncLoader} from 'react-spinners';
+import {PulseLoader, SyncLoader} from 'react-spinners';
 import ChatFooterEmail from './ChatFooterEmail';
 // import Swal from 'sweetalert2';
 
@@ -917,11 +917,19 @@ class ChatWindow extends React.Component<Props, State> {
                 // }
                 const loader =
                   isLastMessage && this.state.shouldShowMessageLoading ? (
-                    <SyncLoader
-                      color={this.props.primaryColor}
-                      size="7px"
-                      speedMultiplier={0.5}
-                    />
+                    <Box
+                      sx={{
+                        backgroundColor: 'rgba(200, 200, 200, 0.2)',
+                        padding: '6px 10px',
+                        borderRadius: '10px',
+                      }}
+                    >
+                      <PulseLoader
+                        color="rgba(200, 200, 200, 1.0)"
+                        size="7px"
+                        speedMultiplier={0.4}
+                      />
+                    </Box>
                   ) : null;
                 return (
                   <React.Fragment key={key}>

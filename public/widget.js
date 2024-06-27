@@ -18524,7 +18524,7 @@ fetch(url, {
         DC = function () {
           return Q.d.createElement(
             'svg',
-            {width: '45', height: '45', viewBox: '0 0 27 27'},
+            {width: '36', height: '36', viewBox: '0 0 27 27'},
             Q.d.createElement(xc, {
               variants: {
                 closed: {opacity: 0, d: 'M 7.5 14.5 L 19 14.5'},
@@ -18550,7 +18550,7 @@ fetch(url, {
         sq = function () {
           return Q.d.createElement(
             'svg',
-            {width: '45', height: '45', viewBox: '0 0 24 25', fill: 'none'},
+            {width: '36', height: '36', viewBox: '0 0 24 25', fill: 'none'},
             Q.d.createElement(xc, {
               variants: {
                 closed: {opacity: 0, d: 'M 7.5 14.5 L 19 14.5'},
@@ -21340,8 +21340,8 @@ fetch(url, {
             border: 'none !important',
             userSelect: 'none !important',
             cursor: 'pointer',
-            width: '75px',
-            height: '75px',
+            width: '65px',
+            height: '65px',
             borderRadius: '50%',
             display: 'flex',
             justifyContent: 'center',

@@ -3,8 +3,10 @@ var inbox_id = ASSISTANT_INTERACTION_PROFILE_ID;
 var ACCOUNT_ID;
 
 var url =
-  'https://inhotel-bda7de42c465.herokuapp.com/api/v1/core/get_account_id_by_inbox_id?inbox_id=' +
+  'https://inhotel-bda7de42c465.herokuapp.com/public/pcps_account?inbox_id=' +
   encodeURIComponent(inbox_id);
+// 'https://inhotel-bda7de42c465.herokuapp.com/api/v1/core/get_account_id_by_inbox_id?inbox_id=' +
+// encodeURIComponent(inbox_id);
 (xD = 'https://inhotel-chat-window-639f6321c606.herokuapp.com'),
   (ND = 'https://inhotel-chat.eastus.cloudapp.azure.com');
 OD = 'https://inhotel-chat-window-639f6321c606.herokuapp.com';
@@ -13,7 +15,7 @@ var Mq = 'https://inhotel-bda7de42c465.herokuapp.com';
 // LOCAL
 // var Mq = 'http://127.0.0.1:8000';
 // var url =
-//   'http://127.0.0.1:8000/api/v1/core/get_account_id_by_inbox_id?inbox_id=' +
+//   'http://127.0.0.1:8000/public/pcps_account?inbox_id=' +
 //   encodeURIComponent(inbox_id);
 // ND = 'https://inhotel-chat.eastus.cloudapp.azure.com';
 // OD = 'http://127.0.0.1:3000';
@@ -20334,7 +20336,7 @@ fetch(url, {
                 return [
                   2,
                   $jn4M$$interop$default.d
-                    .get(Mq + '/api/v1/core/get_widget_settings')
+                    .get(Mq + '/public/get_widget_settings')
                     .query(t)
                     .then(function (t) {
                       return t.body.data;

@@ -8,7 +8,7 @@ var url =
 // 'https://inhotel-bda7de42c465.herokuapp.com/api/v1/core/get_account_id_by_inbox_id?inbox_id=' +
 // encodeURIComponent(inbox_id);
 (xD = 'https://inhotel-chat-window-639f6321c606.herokuapp.com'),
-  (ND = 'https://inhotel-chat.eastus.cloudapp.azure.com');
+  (ND = 'https://inhotel.eastus.cloudapp.azure.com');
 OD = 'https://inhotel-chat-window-639f6321c606.herokuapp.com';
 var Mq = 'https://inhotel-bda7de42c465.herokuapp.com';
 
@@ -17,7 +17,7 @@ var Mq = 'https://inhotel-bda7de42c465.herokuapp.com';
 // var url =
 //   'http://127.0.0.1:8000/public/pcps_account?inbox_id=' +
 //   encodeURIComponent(inbox_id);
-// ND = 'https://inhotel-chat.eastus.cloudapp.azure.com';
+// ND = 'https://inhotel.eastus.cloudapp.azure.com';
 // OD = 'http://127.0.0.1:3000';
 // (xD = 'http://127.0.0.1:3000'),
 fetch(url, {

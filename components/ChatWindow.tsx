@@ -619,7 +619,7 @@ class ChatWindow extends React.Component<Props, State> {
         console.log('Call an API');
         console.log('Conversation ID: ', this.state.conversationId);
         fetch(
-          'https://inhotel-bda7de42c465.herokuapp.com/contact_form/summarize_chat_history/',
+          'https://inhotelbackend-c4bc9f1fa885.herokuapp.com/contact_form/summarize_chat_history/',
           {
             method: 'POST',
             headers: {

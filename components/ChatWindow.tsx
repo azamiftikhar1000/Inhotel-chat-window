@@ -702,7 +702,7 @@ class ChatWindow extends React.Component<Props, State> {
     console.log('Submitting...');
 
     fetch(
-      'https://inhotel-bda7de42c465.herokuapp.com/contact_form/send_email',
+      'https://inhotelbackend-c4bc9f1fa885.herokuapp.com/contact_form/send_email',
       {
         method: 'POST',
         headers: {

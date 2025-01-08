@@ -38,18 +38,19 @@ const SenderAvatar = ({
   name,
   user,
   isBot,
+  avatarURL,
 }: {
   name: string;
   user?: User;
   isBot?: boolean;
+  avatarURL?: string;
 }) => {
   if (!isBot) {
     // Transparent
     // user.profile_photo_url =
     //   'https://uploads-ssl.webflow.com/657ae60d92ed823479730a3f/65c81fa5c254bb0f9763ce5f_guest-relations-assistant-avatar-64x64-transparent.png';
     // Black
-    user.profile_photo_url =
-      'https://uploads-ssl.webflow.com/657ae60d92ed823479730a3f/65c81fd78f53ab369e2e65d1_guest-relations-assistant-avatar-64x64-black.png';
+    user.profile_photo_url = avatarURL;
     // White
     // user.profile_photo_url =
     //   'https://uploads-ssl.webflow.com/657ae60d92ed823479730a3f/65c81fcb8e01ed41a967bd37_guest-relations-assistant-avatar-64x64-white.png'
@@ -68,7 +69,7 @@ const SenderAvatar = ({
           justifyContent: 'center',
           alignItems: 'center',
 
-          backgroundPosition: 'center',
+          backgroundPosition: 'top',
           backgroundSize: 'cover',
           backgroundImage: `url(${profilePhotoUrl})`,
         }}
@@ -106,6 +107,7 @@ type Props = {
   shouldDisplayTimestamp?: boolean;
   shouldShowLoader?: boolean;
   loader?: React.ReactNode;
+  avatarURL?: string;
 };
 
 const ChatMessage = ({
@@ -116,6 +118,7 @@ const ChatMessage = ({
   shouldDisplayTimestamp,
   shouldShowLoader,
   loader,
+  avatarURL,
 }: Props) => {
   const {body, created_at, user, type, attachments = []} = message;
   const created = created_at ? dayjs.utc(created_at) : null;
@@ -251,7 +254,12 @@ const ChatMessage = ({
   return (
     <Box pr={4} pl={0} pb={isLastInGroup ? 3 : 2}>
       <Flex sx={{justifyContent: 'flex-start', alignItems: 'center'}}>
-        <SenderAvatar name={identifer} user={user} isBot={isBot} />
+        <SenderAvatar
+          name={identifer}
+          user={user}
+          isBot={isBot}
+          avatarURL={avatarURL}
+        />
         {!shouldShowLoader && (
           <ChatMessageBody
             sx={{
@@ -278,7 +286,7 @@ const ChatMessage = ({
   );
 };
 
-export const PopupChatMessage = ({message}: Props) => {
+export const PopupChatMessage = ({message, avatarURL}: Props) => {
   const {body, user, type} = message;
   const isBot = type === 'bot';
   const identifer = isBot ? 'Bot' : getAgentIdentifier(user);
@@ -289,7 +297,12 @@ export const PopupChatMessage = ({message}: Props) => {
       <Flex
         sx={{justifyContent: 'flex-start', alignItems: 'center', width: '100%'}}
       >
-        <SenderAvatar name={identifer} user={user} isBot={isBot} />
+        <SenderAvatar
+          name={identifer}
+          user={user}
+          isBot={isBot}
+          avatarURL={avatarURL}
+        />
 
         <ChatMessageBody
           sx={{

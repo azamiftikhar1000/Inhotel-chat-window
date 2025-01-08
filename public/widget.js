@@ -23078,7 +23078,8 @@ fetch(url, {
                   x,
                   position,
                   email,
-                  phone;
+                  phone,
+                  assistantType;
 
                 return gd(this, function (I) {
                   switch (I.label) {
@@ -23118,6 +23119,7 @@ fetch(url, {
                         (position = a.position || i.position),
                         (email = a.hotel_email || i.hotelEmail),
                         (phone = a.hotel_phone || i.hotelPhone),
+                        (assistantType = a.assistant_type || i.assistantType),
                         (this.logger = new Uq(!!J)),
                         (this.subscriptions = [
                           yD(window, this.postMessageHandlers),
@@ -23151,6 +23153,7 @@ fetch(url, {
                         'Type: ',
                         typeof a.should_show_contact_form
                       );
+                      console.log('Avatar URL: ', a.assistant_type);
                       return (
                         (T.greeting = I.sent()),
                         (T.awayMessage = p || a.away_message),
@@ -23197,6 +23200,7 @@ fetch(url, {
                         )),
                         (T.hotelEmail = a.hotel_email),
                         (T.hotelPhone = a.hotel_phone),
+                        (T.assistantType = a.assistant_type),
                         (O = T),
                         (x = $FvpG$$interop$default.d.stringify(O, {
                           skipEmptyString: !0,

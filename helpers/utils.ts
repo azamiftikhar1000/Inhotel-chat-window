@@ -1,3 +1,4 @@
+import configData from '../avatar-config.json';
 // TODO: handle this on the server instead
 export function now() {
   const date = new Date();
@@ -89,3 +90,11 @@ export function setupPostMessageHandlers(w: any, handler: (msg: any) => void) {
     return () => w.detachEvent('message', cb);
   }
 }
+
+export const loadAvatarConfig = (assistantType: string): string => {
+  const data = configData['assistant-type-to-avatar-url']; // Access the array
+  const config = data.find((item) => item['assistant-type'] === assistantType);
+  return config
+    ? config['avatar-url']
+    : data.find((item) => item['assistant-type'] === 'default')!['avatar-url'];
+};

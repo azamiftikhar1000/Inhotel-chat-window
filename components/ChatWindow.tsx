@@ -66,6 +66,7 @@ type Props = {
   shouldShowContactForm?: boolean;
   hotelPhone?: string;
   hotelEmail?: string;
+  avatarURL?: string;
 };
 
 type State = {
@@ -100,6 +101,7 @@ type State = {
   shouldSummarize: boolean;
   isSummarizeGenerated: boolean;
   shouldShowMessageLoading: boolean;
+  avatarURL: string;
 };
 
 class ChatWindow extends React.Component<Props, State> {
@@ -183,6 +185,7 @@ class ChatWindow extends React.Component<Props, State> {
       shouldSummarize: false,
       isSummarizeGenerated: false,
       shouldShowMessageLoading: false,
+      avatarURL: props.avatarURL,
     };
   }
 
@@ -773,6 +776,7 @@ class ChatWindow extends React.Component<Props, State> {
       accountId,
       baseUrl,
       shouldShowContactForm = false,
+      avatarURL,
     } = this.props;
     const {
       customerId,
@@ -908,8 +912,7 @@ class ChatWindow extends React.Component<Props, State> {
                   full_name: null,
                   id: 117,
                   object: 'user',
-                  profile_photo_url:
-                    'https://uploads-ssl.webflow.com/657ae60d92ed823479730a3f/65c81fd78f53ab369e2e65d1_guest-relations-assistant-avatar-64x64-black.png',
+                  profile_photo_url: this.state.avatarURL,
                   role: 'admin',
                 };
                 // if (msg.user != null){
@@ -945,6 +948,7 @@ class ChatWindow extends React.Component<Props, State> {
                         isLastInGroup={isLastInGroup}
                         shouldDisplayTimestamp={isLastMessage}
                         shouldShowLoader={false}
+                        avatarURL={avatarURL}
                       />
                     </motion.div>
                     {isLastMessage && this.state.shouldShowMessageLoading && (
@@ -957,6 +961,7 @@ class ChatWindow extends React.Component<Props, State> {
                           message={{body: '', user: userBot}}
                           loader={loader}
                           shouldShowLoader={true}
+                          avatarURL={avatarURL}
                         />
                         {/* <SyncLoader color={this.props.primaryColor}  size='7px'/> */}
                       </motion.div>

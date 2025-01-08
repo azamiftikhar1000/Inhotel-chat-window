@@ -2,7 +2,7 @@ import React from 'react';
 import {ThemeProvider} from 'theme-ui';
 import ChatWindow from './ChatWindow';
 import {CustomerMetadata} from '../helpers/types';
-import {setupPostMessageHandlers} from '../helpers/utils';
+import {loadAvatarConfig, setupPostMessageHandlers} from '../helpers/utils';
 import getThemeConfig from '../helpers/theme';
 import Logger from '../helpers/logger';
 
@@ -38,6 +38,7 @@ type Config = {
   shouldShowContactForm?: string;
   hotelPhone?: string;
   hotelEmail?: string;
+  assistantType?: string;
 };
 
 const parseCustomerMetadata = (str: string): CustomerMetadata => {
@@ -79,6 +80,7 @@ const sanitizeConfigPayload = (payload: any): Config => {
     'shouldShowContactForm',
     'hotelPhone',
     'hotelEmail',
+    'assistantType',
   ];
 
   return valid.reduce((acc, key) => {
@@ -175,6 +177,7 @@ class Wrapper extends React.Component<Props, State> {
       shouldShowContactForm = false,
       hotelPhone,
       hotelEmail,
+      assistantType,
     } = config;
 
     const theme = getThemeConfig({primary: primaryColor});
@@ -186,6 +189,7 @@ class Wrapper extends React.Component<Props, State> {
     } else {
       shouldShowCF = false;
     }
+    const avatarURL = loadAvatarConfig(assistantType || 'default');
     return (
       <ThemeProvider theme={theme}>
         <ChatWindow
@@ -217,6 +221,7 @@ class Wrapper extends React.Component<Props, State> {
           shouldShowContactForm={shouldShowCF}
           hotelPhone={hotelPhone}
           hotelEmail={hotelEmail}
+          avatarURL={avatarURL}
         />
       </ThemeProvider>
     );

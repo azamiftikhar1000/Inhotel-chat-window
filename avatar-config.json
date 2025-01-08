@@ -1,0 +1,48 @@
+{
+  "assistant-type-to-avatar-url": [
+    {
+      "assistant-type": "default",
+      "avatar-url": "https://uploads-ssl.webflow.com/657ae60d92ed823479730a3f/65c81fd78f53ab369e2e65d1_guest-relations-assistant-avatar-64x64-black.png"
+    },
+    {
+      "assistant-type": "GR",
+      "avatar-url": "https://cdn.prod.website-files.com/657ae60d92ed823479730a84/65f503cce5834f0c49270e76_avatar-guest-relations-yellow.webp"
+    },
+    {
+      "assistant-type": "STA",
+      "avatar-url": "https://cdn.prod.website-files.com/657ae60d92ed823479730a84/667187b2acde27d4fc02bf90_avatar-staff.webp"
+    },
+    {
+      "assistant-type": "FIN",
+      "avatar-url": "https://cdn.prod.website-files.com/657ae60d92ed823479730a84/675e0632716db936a4a6f0b1_avatar-finance.webp"
+    },
+    {
+      "assistant-type": "REV",
+      "avatar-url": "https://cdn.prod.website-files.com/657ae60d92ed823479730a84/66e996ef87ad4d164a08cb68_avatar-revenue.webp"
+    },
+    {
+      "assistant-type": "GM",
+      "avatar-url": "https://cdn.prod.website-files.com/657ae60d92ed823479730a84/668da332474aff9f60eae23e_avatar-general-manager.webp"
+    },
+    {
+      "assistant-type": "PS",
+      "avatar-url": "https://uploads-ssl.webflow.com/657ae60d92ed823479730a3f/65c81fd78f53ab369e2e65d1_guest-relations-assistant-avatar-64x64-black.png"
+    },
+    {
+      "assistant-type": "RES",
+      "avatar-url": "https://cdn.prod.website-files.com/657ae60d92ed823479730a84/673dec299d24423142f23736_avatar-reservations.webp"
+    },
+    {
+      "assistant-type": "FB",
+      "avatar-url": "https://cdn.prod.website-files.com/657ae60d92ed823479730a84/65f5088f544bd21f10d75df3_avatar-fb.webp"
+    },
+    {
+      "assistant-type": "TA",
+      "avatar-url": "https://cdn.prod.website-files.com/657ae60d92ed823479730a84/67718b383accc7fffb2e73eb_avatar-travel-agent-p-500.webp"
+    },
+    {
+      "assistant-type": "MKT",
+      "avatar-url": "https://cdn.prod.website-files.com/657ae60d92ed823479730a84/65f5085f91716018cffdce0a_avatar-training.webp"
+    }
+  ]
+}

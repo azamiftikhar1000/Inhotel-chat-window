@@ -3,14 +3,14 @@ var inbox_id = ASSISTANT_INTERACTION_PROFILE_ID;
 var ACCOUNT_ID;
 
 var url =
-  'https://inhotelbackend-c4bc9f1fa885.herokuapp.com/public/pcps_account?inbox_id=' +
+  'https://backend.inhotel.io/public/pcps_account?inbox_id=' +
   encodeURIComponent(inbox_id);
 // 'https://inhotelbackend-c4bc9f1fa885.herokuapp.com/api/v1/core/get_account_id_by_inbox_id?inbox_id=' +
 // encodeURIComponent(inbox_id);
 (xD = 'https://inhotel-chat-window-639f6321c606.herokuapp.com'),
   (ND = 'https://inhotel.eastus.cloudapp.azure.com');
 OD = 'https://inhotel-chat-window-639f6321c606.herokuapp.com';
-var Mq = 'https://inhotelbackend-c4bc9f1fa885.herokuapp.com';
+var Mq = 'https://backend.inhotel.io';
 
 // LOCAL
 // var Mq = 'http://127.0.0.1:8000';

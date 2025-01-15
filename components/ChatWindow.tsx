@@ -622,7 +622,7 @@ class ChatWindow extends React.Component<Props, State> {
         console.log('Call an API');
         console.log('Conversation ID: ', this.state.conversationId);
         fetch(
-          'https://inhotelbackend-c4bc9f1fa885.herokuapp.com/contact_form/summarize_chat_history/',
+          'https://backend.inhotel.io/contact_form/summarize_chat_history/',
           {
             method: 'POST',
             headers: {
@@ -704,22 +704,19 @@ class ChatWindow extends React.Component<Props, State> {
     });
     console.log('Submitting...');
 
-    fetch(
-      'https://inhotelbackend-c4bc9f1fa885.herokuapp.com/contact_form/send_email',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          firstname: firstName,
-          lastname: lastName,
-          email: email,
-          message: message,
-          inbox_id: this.props.inboxId,
-        }),
-      }
-    )
+    fetch('https://backend.inhotel.io/contact_form/send_email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstname: firstName,
+        lastname: lastName,
+        email: email,
+        message: message,
+        inbox_id: this.props.inboxId,
+      }),
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

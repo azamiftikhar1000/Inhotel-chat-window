@@ -39,6 +39,7 @@
     "theme-ui": "0.3.1",
     "tinycolor2": "^1.4.1",
     "tippy.js": "^6.3.7",
+    "twemoji": "^14.0.2",
     "use-composed-ref": "^1.1.0",
     "use-latest": "^1.2.0"
   },

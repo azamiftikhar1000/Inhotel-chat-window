@@ -1,0 +1,29 @@
+/* Emoji styling */
+.emoji-wrapper {
+  display: inline;
+}
+
+.emoji-icon {
+  display: inline-block;
+  height: 1.2em;
+  width: 1.2em;
+  margin: 0 0.1em;
+  vertical-align: -0.2em;
+}
+
+img.emoji {
+  height: 1.2em;
+  width: 1.2em;
+  margin: 0 0.05em 0 0.1em;
+  vertical-align: -0.2em;
+  display: inline;
+}
+
+/* Support for both emoji renderers */
+.twemoji-wrapper img.emoji {
+  height: 1.2em;
+  width: 1.2em;
+  margin: 0 0.05em 0 0.1em;
+  vertical-align: -0.2em;
+  display: inline;
+}

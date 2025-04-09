@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import breaks from 'remark-breaks';
-import {Twemoji} from 'react-emoji-render';
 import {Box, Image} from 'theme-ui';
 import {Attachment} from '../helpers/types';
+import CustomEmoji from './CustomEmoji';
 
 /**
  * Whitelist node types that we allow when we render markdown.
@@ -30,7 +30,7 @@ export const allowedNodeTypes: any[] = [
 
 const renderers = {
   text: (props: any) => {
-    return <Twemoji text={props.children} />;
+    return <CustomEmoji text={props.children} className="message-text" />;
   },
   image: (props: any) => {
     return <img {...props} style={{maxWidth: '100%', maxHeight: 400}} />;

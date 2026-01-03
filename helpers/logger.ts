@@ -10,7 +10,7 @@ class Logger {
       return;
     }
 
-    console.debug('[Papercups iframe]', ...args);
+    console.debug('[InHotel]', ...args);
   }
 
   log(...args: any) {
@@ -18,19 +18,19 @@ class Logger {
       return;
     }
 
-    console.log('[Papercups iframe]', ...args);
+    console.log('[InHotel]', ...args);
   }
 
   info(...args: any) {
-    console.info('[Papercups iframe]', ...args);
+    console.info('[InHotel]', ...args);
   }
 
   warn(...args: any) {
-    console.warn('[Papercups iframe]', ...args);
+    console.warn('[InHotel]', ...args);
   }
 
   error(...args: any) {
-    console.error('[Papercups iframe]', ...args);
+    console.error('[InHotel]', ...args);
   }
 }
 

@@ -1,16 +1,33 @@
 import React, {useState} from 'react';
 import {Box, Flex, Heading, Text, ThemeProvider} from 'theme-ui';
-import {Presence} from 'phoenix';
+
 import {motion} from 'framer-motion';
 import {
-  Papercups,
-  isCustomerMessage,
-  isAgentMessage,
-} from '@papercups-io/browser';
+  streamMessage,
+  ChatMessage as A2AChatMessage,
+} from '../helpers/a2a-client';
+import {
+  getChatHistory,
+  saveChatHistory,
+  getSessionId,
+  getContextId,
+  setContextId,
+  clearChatSession,
+  StoredMessage,
+} from '../helpers/storage';
+
+// Local helper functions (A2A mode)
+const isCustomerMessage = (msg: any, customerId?: string): boolean => {
+  return !!(msg?.customer_id || msg?.type === 'customer');
+};
+
+const isAgentMessage = (msg: any): boolean => {
+  return !!(msg?.user_id || msg?.type === 'agent' || msg?.type === 'bot');
+};
 import ChatMessage from './ChatMessage';
 import ChatFooter from './ChatFooter';
 import AgentAvailability from './AgentAvailability';
-import PapercupsBranding from './PapercupsBranding';
+import InhotelBranding from './InhotelBranding';
 import CloseIcon from './CloseIcon';
 import {
   shorten,
@@ -108,7 +125,7 @@ class ChatWindow extends React.Component<Props, State> {
   scrollToEl: any = null;
   subscriptions: Array<() => void> = [];
   logger: Logger;
-  papercups: Papercups;
+  // A2A mode - no legacy SDK instance
 
   constructor(props: Props) {
     super(props);
@@ -128,22 +145,8 @@ class ChatWindow extends React.Component<Props, State> {
     const win = window as any;
     const doc = (document || win.document) as any;
 
-    this.papercups = Papercups.init({
-      customerId: props.customerId,
-      accountId: props.accountId,
-      inboxId: props.inboxId,
-      baseUrl: props.baseUrl,
-      customer: props.customer,
-      debug: debugModeEnabled,
-      setInitialMessage: this.getDefaultGreeting,
-      onPresenceSync: this.onPresenceSync,
-      onSetCustomerId: this.onSetCustomerId,
-      onSetConversationId: this.onSetConversationId,
-      onSetWidgetSettings: this.onWidgetSettingsLoaded,
-      onMessagesUpdated: this.onMessagesUpdated,
-      onConversationCreated: this.onConversationCreated,
-      onMessageCreated: this.handleNewMessage,
-    });
+    // A2A mode - no legacy initialization needed
+    // Messages and session will be loaded from localStorage in componentDidMount
 
     this.subscriptions = [
       setupPostMessageHandlers(win, this.postMessageHandlers),
@@ -190,18 +193,66 @@ class ChatWindow extends React.Component<Props, State> {
   }
 
   async componentDidMount() {
-    await this.papercups.start();
+    // A2A mode - restore history from localStorage
+    const {inboxId, greeting} = this.props;
+    if (inboxId) {
+      const savedHistory = getChatHistory(inboxId);
+      const savedSessionId = getSessionId(inboxId);
+
+      // Convert StoredMessage to Message format
+      const restoredMessages: Message[] = savedHistory.map((m, idx) => ({
+        id: `restored-${idx}`,
+        body: m.content,
+        customer_id: m.role === 'user' ? 'customer' : undefined,
+        user_id: m.role === 'assistant' ? 1 : undefined, // Use number for user_id
+        created_at: m.timestamp,
+        type: (m.role === 'user' ? 'customer' : 'agent') as
+          | 'customer'
+          | 'agent'
+          | 'bot',
+        // Add user object for assistant messages to preserve avatar
+        user:
+          m.role === 'assistant'
+            ? {
+                id: 1,
+                email: 'assistant@inhotel.io',
+                display_name: null,
+                full_name: null,
+                profile_photo_url: this.state.avatarURL,
+              }
+            : undefined,
+      }));
+
+      // Add greeting if no messages and greeting exists
+      if (restoredMessages.length === 0 && greeting) {
+        restoredMessages.push({
+          id: 'greeting',
+          body: greeting,
+          customer_id: undefined,
+          user_id: 0, // Bot user
+          created_at: new Date().toISOString(),
+          type: 'bot',
+        });
+      }
+
+      this.setState({
+        messages: restoredMessages,
+        conversationId: savedSessionId,
+      });
+    }
 
     this.emit('chat:loaded');
 
     if (this.isOnDeprecatedVersion()) {
-      console.warn('You are currently on a deprecated version of Papercups.');
-      console.warn('Please upgrade to version 1.1.2 or above.');
+      console.warn(
+        'You are currently on a deprecated version of InHotel Chat.'
+      );
+      console.warn('Please upgrade to the latest version.');
     }
   }
 
   componentWillUnmount() {
-    this.papercups.disconnect();
+    // A2A mode - no legacy SDK to disconnect
     this.subscriptions.forEach((unsubscribe) => {
       if (typeof unsubscribe === 'function') {
         unsubscribe();
@@ -222,18 +273,17 @@ class ChatWindow extends React.Component<Props, State> {
 
     switch (event) {
       case 'customer:set:id':
-        return this.papercups
-          .setCustomerId(payload)
-          .fetchLatestConversation(payload);
+        // A2A mode - customer ID handling is local
+        return this.setState({customerId: payload});
       case 'customer:update':
         return this.handleCustomerUpdated(payload);
       case 'notifications:display':
         return this.handleDisplayNotifications(payload);
-      case 'papercups:toggle':
+      case 'inhotel:toggle':
         return this.handleToggleDisplay(payload);
-      case 'papercups:plan':
-        return this.handlePapercupsPlan(payload);
-      case 'papercups:ping':
+      case 'inhotel:plan':
+        return this.handleInhotelPlan(payload);
+      case 'inhotel:ping':
         return this.logger.debug('Pong!');
       default:
         return null;
@@ -242,13 +292,10 @@ class ChatWindow extends React.Component<Props, State> {
 
   handleCustomerUpdated = (payload: any) => {
     const {customerId, metadata = {}} = payload;
-    const {email = null, external_id: externalId = null} = metadata;
-    const ts = this.props.ts || String(+new Date());
-    const identifier = externalId || email || ts;
-
-    return customerId
-      ? this.papercups.updateCustomerMetadata(customerId, metadata)
-      : this.papercups.identify(identifier, metadata);
+    // A2A mode - just update local state, no remote call
+    if (customerId) {
+      this.setState({customerId});
+    }
   };
 
   handleDisplayNotifications = (payload: any) => {
@@ -301,21 +348,6 @@ class ChatWindow extends React.Component<Props, State> {
     this.logger.debug('Handling conversation created:', data);
   };
 
-  onPresenceSync = (presence: Presence) => {
-    this.logger.debug('Syncing presence:', presence.list());
-
-    this.setState({
-      availableAgents: presence
-        .list()
-        .map(({metas}) => {
-          const [info] = metas;
-
-          return info;
-        })
-        .filter((info) => !!info.user_id),
-    });
-  };
-
   onMessagesUpdated = (messages: Array<Message>) => {
     this.setState({messages}, () => this.scrollIntoView());
 
@@ -358,7 +390,7 @@ class ChatWindow extends React.Component<Props, State> {
     }
   };
 
-  handlePapercupsPlan = (payload: any = {}) => {
+  handleInhotelPlan = (payload: any = {}) => {
     this.logger.debug('Handling subscription plan:', payload);
 
     const {settings = {} as WidgetSettings} = this.state;
@@ -418,7 +450,7 @@ class ChatWindow extends React.Component<Props, State> {
   };
 
   emitOpenWindow = (e: any) => {
-    this.emit('papercups:open', {});
+    this.emit('inhotel:open', {});
     // This is the state where we are waiting for parent window to reply,
     // letting us know when the transition from closed to open is over
     this.setState({isTransitioning: true});
@@ -426,7 +458,7 @@ class ChatWindow extends React.Component<Props, State> {
 
   emitCloseWindow = (e: any) => {
     this.setState({statusMessageCF: null});
-    this.emit('papercups:close', {});
+    this.emit('inhotel:close', {});
   };
 
   handleNewMessage = (message: Message) => {
@@ -462,9 +494,7 @@ class ChatWindow extends React.Component<Props, State> {
     this.logger.debug('Marking messages as seen!');
     this.emit('messages:seen', {});
 
-    if (customerId && conversationId) {
-      this.papercups.markMessagesAsSeen();
-    }
+    // A2A mode - no remote marking needed, just emit event
   };
 
   handleSendMessage = async (message: Partial<Message>, email?: string) => {
@@ -473,15 +503,126 @@ class ChatWindow extends React.Component<Props, State> {
     }
 
     const {body = ''} = message;
+    const {inboxId, baseUrl} = this.props;
+    const {messages, conversationId} = this.state;
 
     if (shouldActivateGameMode(body)) {
       this.setState({isGameMode: true});
-
       return;
     }
-    this.papercups.sendNewMessage(message, email);
-    this.setState({isSummarizeGenerated: false});
-    this.setState({shouldShowMessageLoading: true});
+
+    // A2A mode - send via streaming API
+    const userMessage: Message = {
+      id: `user-${Date.now()}`,
+      body: body,
+      customer_id: 'customer',
+      user_id: null,
+      created_at: new Date().toISOString(),
+      type: 'customer',
+    };
+
+    const updatedMessages = [...messages, userMessage];
+    this.setState(
+      {
+        messages: updatedMessages,
+        isSending: true,
+        isSummarizeGenerated: false,
+        shouldShowMessageLoading: true,
+      },
+      () => this.scrollIntoView()
+    );
+
+    // Convert to A2A history format
+    const a2aHistory = messages.map((m) => ({
+      role: (m.customer_id ? 'user' : 'assistant') as 'user' | 'assistant',
+      content: m.body || '',
+      timestamp: m.created_at || new Date().toISOString(),
+    }));
+
+    // Build A2A endpoint URL using subdomain pattern
+    const a2aUrl = `https://${inboxId}.agents.inhotel.io/`;
+
+    // Get existing contextId for session continuity
+    const existingContextId = inboxId ? getContextId(inboxId) : null;
+
+    try {
+      let fullResponse = '';
+
+      await streamMessage(
+        a2aUrl,
+        {
+          message: body,
+          assistant_id: inboxId || '',
+          session_id: conversationId || undefined,
+          context_id: existingContextId || undefined, // Include contextId for session continuity
+          history: a2aHistory,
+        },
+        // onToken
+        (token) => {
+          fullResponse = token; // artifact-update replaces, status-update appends in client
+          // Optional: Update UI with streaming text
+        },
+        // onComplete
+        (finalText, contextId) => {
+          // Store contextId for future messages
+          if (contextId && inboxId) {
+            setContextId(inboxId, contextId);
+          }
+
+          const assistantMessage: Message = {
+            id: `assistant-${Date.now()}`,
+            body: finalText,
+            customer_id: undefined,
+            user_id: 1, // Agent user (number type)
+            created_at: new Date().toISOString(),
+            type: 'agent',
+            user: {
+              id: 1,
+              email: 'assistant@inhotel.io',
+              display_name: null,
+              full_name: null,
+              profile_photo_url: this.state.avatarURL,
+            },
+          };
+
+          const newMessages = [...updatedMessages, assistantMessage];
+          this.setState({
+            messages: newMessages,
+            isSending: false,
+            shouldShowMessageLoading: false,
+          });
+
+          // Save to localStorage
+          const storedMessages: StoredMessage[] = newMessages.map((m) => ({
+            role: (m.customer_id ? 'user' : 'assistant') as
+              | 'user'
+              | 'assistant',
+            content: m.body || '',
+            timestamp: m.created_at || new Date().toISOString(),
+          }));
+          if (inboxId) {
+            saveChatHistory(inboxId, storedMessages);
+          }
+
+          this.emit('message:received', assistantMessage);
+          this.scrollIntoView();
+        },
+        // onError
+        (error) => {
+          console.error('Failed to send message:', error);
+          this.setState({
+            isSending: false,
+            shouldShowMessageLoading: false,
+          });
+        }
+      );
+    } catch (error) {
+      console.error('A2A message error:', error);
+      this.setState({
+        isSending: false,
+        shouldShowMessageLoading: false,
+      });
+    }
   };
 
   // If this is true, we don't allow the customer to send any messages
@@ -632,6 +773,7 @@ class ChatWindow extends React.Component<Props, State> {
               conversation_id: this.state.conversationId,
               inbox_id: this.props.inboxId,
             }),
+            mode: 'cors',
           }
         )
           .then((response) => {
@@ -867,7 +1009,7 @@ class ChatWindow extends React.Component<Props, State> {
               )}
               <Heading
                 as="h2"
-                className="Papercups-heading"
+                className="Inhotel-heading"
                 sx={{color: 'background', my: 1, mr: 12}}
               >
                 {title}
@@ -1066,15 +1208,15 @@ class ChatWindow extends React.Component<Props, State> {
             }}
           >
             {shouldDisplayBranding && (
-              <PapercupsBranding
+              <InhotelBranding
                 isMailIconClicked={this.state.isMailIconClicked}
               />
             )}
           </Box>
 
           <img
-            alt="Papercups"
-            src="https://papercups.s3.us-east-2.amazonaws.com/papercups-logo.svg"
+            alt="InHotel"
+            src="https://cdn.prod.website-files.com/657ae60d92ed823479730a3f/67fb02a683fe906731362325_inhotel-logo-green-400.svg"
             width="0"
             height="0"
           />

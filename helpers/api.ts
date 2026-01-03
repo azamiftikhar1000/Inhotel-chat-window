@@ -1,114 +1,112 @@
-import request from 'superagent';
-import {DEFAULT_BASE_URL} from './config';
-import {now} from './utils';
 import {CustomerMetadata, WidgetSettings} from './types';
+
+/**
+ * LEGACY API ENDPOINTS - DEPRECATED
+ *
+ * These functions are stubs from the old widget integration.
+ * The widget now uses the A2A (Agent-to-Agent) protocol for all communication.
+ *
+ * If these functions are called from legacy code, they will
+ * return empty responses to avoid errors.
+ */
 
 const EMPTY_METADATA = {} as CustomerMetadata;
 
+// Stub: No longer creates customers - legacy stub
 export const createNewCustomer = async (
   accountId: string,
   metadata: CustomerMetadata = EMPTY_METADATA,
-  baseUrl = DEFAULT_BASE_URL
+  baseUrl?: string
 ) => {
-  return request
-    .post(`${baseUrl}/api/customers`)
-    .send({
-      customer: {
-        ...metadata,
-        account_id: accountId,
-        // TODO: handle on the server instead?
-        first_seen: now(),
-        last_seen: now(),
-      },
-    })
-    .then((res) => res.body.data);
+  console.warn(
+    '[api.ts] createNewCustomer is deprecated - using A2A protocol instead'
+  );
+  return {id: 'stub-customer', ...metadata};
 };
 
+// Stub: No longer validates - legacy stub
 export const isValidCustomer = async (
   customerId: string,
   accountId: string,
-  baseUrl = DEFAULT_BASE_URL
+  baseUrl?: string
 ) => {
-  return request
-    .get(`${baseUrl}/api/customers/${customerId}/exists`)
-    .query({
-      account_id: accountId,
-    })
-    .then((res) => res.body.data);
+  console.warn(
+    '[api.ts] isValidCustomer is deprecated - using A2A protocol instead'
+  );
+  return true;
 };
 
+// Stub: No longer updates metadata - legacy stub
 export const updateCustomerMetadata = async (
   customerId: string,
   metadata: CustomerMetadata = EMPTY_METADATA,
-  baseUrl = DEFAULT_BASE_URL
+  baseUrl?: string
 ) => {
-  return request
-    .put(`${baseUrl}/api/customers/${customerId}/metadata`)
-    .send({
-      metadata,
-    })
-    .then((res) => res.body.data);
+  console.warn(
+    '[api.ts] updateCustomerMetadata is deprecated - using A2A protocol instead'
+  );
+  return metadata;
 };
 
+// Stub: No longer creates conversations - legacy stub
 export const createNewConversation = async (
   params: {
     account_id: string;
     customer_id: string;
     inbox_id?: string;
   },
-  baseUrl = DEFAULT_BASE_URL
+  baseUrl?: string
 ) => {
-  return request
-    .post(`${baseUrl}/api/conversations`)
-    .send({conversation: params})
-    .then((res) => res.body.data);
+  console.warn(
+    '[api.ts] createNewConversation is deprecated - using A2A protocol instead'
+  );
+  return {id: 'stub-conversation', ...params};
 };
 
+// Stub: No longer finds customers - legacy stub
 export const findCustomerByExternalId = async (
   externalId: string,
   accountId: string,
   filters: Record<string, any>,
-  baseUrl = DEFAULT_BASE_URL
+  baseUrl?: string
 ) => {
-  return request
-    .get(`${baseUrl}/api/customers/identify`)
-    .query({...filters, external_id: externalId, account_id: accountId})
-    .then((res) => res.body.data);
+  console.warn(
+    '[api.ts] findCustomerByExternalId is deprecated - using A2A protocol instead'
+  );
+  return null;
 };
 
+// Stub: No longer fetches conversations - legacy stub
 export const fetchCustomerConversations = async (
   query: {
     customer_id: string;
     account_id: string;
   },
-  baseUrl = DEFAULT_BASE_URL
+  baseUrl?: string
 ) => {
-  return request
-    .get(`${baseUrl}/api/conversations/customer`)
-    .query(query)
-    .then((res) => res.body.data);
+  console.warn(
+    '[api.ts] fetchCustomerConversations is deprecated - using A2A protocol instead'
+  );
+  return [];
 };
 
+// Stub: No longer fetches widget settings - legacy stub
 export const fetchWidgetSettings = async (
   query: {account_id: string; inbox_id?: string},
-  baseUrl = DEFAULT_BASE_URL
+  baseUrl?: string
 ): Promise<WidgetSettings> => {
-  return request
-    .get(`${baseUrl}/api/widget_settings`)
-    .query(query)
-    .then((res) => res.body.data);
+  console.warn(
+    '[api.ts] fetchWidgetSettings is deprecated - using A2A protocol instead'
+  );
+  return {} as WidgetSettings;
 };
 
+// Stub: No longer uploads - legacy stub
 export const upload = async (
   accountId: string,
   file: any,
-  baseUrl = DEFAULT_BASE_URL
+  baseUrl?: string
 ) => {
-  return request
-    .post(`${baseUrl}/api/upload`)
-    .send({
-      file,
-      account_id: accountId,
-    })
-    .then((res) => res.body.data);
+  console.warn('[api.ts] upload is deprecated - using A2A protocol instead');
+  return {file_url: ''};
 };

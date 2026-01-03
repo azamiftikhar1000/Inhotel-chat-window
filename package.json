@@ -20,14 +20,12 @@
     ]
   },
   "dependencies": {
-    "@papercups-io/browser": "0.0.4-beta.0",
     "@sentry/react": "^6.5.1",
     "@tippyjs/react": "^4.2.6",
     "antd": "^4.4.2",
     "dayjs": "^1.10.6",
     "framer-motion": "^2.3.0",
     "next": "^9.4.4",
-    "phoenix": "^1.5.4",
     "rc-upload": "^3.3.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -35,7 +33,6 @@
     "react-markdown": "^4.3.1",
     "react-spinners": "^0.13.8",
     "remark-breaks": "^2.0.0",
-    "superagent": "^5.3.1",
     "theme-ui": "0.3.1",
     "tinycolor2": "^1.4.1",
     "tippy.js": "^6.3.7",

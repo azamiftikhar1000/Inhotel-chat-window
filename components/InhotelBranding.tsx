@@ -2,11 +2,7 @@ import React from 'react';
 import {Flex, Link} from 'theme-ui';
 import MailIcon from './MailIcon';
 
-const PapercupsBranding = ({
-  isMailIconClicked,
-}: {
-  isMailIconClicked: boolean;
-}) => {
+const InhotelBranding = ({isMailIconClicked}: {isMailIconClicked: boolean}) => {
   // console.log("MailIcon: ", isMailIconClicked, "Type: ", typeof isMailIconClicked);
   return (
     <Flex p={2} pt={0} sx={{justifyContent: 'center', alignItems: 'center'}}>
@@ -29,4 +25,4 @@ const PapercupsBranding = ({
   );
 };
 
-export default PapercupsBranding;
+export default InhotelBranding;

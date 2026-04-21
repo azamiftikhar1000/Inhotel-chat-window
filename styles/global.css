@@ -60,6 +60,149 @@ body {
   white-space: pre-wrap;
 }
 
+.Text--markdown h1,
+.Text--markdown h2,
+.Text--markdown h3,
+.Text--markdown h4,
+.Text--markdown h5,
+.Text--markdown h6 {
+  margin: 10px 0 6px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+.Text--markdown h1 {
+  font-size: 1.5em;
+}
+.Text--markdown h2 {
+  font-size: 1.35em;
+}
+.Text--markdown h3 {
+  font-size: 1.2em;
+}
+.Text--markdown h4 {
+  font-size: 1.1em;
+}
+.Text--markdown h5 {
+  font-size: 1em;
+}
+.Text--markdown h6 {
+  font-size: 0.95em;
+  color: #6b7280;
+}
+
+.Text--markdown ul,
+.Text--markdown ol {
+  padding-left: 22px;
+}
+.Text--markdown ul ul,
+.Text--markdown ol ol,
+.Text--markdown ul ol,
+.Text--markdown ol ul {
+  margin: 2px 0;
+}
+.Text--markdown li {
+  margin: 2px 0;
+}
+.Text--markdown li > p {
+  margin: 0;
+}
+.Text--markdown-task {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.Text--markdown-task > input[type='checkbox'] {
+  cursor: default;
+}
+
+.Text--markdown blockquote {
+  color: rgba(60, 70, 80, 0.85);
+}
+
+.Text--markdown-hr {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  margin: 12px 0;
+}
+
+.Text--markdown-table-wrap {
+  overflow-x: auto;
+  margin: 8px 0;
+}
+.Text--markdown-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.95em;
+}
+.Text--markdown-table th,
+.Text--markdown-table td {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 6px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+.Text--markdown-table th {
+  background: rgba(0, 0, 0, 0.04);
+  font-weight: 600;
+}
+.Text--markdown-table tr:nth-child(even) td {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.Text--markdown del {
+  text-decoration: line-through;
+  opacity: 0.8;
+}
+
+.Text--markdown-inline-code,
+.Text--markdown code:not(pre code) {
+  background: rgba(0, 0, 0, 0.07);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.9em;
+}
+.Text--markdown-pre,
+.Text--markdown pre {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 10px 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 8px 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.9em;
+  line-height: 1.45;
+}
+.Text--markdown pre code {
+  background: transparent;
+  padding: 0;
+}
+
+/* Dark bubble variant (user messages) */
+.Text--white .Text--markdown-table th,
+.Text--white .Text--markdown-table td {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.Text--white .Text--markdown-table th {
+  background: rgba(255, 255, 255, 0.12);
+}
+.Text--white .Text--markdown-table tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.06);
+}
+.Text--white .Text--markdown-inline-code,
+.Text--white .Text--markdown code:not(pre code),
+.Text--white .Text--markdown-pre,
+.Text--white .Text--markdown pre {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+.Text--white .Text--markdown-hr {
+  border-top-color: rgba(255, 255, 255, 0.3);
+}
+.Text--white .Text--markdown blockquote {
+  color: rgba(255, 255, 255, 0.85);
+}
+
 .Text--white {
   color: #fff;
 }
